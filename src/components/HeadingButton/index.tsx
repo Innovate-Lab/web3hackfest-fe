@@ -18,7 +18,7 @@ function HeadignButton(props: Props) {
             router.push(props.to)
         }}
     >
-        <span className={`duration-200 hover:text-white hover:transition-all hover:duration-200 hover:scale-110 hover:ease-in font-[400] text-[18px] ${props.active? 'text-white scale-110': 'text-[#646467] active:duration-100 active:scale-100'}`}>
+        <span className={`duration-200 hover:text-white hover:transition-all hover:duration-200 hover:scale-110 hover:ease-in font-[400] text-[18px] ${props.active? 'text-white scale-110': 'text-[#646467] active:duration-100 active:scale-100'} font-[500]`}>
             {props.text}
         </span>
     </div> );
