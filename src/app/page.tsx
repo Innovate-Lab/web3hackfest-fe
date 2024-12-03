@@ -1,10 +1,26 @@
+"use client";
 import Button from "@/components/Button";
+import Galaxy from "@/components/Galaxy";
 import { MoveRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
+  const [deg, setDeg] = useState<number>(0);
+  const handleRotate = () => {
+    setDeg((prev) => prev + 1);
+  };
+  const refInterval = useRef<NodeJS.Timeout | null>(null);
+  useEffect(() => {
+    refInterval.current = setInterval(() => {
+      setDeg((prev) => prev + 1);
+    }, 3000 / 360);
+    return () => {
+      clearInterval(refInterval.current as NodeJS.Timeout);
+    };
+  }, []);
   return (
     <>
-      <div className="pt-10 frist-slide h-[80vh] flex flex-col items-center justify-center w-full">
+      <div className="pt-10 frist-slide  flex flex-col items-center justify-center w-full bg-black">
         <div className="custom-bg-image absolute w-full">
           <div className="gb-resource">
             <img
@@ -63,16 +79,30 @@ export default function Home() {
       </div>
 
       <div className="second-slide-wrapper pt-[100px] flex flex-col items-center relative z-100">
-        <div className="front-glass w-full flex flex-col items-center">
-          <div className="w-[80px] flex items-center justify-center h-[80px] rounded-[15px] bg-black">
-            <div className="bg-[#0b0b0d] w-[68px] h-[68px] rounded-[12px] flex items-center justify-center border-[#17171b] border-[1px]">
-              <img
-                className="w-[40px] h-[40px]"
-                src="https://framerusercontent.com/images/OzMurPLi1kCizdhiVFLelcVFZf4.png"
-                alt=""
-              />
+        <div className="front-glass gap-10 w-full flex flex-col relative z-[10] items-center">
+          <div
+            className="text-[#17171b] w-[84px] h-[84px] flex items-center justify-center  rounded-[15px]"
+            style={{
+              backgroundImage: `linear-gradient(${deg}deg, #101013, #000)`,
+            }}
+          >
+            <div className="w-[80px] flex items-center justify-center h-[80px] rounded-[15px] bg-black">
+              <div className="w-[68px] h-[68px] rounded-[12px] flex items-center justify-center border-[#17171b] border-[2px]">
+                <img
+                  className="w-[40px] h-[40px]"
+                  src="https://framerusercontent.com/images/OzMurPLi1kCizdhiVFLelcVFZf4.png"
+                  alt=""
+                />
+              </div>
             </div>
           </div>
+          <span className="text-[48px] font-[600] text-white">
+            Quyền lợi tham gia
+          </span>
+        </div>
+
+        <div className="back-galss absolute z-[9] top-[40px]">
+          <Galaxy />
         </div>
       </div>
     </>
