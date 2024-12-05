@@ -3,6 +3,7 @@ import Button from "@/components/Button";
 import Galaxy from "@/components/Galaxy";
 import GlassmophismTag from "@/components/GlassmophismTag";
 import LoadOnScreen from "@/components/LoadOnScreen";
+import Milestone from "@/components/Milestone";
 import Slide from "@/components/Slide";
 import { MoveRight } from "lucide-react";
 import {
@@ -94,6 +95,21 @@ const eventInfo = [
     icon: "https://framerusercontent.com/images/ZualH6ZXRRtSaEohyAE2nrqdYE.png",
     value: "50+",
     title: "Báo chí đưa tin",
+  },
+];
+
+const milestones = [
+  {
+    src: "https://framerusercontent.com/images/fzZxjr0sL5OidKQmPNpmC15o6Y.png",
+    disable: false,
+  },
+  {
+    src: "https://framerusercontent.com/images/SXpmvIYqaNdsJR9uU5dEG4cRTY.png",
+    disable: true,
+  },
+  {
+    src: "https://framerusercontent.com/images/144qwEqrOKh4wyWxvvWBZnfzQF0.png",
+    disable: true,
   },
 ];
 
@@ -220,7 +236,7 @@ export default function Home() {
             <LoadOnScreen popup={false}>
               <span className="flex gap-4 justify-center px-4">
                 {benifitsTag.map((item, index) => (
-                  <div className="w-[20%]">
+                  <div key={index} className="w-[20%]">
                     <GlassmophismTag size="s" icon={item.icon} key={index}>
                       <span className="text-white mt-2 text-center text-[13px] font-[500]">
                         {item.title}
@@ -262,7 +278,13 @@ export default function Home() {
         ))}
       </Slide>
 
-      <Slide title={`Các hoạt động trong sự kiện`}>saadd</Slide>
+      <Slide title={`Các hoạt động trong sự kiện`}>
+        <div className="flex">
+          {milestones.map((item, index) => (
+            <Milestone key={index} src={item.src} disable={item.disable} />
+          ))}
+        </div>
+      </Slide>
       <div className="h-[100vh] "></div>
     </>
   );
