@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import Heading from "@/layout/components/Heading";
 import { Poppins } from "next/font/google";
 import { useDataContext } from "@/provider/DataContext";
+import Slide from "@/components/Slide";
+import clsx from "clsx";
 const popins = Poppins({
   display: "swap",
   subsets: ["latin-ext"],
@@ -54,9 +56,92 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   });
 
   return (
-    <div className={popins.className}>
+    <div className={clsx(popins.className, "bg-black")}>
       <Heading />
       <div className="px-[100px] bg-black min-h-[100vh]">{children}</div>
+      <Slide bottomSpace title="">
+        <div className="w-full px-[120px] pt-[150px] pb-[80px]">
+          {" "}
+          <div className="flex justify-between w-full ">
+            <div className="">
+              <img
+                src="https://framerusercontent.com/images/EAcggmjePAgnMxUT7Yhc8x7fEBo.png"
+                alt=""
+                className="w-[230px] h-[52px] mb-4"
+              />
+              <span className="text-white block mb-10 max-w-[440px]">
+                Chuỗi sự kiện Công nghệ & Nhà phát triển Web3 lớn nhất Đông Nam
+                Á
+              </span>
+              <div className="flex gap-2">
+                <span
+                  onClick={() => {
+                    window.open(
+                      "https://www.facebook.com/web3hackfest?locale=vi_VN",
+                      "_blank"
+                    );
+                  }}
+                  className="flex items-center justify-center hover:bg-[#1e283d] cursor-pointer w-[48px] h-[48px] rounded-[10px] bg-secondary"
+                >
+                  <img
+                    src="https://framerusercontent.com/images/xhYMiExR4XdCd4s2bnoL0pdXOec.png"
+                    alt=""
+                    className="w-[24px] h-[24px]"
+                  />
+                </span>
+                <span
+                  onClick={() => {
+                    window.open(
+                      "https://www.facebook.com/web3hackfest?locale=vi_VN",
+                      "_blank"
+                    );
+                  }}
+                  className="flex items-center justify-center hover:bg-[#1e283d] cursor-pointer w-[48px] h-[48px] rounded-[10px] bg-secondary"
+                >
+                  <img
+                    src="https://framerusercontent.com/images/xhYMiExR4XdCd4s2bnoL0pdXOec.png"
+                    alt=""
+                    className="w-[24px] h-[24px]"
+                  />
+                </span>
+                <span
+                  onClick={() => {
+                    window.open(
+                      "https://www.facebook.com/web3hackfest?locale=vi_VN",
+                      "_blank"
+                    );
+                  }}
+                  className="flex items-center justify-center hover:bg-[#1e283d] cursor-pointer w-[48px] h-[48px] rounded-[10px] bg-secondary"
+                >
+                  <img
+                    src="https://framerusercontent.com/images/xhYMiExR4XdCd4s2bnoL0pdXOec.png"
+                    alt=""
+                    className="w-[24px] h-[24px]"
+                  />
+                </span>
+              </div>
+            </div>
+            <div className="flex flex-col items-center gap-6">
+              <span className="text-[24px] font-[500] text-white">
+                Tham gia group Zalo để được hỗ trợ:
+              </span>
+              <div className="flex flex-col items-center">
+                <span className="text-[17px] text-white max-w-[240px]">
+                  Web3 HackFest 2025 - AI Convergence
+                </span>
+                <img
+                  className="w-[108px] h-[108px] rounded-[10px] mt-[10px]"
+                  src="https://framerusercontent.com/images/ivG9QnH8AbW8ZuPgUKGch7ckCyw.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+          <span className="block text-white text-[13px] mt-10">
+            @2024 All Rights Reserved
+          </span>
+        </div>
+      </Slide>
     </div>
   );
 }

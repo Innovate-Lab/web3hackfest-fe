@@ -14,9 +14,19 @@ function LoadOnScreen(props: Props) {
     <>
       <motion.span
         ref={container}
-        className={`text-[48px] w-full ${
-          props.popup ? "translate-y-[40px]" : ""
-        } opacity-0 font-[600] text-white ${
+        className={`text-[48px] w-full  opacity-0 font-[600] text-white
+        ${
+          props.popup
+            ? `
+        ${
+          isInView
+            ? `transition-all ease-out duration-700 translate-y-[0]`
+            : `translate-y-[40px]`
+        }
+        `
+            : ``
+        } 
+        ${
           isInView
             ? `transition-all easin duration-700 opacity-100 ${
                 props.popup ? "translate-y-[0]" : ""

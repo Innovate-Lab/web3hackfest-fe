@@ -1,10 +1,12 @@
 "use client";
 import Button from "@/components/Button";
+import EventCard from "@/components/EventCard";
 import Galaxy from "@/components/Galaxy";
 import GlassmophismTag from "@/components/GlassmophismTag";
 import LoadOnScreen from "@/components/LoadOnScreen";
 import Milestone from "@/components/Milestone";
 import Slide from "@/components/Slide";
+import W3Field from "@/components/W3Field";
 import { MoveRight } from "lucide-react";
 import {
   useScroll,
@@ -14,6 +16,7 @@ import {
   useMotionValueEvent,
   useInView,
 } from "motion/react";
+import { div, image, img } from "motion/react-client";
 import { useEffect, useRef, useState } from "react";
 
 const benifitsTag = [
@@ -102,14 +105,181 @@ const milestones = [
   {
     src: "https://framerusercontent.com/images/fzZxjr0sL5OidKQmPNpmC15o6Y.png",
     disable: false,
+    title: "Genesis",
+    period: "10/2024 - 3/2025",
+
+    tags: [
+      "Web3 & AI Ideathon",
+      "UniTour",
+      "Idea Pitching Day Final",
+      "FutureCast",
+      "Bootcamp & Hackathon",
+    ],
   },
   {
     src: "https://framerusercontent.com/images/SXpmvIYqaNdsJR9uU5dEG4cRTY.png",
     disable: true,
+    title: "Convergence",
+    period: "03/2025 - 05/2025",
+    tags: ["Bootcamp & Hackathon", "W3HF’25 Hackathon", "Main Conference"],
   },
   {
     src: "https://framerusercontent.com/images/144qwEqrOKh4wyWxvvWBZnfzQF0.png",
     disable: true,
+    title: "Acceleration",
+    period: "05/2025 - 07/2025",
+    tags: [
+      "Workshop & Seminar",
+      "Training & Mentoring",
+      "Incubation Program",
+      "Fundraising",
+      "Investments",
+    ],
+  },
+];
+
+const hosts = [
+  "https://framerusercontent.com/images/YSfEfbd7RhIpjqvWTl9LxnxzvM.png",
+  "https://framerusercontent.com/images/a7BXTlct1rp61eBh3u5NO10XMI.png?scale-down-to=1024",
+  "https://framerusercontent.com/images/8r6v2sdjLNlDcTukXUZU4ViPs.png?scale-down-to=1024",
+];
+
+const values = [
+  { title: "Social Impressions", value: "10M+" },
+  {
+    title: "Prize Pool",
+    value: "110K",
+  },
+  {
+    title: "Attendees",
+    value: "3K+",
+  },
+  {
+    title: "Projects",
+    value: "150+",
+  },
+  {
+    title: "Bootcamps",
+    value: "6",
+  },
+  {
+    title: "Bootcamp Learners",
+    value: "3.9K+",
+  },
+];
+
+const speakers = [
+  {
+    spName: "Marieke Flament",
+    info: "CEO | NEAR Foundation",
+    avatar:
+      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    url: "https://www.web3hackfest.org/",
+  },
+  {
+    spName: "Marieke Flament",
+    info: "CEO | NEAR Foundation",
+    avatar:
+      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    url: "",
+  },
+  {
+    spName: "Marieke Flament",
+    info: "CEO | NEAR Foundation",
+    avatar:
+      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    url: "",
+  },
+  {
+    spName: "Marieke Flament",
+    info: "CEO | NEAR Foundation",
+    avatar:
+      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    url: "",
+  },
+  {
+    spName: "Marieke Flament",
+    info: "CEO | NEAR Foundation",
+    avatar:
+      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    url: "",
+  },
+  {
+    spName: "Marieke Flament",
+    info: "CEO | NEAR Foundation",
+    avatar:
+      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    url: "",
+  },
+  {
+    spName: "Marieke Flament",
+    info: "CEO | NEAR Foundation",
+    avatar:
+      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    url: "",
+  },
+  {
+    spName: "Marieke Flament",
+    info: "CEO | NEAR Foundation",
+    avatar:
+      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    url: "",
+  },
+  {
+    spName: "Marieke Flament",
+    info: "CEO | NEAR Foundation",
+    avatar:
+      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    url: "",
+  },
+  {
+    spName: "Marieke Flament",
+    info: "CEO | NEAR Foundation",
+    avatar:
+      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    url: "",
+  },
+  {
+    spName: "Marieke Flament",
+    info: "CEO | NEAR Foundation",
+    avatar:
+      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    url: "",
+  },
+  {
+    spName: "Marieke Flament",
+    info: "CEO | NEAR Foundation",
+    avatar:
+      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    url: "",
+  },
+  {
+    spName: "Marieke Flament",
+    info: "CEO | NEAR Foundation",
+    avatar:
+      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    url: "",
+  },
+  {
+    spName: "Marieke Flament",
+    info: "CEO | NEAR Foundation",
+    avatar:
+      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    url: "",
+  },
+  {
+    spName: "Marieke Flament",
+    info: "CEO | NEAR Foundation",
+    avatar:
+      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    url: "",
+  },
+  {
+    spName: "Marieke Flament",
+    info: "CEO | NEAR Foundation",
+    avatar:
+      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    url: "",
   },
 ];
 
@@ -175,8 +345,10 @@ export default function Home() {
         <div className="main-content-wrapper justify-center relative z-30 flex flex-col items-center gap-5 w-[70%]">
           <span className="block overflow-hidden h-[120px] text-[100px] font-[800] text-white">
             <span
-              className={`transition-all translate-y-[100px] opacity-0 block  ease-in-out ${
-                loaded ? "translate-y-[0] duration-700 opacity-100" : ""
+              className={`transition-all  opacity-0 block  ease-in-out ${
+                loaded
+                  ? "translate-y-[0] duration-700 opacity-100"
+                  : "translate-y-[100px] opacity-0"
               }`}
             >
               {/* image */}
@@ -185,7 +357,7 @@ export default function Home() {
           </span>
 
           <span className="uppercase text-white text-[24px] font-[600]">
-            A.I CONVERGENCE
+            A.I CONVERGENCE {`${loaded}`}
           </span>
 
           <span className="text-[#94969d] text-center text-[17px]">
@@ -263,9 +435,9 @@ export default function Home() {
         </div>
       </div>
 
-      <Slide title={`Thông tin sự kiện`}>
+      <Slide key={1} title={`Thông tin sự kiện`}>
         {eventInfo.map((item, index) => (
-          <div className="w-[23%]">
+          <div key={index} className="w-[23%]">
             <LoadOnScreen popup={false}>
               <GlassmophismTag size="m" icon={item.icon} key={index}>
                 <span className="text-[48px] font-[600]">{item.value}</span>
@@ -278,14 +450,254 @@ export default function Home() {
         ))}
       </Slide>
 
-      <Slide title={`Các hoạt động trong sự kiện`}>
-        <div className="flex">
-          {milestones.map((item, index) => (
-            <Milestone key={index} src={item.src} disable={item.disable} />
-          ))}
+      <Slide key={2} title={`Web3 HackFest Milestone`}>
+        <LoadOnScreen popup={false}>
+          <div className="flex gap-4 justify-center">
+            {milestones.map((item, index) => (
+              <Milestone
+                key={index}
+                title={item.title}
+                period={item.period}
+                index={index}
+                tags={item.tags}
+                src={item.src}
+                disable={item.disable}
+              />
+            ))}
+          </div>
+        </LoadOnScreen>
+      </Slide>
+
+      <Slide key={3} title="Chuỗi hoạt động trong sự kiện">
+        <LoadOnScreen popup={false}>
+          <div className="flex gap-8 w-full flex-wrap justify-center">
+            {[1, 2, 3, 4, 1, 2, 3, 4].map((item, index) => (
+              <EventCard
+                key={index}
+                title={`${item}`}
+                image="https://framerusercontent.com/images/E8xGx4xwd1WH1UDyOCzHP1itRU.jpg"
+              />
+            ))}
+          </div>
+        </LoadOnScreen>
+      </Slide>
+
+      <Slide key={5} title="Đơn vị tổ chức">
+        <div className="flex gap-8 w-full justify-between flex-wrap items-center ">
+          <LoadOnScreen popup={false}>
+            <div className="flex w-full justify-between items-center">
+              {hosts.map((item, index) => (
+                <div key={index} className="w-fit h-[100px]">
+                  <img
+                    src={item}
+                    alt=""
+                    sizes=""
+                    className="w-auto h-[100px] object-cover object-center"
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="w-full h-[2px] bg-[#194361] rounded-[2px] mt-10"></div>
+          </LoadOnScreen>
         </div>
       </Slide>
-      <div className="h-[100vh] "></div>
+
+      <Slide key={6} title="Web3 HackFest 2023">
+        <div className="flex gap-8 w-full justify-between flex-wrap items-center ">
+          <div className="flex w-full gap-[38px] justify-center flex-col items-center">
+            <span className="text-white text-[36px] font-[500]">
+              Những con số ấn tượng
+            </span>
+            <LoadOnScreen popup={true}>
+              <div className="flex items-center justify-between w-full">
+                {values.map((item, index) => (
+                  <div
+                    key={index}
+                    className="gap-2 flex flex-col justify-center items-center"
+                  >
+                    <span className="text-[#94969d] text-[18px]">
+                      {item.title}
+                    </span>
+                    <span className="text-primary text-[48px] font-[500]">
+                      {item.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </LoadOnScreen>
+
+            <W3Field
+              title="Nhà tài trợ 2023"
+              button={{ title: "Become Our Sponsor", click: () => {} }}
+            >
+              <div className="flex flex-col gap-4 w-[90%] mt">
+                {[
+                  [1, 2, 1, 1],
+                  [1, 2, 1, 1],
+                  [1, 1, 2, 1],
+                  [1, 1, 1, 1],
+                ].map((item, index) => (
+                  <div className="flex justify-between w-full" key={index}>
+                    {item.map((child_item, child_index) => (
+                      <img
+                        key={child_index}
+                        className="h-[48px] w-auto"
+                        src={`${
+                          child_item == 1
+                            ? "https://framerusercontent.com/images/MREXi78JgugwcKzmAcmRMibsMLw.png"
+                            : "https://framerusercontent.com/images/AyCXhQ2U9xiePn7fvSG19x4s.png"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </W3Field>
+
+            <W3Field
+              title="Đối tác truyền thông 2023"
+              button={{ title: "Become Our Partner", click: () => {} }}
+            >
+              <div className="flex flex-col gap-4 w-[90%] mt">
+                {[
+                  [1, 2, 1, 1],
+                  [1, 2, 1, 1],
+                  [1, 1, 2, 1],
+                  [1, 1, 1, 1],
+                ].map((item, index) => (
+                  <div className="flex justify-between w-full" key={index}>
+                    {item.map((child_item, child_index) => (
+                      <img
+                        key={child_index}
+                        className="h-[48px] w-auto"
+                        src={`${
+                          child_item == 1
+                            ? "https://framerusercontent.com/images/MREXi78JgugwcKzmAcmRMibsMLw.png"
+                            : "https://framerusercontent.com/images/AyCXhQ2U9xiePn7fvSG19x4s.png"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </W3Field>
+
+            <W3Field
+              title="Đối tác truyền thông 2023"
+              button={{ title: "Become Our Partner", click: () => {} }}
+            >
+              {" "}
+              <div className="flex gap-4 w-[90%] mt flex-wrap items-center justify-center">
+                {[
+                  1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1,
+                  2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1,
+                ].map((item, index) => (
+                  <div className="px-8 w-fit" key={index}>
+                    <img
+                      className="h-[48px] w-auto object-cover object-center"
+                      src={
+                        item == 1
+                          ? "https://framerusercontent.com/images/asVCrm0gQCx2fAYWMItUP6JUaU.png"
+                          : "https://framerusercontent.com/images/tFXz3HBTwq7RclZ70qUpt28OOE.png"
+                      }
+                      alt=""
+                    />{" "}
+                    h-
+                  </div>
+                ))}
+              </div>
+            </W3Field>
+
+            <span className="text-white text-[36px] font-[500]">
+              Diễn giả nổi bật 2023
+            </span>
+            <div className="flex gap-[32px] flex-wrap items-center justify-between w-[80%]">
+              {speakers.map((item, index) => (
+                <div
+                  key={index}
+                  className="w-[230px] h-[280px] rounded-[10px] overflow-hidden relative"
+                >
+                  <div className="absolute top-0 left-0 bg-[#0000003e] p-2 w-full h-full flex items-end justify-start">
+                    <div className="">
+                      <span
+                        onClick={() => {
+                          if (item.url) {
+                            window.open(item.url, "_blank");
+                          }
+                        }}
+                        className={`text-[18px] block text-white font-[500] ${
+                          item.url && "cursor-pointer"
+                        }`}
+                      >
+                        {item.spName}
+                      </span>
+                      <span className="text-[#AEB0B6] text-[13px]">
+                        {item.info}
+                      </span>{" "}
+                    </div>
+                  </div>
+                  <img
+                    className="w-full h-full object-cover object-center"
+                    src={item.avatar}
+                    alt=""
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Slide>
+      <Slide title="">
+        <div className="px-[64px] py-10 flex justify-center gap-4">
+          <div className="  flex flex-col gap-[10px]">
+            <span className="w-[480px] text-[24px] block text-white mb-[10px] font-[600]">
+              Web3 HackFest 2023 – Unlimited Hacker
+            </span>
+            <span className="w-[480px] block text-disable">
+              Sự kiện <span className="font-[600]">Web3 HackFest </span> là một
+              lễ hội hackathon lớn được tổ chức nhằm tạo ra một không gian đầy
+              thử thách và cơ hội cho tất cả builder, developer Web2 & Web3. Với
+              chủ đề “UNLIMITED HACKER”, sự kiện mong muốn khơi dậy sự sáng tạo
+              của Developer và khám phá tiềm năng vô hạn của công nghệ
+              Blockchain.
+            </span>
+            <Button
+              reverse={true}
+              hover={true}
+              rounded={false}
+              size="sm"
+              click={() => {}}
+            >
+              <div className="flex gap-2">
+                <span className=" text-white">Xem thêm</span>
+                <MoveRight className="" stroke="#fff" />
+              </div>
+            </Button>
+          </div>
+          <div className="flex flex-wrap gap-[10px]">
+            <img
+              src="https://framerusercontent.com/images/MyPlfaKfPCyINq4DHHVgoU5PU.webp?scale-down-to=1024"
+              alt=""
+              className="w-[325px] h-[192px] rounded-[10px] object-cover object-center"
+            />
+            <img
+              src="https://framerusercontent.com/images/MyPlfaKfPCyINq4DHHVgoU5PU.webp?scale-down-to=1024"
+              alt=""
+              className="w-[325px] h-[192px] rounded-[10px] object-cover object-center"
+            />
+            <img
+              src="https://framerusercontent.com/images/MyPlfaKfPCyINq4DHHVgoU5PU.webp?scale-down-to=1024"
+              alt=""
+              className="w-[325px] h-[192px] rounded-[10px] object-cover object-center"
+            />
+            <img
+              src="https://framerusercontent.com/images/MyPlfaKfPCyINq4DHHVgoU5PU.webp?scale-down-to=1024"
+              alt=""
+              className="w-[325px] h-[192px] rounded-[10px] object-cover object-center"
+            />
+          </div>
+        </div>
+      </Slide>
     </>
   );
 }

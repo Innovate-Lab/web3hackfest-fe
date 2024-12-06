@@ -13,6 +13,7 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: "var(--primary)",
+        disable: "var(--disable)",
         secondary: "var(--secondary)",
         primaryGradient: "var(--primary-gradient)",
       },
