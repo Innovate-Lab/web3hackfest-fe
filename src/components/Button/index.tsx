@@ -10,7 +10,7 @@ type Props = {
 function Button(props: Props) {
   return (
     <div
-      className={`w-fit ${
+      className={`w-fit transition-all duration-300 ease-in ${
         props.rounded ? "rounded-[100px]" : "rounded-[10px]"
       } ${
         props.size == "sm" ? "px-[16px] py-[10px]" : "px-[20px] py-[14px]"
@@ -18,7 +18,7 @@ function Button(props: Props) {
         !props.reverse ? "bg-primary" : "bg-[rgba(45,45,56)]"
       } ${
         props.hover
-          ? `hover:transition-all duration-200 ease-in ${
+          ? `hover:transition-all duration-300 ease-in ${
               props.reverse ? "hover:bg-primary" : "hover:bg-[rgba(45,45,56)]"
             }`
           : ""
