@@ -360,7 +360,7 @@ export default function Home() {
             A.I CONVERGENCE {`${loaded}`}
           </span>
 
-          <span className="text-[#94969d] text-center text-[17px]">
+          <span className="text-disable text-center text-[17px]">
             W3HF’25: Web3 & AI Convergence: Hội nghị AI và Web3 lớn nhất Đông
             Nam Á, nơi quy tụ những nhà đổi mới, nhà sáng lập và người kiến tạo
             để khám phá và vượt qua giới hạn của công nghệ AI, Web3 cùng sự giao
@@ -515,7 +515,7 @@ export default function Home() {
                     key={index}
                     className="gap-2 flex flex-col justify-center items-center"
                   >
-                    <span className="text-[#94969d] text-[18px]">
+                    <span className="text-disable text-[18px]">
                       {item.title}
                     </span>
                     <span className="text-primary text-[48px] font-[500]">

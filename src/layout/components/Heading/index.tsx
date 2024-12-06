@@ -49,7 +49,7 @@ function Heading() {
     setActivePage(index);
   };
   return (
-    <div className=" relative z-10 flex justify-between items-center px-10 py-[30px] bg-secondary border-b-[2px] border-[#ffffff42] border-solid">
+    <div className="fixed  w-full z-[999] flex justify-between items-center px-10 py-[30px] bg-secondary border-b-[2px] border-[#ffffff42] border-solid">
       <div className="logo-wrapper">
         <span className="text-[18px] font-[600] text-white uppercase">
           Web3

@@ -34,14 +34,14 @@ function Milestone(props: Props) {
           <span className=" text-[24px] text-white font-[500] block">
             {props.title}
           </span>
-          <span className="text-[#94969d] text-[17px] font-[500]">
+          <span className="text-disable text-[17px] font-[500]">
             {props.period}
           </span>
         </div>
         <div className="flex flex-wrap gap-[10px] justify-center mt-8">
           {props.tags.map((item, index) => (
             <span
-              className="text-[#94969d] font-[400] text-[17px] px-[14px] py-2 bg-[#1b1b21] rounded-[10px] border-[1px] border-[#ffffff1a]"
+              className="text-disable font-[400] text-[17px] px-[14px] py-2 bg-[#1b1b21] rounded-[10px] border-[1px] border-[#ffffff1a]"
               key={index}
             >
               {item}

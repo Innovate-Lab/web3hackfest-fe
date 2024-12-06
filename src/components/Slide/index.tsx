@@ -13,7 +13,7 @@ function Slide(props: Props) {
         style={{
           backgroundImage:
             "radial-gradient(closest-side, #072a53 10%, rgba(0,0,0,0) 90%)",
-          backgroundSize: "1200px 800px",
+          backgroundSize: "1400px 800px",
           backgroundRepeat: "no-repeat",
         }}
         className="w-full content-wrapper  flex flex-col items-center pt-10 gap-10 z-[101] flex-shrink-0"
