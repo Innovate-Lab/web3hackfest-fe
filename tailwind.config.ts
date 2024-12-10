@@ -17,6 +17,9 @@ export default {
         secondary: "var(--secondary)",
         primaryGradient: "var(--primary-gradient)",
       },
+      width: {
+        pageContent: "var(--page-content-with)",
+      },
       keyframes: {
         wave: {
           "0%": { transform: "translateY(0)" },

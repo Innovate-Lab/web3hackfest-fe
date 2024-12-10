@@ -8,6 +8,7 @@
   --primary: #358fce;
   --secondary: #17171a;
   --disable: #94969d;
+  --page-content-with: 1310px;
   --primary-gradient: linear-gradient(
     90deg,
     var(--primary) 0%,

@@ -58,11 +58,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   return (
     <div className={clsx(popins.className, "bg-black")}>
       <Heading />
-      <div className="px-[100px] bg-black min-h-[100vh] pt-[108px]">
-        {children}
-      </div>
-      <Slide bottomSpace title="">
-        <div className="w-full px-[120px] pt-[150px] pb-[80px]">
+      <div className=" bg-black min-h-[100vh] pt-[108px]">{children}</div>
+      <Slide
+        hFull={true}
+        bkg={true}
+        possition="l"
+        shappe="square"
+        opacity="s"
+        bottomSpace
+        title=""
+      >
+        <div className="w-full pt-[120px] note pb-[80px]">
           {" "}
           <div className="flex justify-between w-full ">
             <div className="">

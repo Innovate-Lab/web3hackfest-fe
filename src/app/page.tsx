@@ -7,6 +7,7 @@ import LoadOnScreen from "@/components/LoadOnScreen";
 import Milestone from "@/components/Milestone";
 import Slide from "@/components/Slide";
 import W3Field from "@/components/W3Field";
+import { url } from "inspector";
 import { MoveRight } from "lucide-react";
 import {
   useScroll,
@@ -312,130 +313,162 @@ export default function Home() {
 
   return (
     <>
-      <div className="py-10 gap-5 frist-slide  flex flex-col items-center justify-center w-full bg-black">
-        <div className="custom-bg-image absolute w-full">
-          <div className="gb-resource">
-            <img
-              className="w-[100vw] h-[200px]"
-              srcSet="https://framerusercontent.com/images/a8w48ATaQJ9c1bcfNf3bfs1nRps.png?scale-down-to=512 512w,https://framerusercontent.com/images/a8w48ATaQJ9c1bcfNf3bfs1nRps.png?scale-down-to=1024 1024w,https://framerusercontent.com/images/a8w48ATaQJ9c1bcfNf3bfs1nRps.png?scale-down-to=2048 2048w,https://framerusercontent.com/images/a8w48ATaQJ9c1bcfNf3bfs1nRps.png 3820w"
-              alt=""
-            />
-          </div>
-          {/* background circle  */}
-          <div className="w-full flex justify-center ">
-            <div
-              className="  w-[1600px] h-[1400px]  translate-y-[-22%]"
-              style={{
-                backgroundImage:
-                  "radial-gradient(closest-side, #072a53, rgba(0,0,0,0))",
-              }}
-            ></div>
-          </div>
-        </div>
-
-        <div className="w-[274px] h-[256px] animate-wave-slow">
-          <img
-            className=""
-            src="https://framerusercontent.com/images/l6DoV80yKM4kCaJFEXrySkz9c2I.png"
-            alt=""
-            style={{ objectPosition: "49% 65.7%", objectFit: "cover" }}
-          />
-        </div>
-
-        <div className="main-content-wrapper justify-center relative z-30 flex flex-col items-center gap-5 w-[70%]">
-          <span className="block overflow-hidden h-[120px] text-[100px] font-[800] text-white">
-            <span
-              className={`transition-all  opacity-0 block  ease-in-out ${
-                loaded
-                  ? "translate-y-[0] duration-700 opacity-100"
-                  : "translate-y-[100px] opacity-0"
-              }`}
-            >
-              {/* image */}
-              W3HF'25
-            </span>
-          </span>
-
-          <span className="uppercase text-white text-[24px] font-[600]">
-            A.I CONVERGENCE {`${loaded}`}
-          </span>
-
-          <span className="text-disable text-center text-[17px]">
-            W3HF’25: Web3 & AI Convergence: Hội nghị AI và Web3 lớn nhất Đông
-            Nam Á, nơi quy tụ những nhà đổi mới, nhà sáng lập và người kiến tạo
-            để khám phá và vượt qua giới hạn của công nghệ AI, Web3 cùng sự giao
-            thoa đột phá giữa chúng.
-          </span>
-
-          <Button rounded={false} size="md" click={() => {}}>
-            <div className="flex gap-2">
-              <span className="text-[18px] font-[500] text-white">
-                Đăng ký ngay
-              </span>
-              <MoveRight className="" stroke="#fff" />
-            </div>
-          </Button>
-        </div>
-      </div>
-
-      <div className="second-slide-wrapper pt-[100px] flex flex-col items-center relative z-100 min-h-[110vh]">
-        <div className="w-full z-101">
-          <div className="front-glass gap-10 w-full flex flex-col relative z-[10] items-center">
-            <div
-              className="text-[#17171b] w-[84px] h-[84px] flex items-center justify-center  rounded-[15px]"
-              style={{
-                backgroundImage: `linear-gradient(${deg}deg, #101013, #000)`,
-              }}
-            >
-              <div className="w-[80px] flex items-center justify-center h-[80px] rounded-[15px] bg-black">
-                <div className="w-[68px] h-[68px] rounded-[12px] flex items-center justify-center border-[#17171b] border-[2px]">
-                  <img
-                    className="w-[40px] h-[40px]"
-                    src="https://framerusercontent.com/images/OzMurPLi1kCizdhiVFLelcVFZf4.png"
-                    alt=""
-                  />
-                </div>
+      <div
+        style={{
+          backgroundImage: `url('assets/images/bkgs/primaryBkg.png')`,
+        }}
+        className="frist-slide bg-cover bg-center bg-no-repeat   bg-black w-full before:content-[''] before:top-0 before:left-0 before:absolute relative before:w-[100%]  before:h-[100%] "
+      >
+        <div
+          style={{
+            background: `linear-gradient(.0033461643641459204deg,rgba(7,7,8,0) 22.842975788288296%,rgba(7,7,8,1) 100%)`,
+          }}
+          className="w-full py-10 flex justify-center"
+        >
+          <div className="first-slide-body w-pageContent gap-5  flex flex-col items-center justify-center ">
+            <div className="custom-bg-image absolute w-full">
+              <div className="gb-resource">
+                {/* <img
+                  className="w-[100vw] h-[200px]"
+                  alt=""
+                  src
+                /> */}
+              </div>
+              {/* background circle  */}
+              <div className="w-full flex justify-center ">
+                <div className="  w-[1200px] h-[1000px]  translate-y-[-36%] bg-[#18559c] rounded-[50%] opacity-[0.8] blur-3xl"></div>
               </div>
             </div>
-            <LoadOnScreen popup={false}>
-              <span
-                className={`text-[48px] font-[600] text-white w-full text-center block`}
-              >
-                Quyền lợi tham gia
-              </span>
-            </LoadOnScreen>
 
-            <LoadOnScreen popup={false}>
-              <span className="flex gap-4 justify-center px-4">
-                {benifitsTag.map((item, index) => (
-                  <div key={index} className="w-[20%]">
-                    <GlassmophismTag size="s" icon={item.icon} key={index}>
-                      <span className="text-white mt-2 text-center text-[13px] font-[500]">
-                        {item.title}
-                      </span>
-                    </GlassmophismTag>
-                  </div>
-                ))}
-              </span>
-            </LoadOnScreen>
-          </div>
-        </div>
+            <div className="w-[274px] h-[256px] animate-wave-slow">
+              <img
+                className=""
+                src="https://framerusercontent.com/images/l6DoV80yKM4kCaJFEXrySkz9c2I.png"
+                alt=""
+                style={{ objectPosition: "49% 65.7%", objectFit: "cover" }}
+              />
+            </div>
 
-        <div className="back-galss absolute z-[9] w-full flex flex-col items-center top-[40px]">
-          <div className="w-full flex justify-center absolute translate-y-[68px] ">
-            <div
-              className="  w-[1400px] h-[480px]  translate-y-[-20%]"
-              style={{
-                backgroundImage:
-                  "radial-gradient(closest-side, #072a53, rgba(0,0,0,0))",
-              }}
-            ></div>
+            <div className="main-content-wrapper justify-center relative z-30 flex flex-col items-center gap-5 w-[70%]">
+              <span className="block overflow-hidden h-[120px] text-[100px] font-[800] text-white">
+                <span
+                  className={`transition-all  opacity-0 block  ease-in-out ${
+                    loaded
+                      ? "translate-y-[0] duration-700 opacity-100"
+                      : "translate-y-[100px] opacity-0"
+                  }`}
+                >
+                  {/* image */}
+                  W3HF'25
+                </span>
+              </span>
+
+              <span className="uppercase text-white text-[24px] font-[600]">
+                A.I CONVERGENCE {`${loaded}`}
+              </span>
+
+              <span className="text-disable text-center text-[17px]">
+                W3HF’25: Web3 & AI Convergence: Hội nghị AI và Web3 lớn nhất
+                Đông Nam Á, nơi quy tụ những nhà đổi mới, nhà sáng lập và người
+                kiến tạo để khám phá và vượt qua giới hạn của công nghệ AI, Web3
+                cùng sự giao thoa đột phá giữa chúng.
+              </span>
+
+              <Button rounded={false} size="md" click={() => {}}>
+                <div className="flex gap-2">
+                  <span className="text-[18px] font-[500] text-white">
+                    Đăng ký ngay
+                  </span>
+                  <MoveRight className="" stroke="#fff" />
+                </div>
+              </Button>
+            </div>
+            <div className="w-[80%] h-[2px] rounded-[2px] bg-[#358fce] mt-[42px] opacity-30"></div>
           </div>
-          <Galaxy />
         </div>
       </div>
 
-      <Slide key={1} title={`Thông tin sự kiện`}>
+      <div
+        style={{
+          backgroundImage: `url('assets/images/bkg2.png')`,
+        }}
+        className="second-slide-wrapper backdrop-blur-sm   bg-no-repeat bg-right bg-auto"
+      >
+        <div
+          //bg shadow
+          style={{
+            background: `linear-gradient(.0033461643641459204deg,rgba(7,7,8,0) 22.842975788288296%,rgba(7,7,8,1) 100%)`,
+          }}
+          className="second-slide-wrapper pt-[100px] flex flex-col items-center relative z-100 min-h-[110vh]"
+        >
+          <div className="flex flex-col items-center relative z-100 min-h-[110vh]">
+            <div className="w-full z-101">
+              <div className="front-glass  gap-10 w-full flex flex-col relative z-[10] items-center">
+                <div
+                  className="text-[#17171b] w-[84px] h-[84px] flex items-center justify-center  rounded-[15px]"
+                  style={{
+                    backgroundImage: `linear-gradient(${deg}deg, #101013, #000)`,
+                  }}
+                >
+                  <div className="w-[80px] flex items-center justify-center h-[80px] rounded-[15px] bg-black">
+                    <div className="w-[68px] h-[68px] rounded-[12px] flex items-center justify-center border-[#17171b] border-[2px]">
+                      <img
+                        className="w-[40px] h-[40px]"
+                        src="https://framerusercontent.com/images/OzMurPLi1kCizdhiVFLelcVFZf4.png"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <LoadOnScreen popup={false}>
+                  <span
+                    className={`text-[48px] font-[600] text-white w-full text-center block`}
+                  >
+                    Quyền lợi tham gia
+                  </span>
+                </LoadOnScreen>
+
+                <LoadOnScreen popup={false}>
+                  <span className="flex gap-4 justify-center px-4">
+                    {benifitsTag.map((item, index) => (
+                      <div key={index} className="w-[20%]">
+                        <GlassmophismTag size="s" icon={item.icon} key={index}>
+                          <span className="text-white mt-2 text-center text-[13px] font-[500]">
+                            {item.title}
+                          </span>
+                        </GlassmophismTag>
+                      </div>
+                    ))}
+                  </span>
+                </LoadOnScreen>
+              </div>
+            </div>
+
+            <div className="back-galss absolute z-[9] w-full flex flex-col items-center top-[40px]">
+              <div className="w-full flex justify-center absolute translate-y-[68px] ">
+                <div
+                  className="  w-[1400px] h-[480px]  translate-y-[-20%]"
+                  style={{
+                    backgroundImage:
+                      "radial-gradient(closest-side, #072a53, rgba(0,0,0,0))",
+                  }}
+                ></div>
+              </div>
+              <Galaxy />
+            </div>
+          </div>
+          <div className="w-full h-[200px] absolute bottom-0 bg-gradient-to-t from-black  to-[#ffffff00]"></div>
+        </div>
+      </div>
+
+      <Slide
+        bkg={true}
+        shappe="square"
+        key={1}
+        title={`Quy mô sự kiện Web3 HackFest`}
+        full
+        opacity="s"
+      >
         {eventInfo.map((item, index) => (
           <div key={index} className="w-[23%]">
             <LoadOnScreen popup={false}>
@@ -450,25 +483,41 @@ export default function Home() {
         ))}
       </Slide>
 
-      <Slide key={2} title={`Web3 HackFest Milestone`}>
-        <LoadOnScreen popup={false}>
-          <div className="flex gap-4 justify-center">
-            {milestones.map((item, index) => (
-              <Milestone
-                key={index}
-                title={item.title}
-                period={item.period}
-                index={index}
-                tags={item.tags}
-                src={item.src}
-                disable={item.disable}
-              />
-            ))}
-          </div>
-        </LoadOnScreen>
-      </Slide>
+      <div className="relative overflow-x-hidden">
+        <div
+          style={{ backgroundImage: `url('assets/images/leftArr.png')` }}
+          className="absolute bg-center bg-contain bg-no-repeat h-[418px] w-[237px] left-[-86px]"
+        ></div>
+        <div
+          style={{ backgroundImage: `url('assets/images/leftArr.png')` }}
+          className="absolute bg-center bg-contain bg-no-repeat  h-[418px] w-[237px] right-[-86px] rotate-[180deg]"
+        ></div>
+        <Slide
+          full
+          shappe="square"
+          bkg={true}
+          key={2}
+          title={`Web3 HackFest Milestone`}
+        >
+          <LoadOnScreen popup={false}>
+            <div className="flex gap-4 justify-center">
+              {milestones.map((item, index) => (
+                <Milestone
+                  key={index}
+                  title={item.title}
+                  period={item.period}
+                  index={index}
+                  tags={item.tags}
+                  src={item.src}
+                  disable={item.disable}
+                />
+              ))}
+            </div>
+          </LoadOnScreen>
+        </Slide>
+      </div>
 
-      <Slide key={3} title="Chuỗi hoạt động trong sự kiện">
+      <Slide bkg={true} key={3} title="Chuỗi hoạt động trong sự kiện">
         <LoadOnScreen popup={false}>
           <div className="flex gap-8 w-full flex-wrap justify-center">
             {[1, 2, 3, 4, 1, 2, 3, 4].map((item, index) => (
@@ -482,7 +531,7 @@ export default function Home() {
         </LoadOnScreen>
       </Slide>
 
-      <Slide key={5} title="Đơn vị tổ chức">
+      <Slide bkg={false} key={5} title="Đơn vị tổ chức">
         <div className="flex gap-8 w-full justify-between flex-wrap items-center ">
           <LoadOnScreen popup={false}>
             <div className="flex w-full justify-between items-center">
@@ -502,7 +551,7 @@ export default function Home() {
         </div>
       </Slide>
 
-      <Slide key={6} title="Web3 HackFest 2023">
+      <Slide bkg={false} key={6} title="Web3 HackFest 2023">
         <div className="flex gap-8 w-full justify-between flex-wrap items-center ">
           <div className="flex w-full gap-[38px] justify-center flex-col items-center">
             <span className="text-white text-[36px] font-[500]">
@@ -647,7 +696,7 @@ export default function Home() {
           </div>
         </div>
       </Slide>
-      <Slide title="">
+      <Slide bkg={true} full opacity="s" title="" shappe="square">
         <div className="px-[64px] py-10 flex justify-center gap-4">
           <div className="  flex flex-col gap-[10px]">
             <span className="w-[480px] text-[24px] block text-white mb-[10px] font-[600]">
