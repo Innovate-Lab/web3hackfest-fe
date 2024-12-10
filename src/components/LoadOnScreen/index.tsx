@@ -1,5 +1,5 @@
 import { useScroll, motion, useInView } from "motion/react";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Props = {
   children: React.ReactNode;
@@ -7,9 +7,14 @@ type Props = {
 };
 
 function LoadOnScreen(props: Props) {
+  const [fsLoad, setFsLoad] = useState<boolean>(false);
   const container = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(container);
-
+  useEffect(() => {
+    if (isInView) {
+      setFsLoad(true);
+    }
+  }, [isInView]);
   return (
     <>
       <motion.span
@@ -19,7 +24,7 @@ function LoadOnScreen(props: Props) {
           props.popup
             ? `
         ${
-          isInView
+          isInView || fsLoad
             ? `transition-all ease-out duration-700 translate-y-[0]`
             : `translate-y-[40px]`
         }

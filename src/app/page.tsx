@@ -19,6 +19,7 @@ import {
 } from "motion/react";
 import { div, image, img } from "motion/react-client";
 import { useEffect, useRef, useState } from "react";
+import Skeleton from "react-loading-skeleton";
 
 const benifitsTag = [
   {
