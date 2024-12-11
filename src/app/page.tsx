@@ -20,6 +20,7 @@ import {
 import { div, image, img } from "motion/react-client";
 import { useEffect, useRef, useState } from "react";
 import Skeleton from "react-loading-skeleton";
+import RotateICon from "@/components/RotateIcon";
 
 const benifitsTag = [
   {
@@ -405,7 +406,10 @@ export default function Home() {
           <div className="flex flex-col items-center relative z-100 min-h-[110vh]">
             <div className="w-full z-101">
               <div className="front-glass  gap-10 w-full flex flex-col relative z-[10] items-center">
-                <div
+                <RotateICon
+                  iconUrl={`https://framerusercontent.com/images/hNUuy7LHpIZgQwBQjTGaJLk3VWU.png`}
+                />
+                {/* <div
                   className="text-[#17171b] w-[84px] h-[84px] flex items-center justify-center  rounded-[15px]"
                   style={{
                     backgroundImage: `linear-gradient(${deg}deg, #101013, #000)`,
@@ -420,7 +424,7 @@ export default function Home() {
                       />
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <LoadOnScreen popup={false}>
                   <span
                     className={`text-[48px] font-[600] text-white w-full text-center block`}

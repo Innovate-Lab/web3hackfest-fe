@@ -1,7 +1,7 @@
 type Props = {
   children: React.ReactNode;
   icon?: string;
-  size: "s" | "m";
+  size?: "s" | "m";
 };
 
 function GlassmophismTag(props: Props) {
