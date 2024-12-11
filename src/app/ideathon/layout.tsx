@@ -90,6 +90,7 @@ const evaluations = [
   `4/ Sự phù hợp giữa vấn đề và giải pháp`,
   `5/ Trường hợp sử dụng phù hợp của công nghệ AI và Web3`,
 ];
+
 function Ideathon() {
   const [loaded, setLoaded] = useState<boolean>(false);
 
