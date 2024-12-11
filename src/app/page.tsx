@@ -173,116 +173,180 @@ const values = [
 
 const speakers = [
   {
-    spName: "Marieke Flament",
+    sName: "Marieke Flament",
+    url: "",
     info: "CEO | NEAR Foundation",
     avatar:
-      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
-    url: "https://www.web3hackfest.org/",
+      "assets/images/persons/Marieke+Flament+-+Mettle+CEO+-+headshot+(2)+(2).png",
   },
   {
-    spName: "Marieke Flament",
-    info: "CEO | NEAR Foundation",
-    avatar:
-      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    sName: "Illia Polosukhin",
     url: "",
+    info: "Co-Founder | Pagoda",
+    avatar:
+      "assets/images/persons/66544d142db45766c825342d_Near_Illia Polosukhin.jpg",
   },
   {
-    spName: "Marieke Flament",
-    info: "CEO | NEAR Foundation",
-    avatar:
-      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    sName: "Dr. Nguyen Minh Hong",
     url: "",
+    info: "President | Vietnam Digital Communication Association",
+    avatar: "assets/images/persons/chu-tich-nguyen-minh-hong-3393.jpg",
   },
   {
-    spName: "Marieke Flament",
-    info: "CEO | NEAR Foundation",
-    avatar:
-      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    sName: "Vu Anh Tu",
     url: "",
+    info: "CTO | FPT Corporation",
+    avatar:
+      "assets/images/persons/giam-doc-cong-nghe-fpt-chia-se-chuyen-nghe_60f6584385ef5.jpeg",
   },
   {
-    spName: "Marieke Flament",
-    info: "CEO | NEAR Foundation",
-    avatar:
-      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    sName: "Rich Robinson",
     url: "",
+    info: "Entrepreneur-In-Residence | Animoca Brands",
+    avatar:
+      "assets/images/persons/63ffbf66765588730e713aee_2eee9e55-4713-453e-8b36-df93bb04525e.png",
   },
   {
-    spName: "Marieke Flament",
-    info: "CEO | NEAR Foundation",
-    avatar:
-      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    sName: "Nikhil Velpanur",
     url: "",
+    info: "Head of Web3 & JIC | AWS",
+    avatar: "assets/images/persons/Nikhil-Velpanur.jpg",
   },
   {
-    spName: "Marieke Flament",
-    info: "CEO | NEAR Foundation",
-    avatar:
-      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    sName: "Don Phan",
     url: "",
+    info: "Web3 Specialist | Google Cloud",
+    avatar: "assets/images/persons/donphan.png",
   },
   {
-    spName: "Marieke Flament",
-    info: "CEO | NEAR Foundation",
-    avatar:
-      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    sName: "Ben Morris",
     url: "",
+    info: "Director - Head of Ecosystem, APAC | Circle",
+    avatar: "assets/images/persons/pR9AA_sB_400x400.jpg",
   },
   {
-    spName: "Marieke Flament",
-    info: "CEO | NEAR Foundation",
-    avatar:
-      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    sName: "Mary Beth Buchanan",
     url: "",
+    info: "Board of Directors Member | Cardano Foundation",
+    avatar:
+      "assets/images/persons/I53hkp6bxlpFhtLg2l9dTD13u8UYTCSr6CpqTkks (1).jpg",
   },
   {
-    spName: "Marieke Flament",
-    info: "CEO | NEAR Foundation",
-    avatar:
-      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    sName: "Hanna Tantoco",
     url: "",
+    info: "Marketing Director, APAC | Blockdaemon",
+    avatar: "assets/images/persons/Hanna-Tantoco.png",
   },
   {
-    spName: "Marieke Flament",
-    info: "CEO | NEAR Foundation",
-    avatar:
-      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    sName: "Ken Miyachi",
     url: "",
+    info: "Tech Lead & PM | NEAR Foundation",
+    avatar: "assets/images/persons/Ken-Miyachi.jpg",
   },
   {
-    spName: "Marieke Flament",
-    info: "CEO | NEAR Foundation",
-    avatar:
-      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    sName: "David Norris",
     url: "",
+    info: "Head of Finance | NEAR Foundation",
+    avatar: "assets/images/persons/David-Norris.jpg",
   },
   {
-    spName: "Marieke Flament",
-    info: "CEO | NEAR Foundation",
-    avatar:
-      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    sName: "Mikael Björn",
     url: "",
+    info: "Founder | FYEO",
+    avatar: "assets/images/persons/1516216360719.jpeg",
   },
   {
-    spName: "Marieke Flament",
-    info: "CEO | NEAR Foundation",
-    avatar:
-      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    sName: "Dr. Nguyen Huu Cuong",
     url: "",
+    info: "Chief Strategy Officer | Vin AI",
+    avatar: "assets/images/persons/1651300574711.jpeg",
   },
   {
-    spName: "Marieke Flament",
-    info: "CEO | NEAR Foundation",
-    avatar:
-      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    sName: "Edward Chen",
     url: "",
+    info: "GM of Assets & Commercial Center | Huobi",
+    avatar: "assets/images/persons/1622081096624.jpeg",
   },
   {
-    spName: "Marieke Flament",
-    info: "CEO | NEAR Foundation",
-    avatar:
-      "https://framerusercontent.com/images/ZRux8mp9ntwKlc7b3ISMWlaiXuw.png",
+    sName: "Tony Tong",
     url: "",
+    info: "Co-Founder & Co-Chairman | Hong Kong Blockchain Association",
+    avatar: "assets/images/persons/tonytong2022-06-23-下午6.12.38.png",
+  },
+  {
+    sName: "Alex Chiocchi",
+    url: "",
+    info: "CPO | Pagoda",
+    avatar: "assets/images/persons/Alex-Chiocchi-1.jpg",
+  },
+  {
+    sName: "Kim Bazak",
+    url: "",
+    info: "VP of Business Development | MarketAcross",
+    avatar: "assets/images/persons/Kim-Bazak.jpg",
+  },
+  {
+    sName: "Dr. Tran Quy",
+    url: "",
+    info: "President | Vietnam Institute of Digital Economy",
+    avatar:
+      "assets/images/persons/TS-TRan-Quy-Vien-Truong-Vien-kinh-te-so-Viet-Nam-2.jpg",
+  },
+  {
+    sName: "Dr. Hung Dang",
+    url: "",
+    info: "Research Director | FPT Blockchain Lab",
+    avatar:
+      "assets/images/persons/Dang-Khanh-Hung-Giam-Doc-Nghien-Cuu-FPT-Blockchain-Lab-1.png",
+  },
+];
+
+const activities = [
+  { title: "Web3 & AI Ideathon", image: "assets/images/persons/trienlam5.jpg" },
+  {
+    title: "University Tour",
+    image: "assets/images/persons/anh-bia-ueh-tour.jpg",
+  },
+  {
+    title: "FutureCast",
+    image: "assets/images/persons/futurecast.jpg",
+  },
+  {
+    title: "Idea Pitching Day Final",
+    image:
+      "assets/images/persons/464635012_450678248041484_4267471032560000548_n.jpg",
+  },
+  {
+    title: "Bootcamp & Hackathon",
+    image: "assets/images/persons/openart-image_bFkm1I8W_1726731594869_raw.jpg",
+  },
+  {
+    title: `W3HF'25 Hackathon`,
+    image:
+      "assets/images/persons/460abf_c307cbbdadfa468ba26b25343ab9f76f~mv2.webp",
+  },
+  {
+    title: "Main Conference",
+    image: "assets/images/persons/istanbul-conference-venue.jpg",
+  },
+  {
+    title: "Workshop & Seminar",
+    image:
+      "assets/images/persons/448128262_442758148691622_5238382064676312790_n.jpg",
+  },
+  {
+    title: "Training & Mentoring",
+    image:
+      "assets/images/persons/how-do-you-introduce-mentoring-in-the-workplace-part-one-the-setup-peter-shaw.webp",
+  },
+  {
+    title: "Incubation Program",
+    image: "assets/images/persons/968697975d001a9f7d59b561a355ae76.jpg",
+  },
+  { title: " Fundraising", image: "assets/images/persons/risefunding.jpg" },
+  {
+    title: "Network & Connections",
+    image: "assets/images/persons/communicate.jpg",
   },
 ];
 
@@ -525,11 +589,11 @@ export default function Home() {
       <Slide bkg={true} key={3} title="Chuỗi hoạt động trong sự kiện">
         <LoadOnScreen popup={false}>
           <div className="flex gap-8 w-full flex-wrap justify-center">
-            {[1, 2, 3, 4, 1, 2, 3, 4].map((item, index) => (
+            {activities.map((item, index) => (
               <EventCard
                 key={index}
-                title={`${item}`}
-                image="https://framerusercontent.com/images/E8xGx4xwd1WH1UDyOCzHP1itRU.jpg"
+                title={`${item.title}`}
+                image={item.image}
               />
             ))}
           </div>
@@ -683,7 +747,7 @@ export default function Home() {
                           item.url && "cursor-pointer"
                         }`}
                       >
-                        {item.spName}
+                        {item.sName}
                       </span>
                       <span className="text-[#AEB0B6] text-[13px]">
                         {item.info}
@@ -730,22 +794,22 @@ export default function Home() {
           </div>
           <div className="flex flex-wrap gap-[10px]">
             <img
-              src="https://framerusercontent.com/images/MyPlfaKfPCyINq4DHHVgoU5PU.webp?scale-down-to=1024"
+              src="assets/images/persons/4-near-apac-2023-1694597546958888708949.webp"
               alt=""
               className="w-[325px] h-[192px] rounded-[10px] object-cover object-center"
             />
             <img
-              src="https://framerusercontent.com/images/MyPlfaKfPCyINq4DHHVgoU5PU.webp?scale-down-to=1024"
+              src="assets/images/persons/img-4423-2876.jpg"
               alt=""
               className="w-[325px] h-[192px] rounded-[10px] object-cover object-center"
             />
             <img
-              src="https://framerusercontent.com/images/MyPlfaKfPCyINq4DHHVgoU5PU.webp?scale-down-to=1024"
+              src="assets/images/persons/trienlam5.jpg"
               alt=""
               className="w-[325px] h-[192px] rounded-[10px] object-cover object-center"
             />
             <img
-              src="https://framerusercontent.com/images/MyPlfaKfPCyINq4DHHVgoU5PU.webp?scale-down-to=1024"
+              src="assets/images/persons/photo-1-1694579257613794939708.jpg"
               alt=""
               className="w-[325px] h-[192px] rounded-[10px] object-cover object-center"
             />
