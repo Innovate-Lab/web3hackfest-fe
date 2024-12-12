@@ -8,13 +8,41 @@
   --primary: #358fce;
   --secondary: #17171a;
   --disable: #94969d;
-  --page-content-with: 1310px;
+  --page-content-with: 100%;
+  --title-font-size: 32px;
   --primary-gradient: linear-gradient(
     90deg,
     var(--primary) 0%,
     var(--secondary) 100%
   );
 }
+/* desktop ui */
+@media (min-width: 1310px) {
+  :root {
+    --page-content-with: 1312px;
+    --title-font-size: 48px;
+  }
+}
+
+@media (max-width: 1310px) {
+  :root {
+    --page-content-with: 100%;
+    --title-font-size: 32px;
+  }
+}
+@media (min-width: 1310px) {
+  :root {
+    --page-content-with: 1312px;
+    --title-font-size: 48px;
+  }
+}
+
+/* @media (width: 1309px) {
+  :root {
+    --page-content-with: 100%;
+    --title-font-size: 48px;
+  }
+} */
 
 @media (prefers-color-scheme: dark) {
   :root {

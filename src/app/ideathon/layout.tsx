@@ -8,7 +8,7 @@ import Slide from "@/components/Slide";
 import { MoveRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const rewardsInfo = [
+export const rewardsInfo = [
   `Giải thưởng hiện kim: 100,000,000 VNĐ`,
   `Học bổng từ các đơn vị tài trợ`,
   `Quà tặng từ Ban Tổ Chức`,

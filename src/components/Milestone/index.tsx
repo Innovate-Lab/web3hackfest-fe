@@ -11,22 +11,26 @@ function Milestone(props: Props) {
     <div className="w-fit flex items-center justify-center flex-col">
       <div className="w-[280px] h-[280px] flex flex-col justify-center items-center ">
         <img
-          className={`block w-[175px]  rounded-inherit object-center object-cover ${
+          className={`block w-[120px] sm:w-[175px]  rounded-inherit object-center object-cover ${
             props.disable ? "" : "animate-wave-slow"
           } `}
           src={props.src}
           alt=""
         />
         <img
-          srcSet="https://framerusercontent.com/images/ok8GBrHHTpTkQQvdj2GWsN8GX0.png 768w"
-          src="https://framerusercontent.com/images/ok8GBrHHTpTkQQvdj2GWsN8GX0.png?scale-down-to=512"
+          src={
+            props.disable
+              ? "assets/images/disableBase.png"
+              : "assets/images/base.png"
+          }
           alt=""
-          sizes="86px"
-          className={`mt-[-24px]`}
+          className={`sm:mt-[-24px] mt-[-8px] h-auto sm:w-[86px] w-[54px] ${
+            props.disable && "mr-[4px]"
+          }`}
         />
       </div>
 
-      <div className="milestone-content p-6  w-[380px] min-h-[400px] rounded-[10px] bg-gradient-to-br from-[#00000066] to-[#1b1b21]">
+      <div className="milestone-content p-6 w-[80%] sm:w-[380px] min-h-[400px] rounded-[10px] bg-gradient-to-br from-[#00000066] to-[#1b1b21]">
         <div className="flex flex-col items-center gap-2">
           <span className="text-[19px] text-white block">
             Phase: {props.index + 1}

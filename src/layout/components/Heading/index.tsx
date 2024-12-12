@@ -5,8 +5,8 @@ import {
   useDataContext,
 } from "@/provider/DataContext";
 import { title } from "process";
-import { useContext, useEffect } from "react";
-import { MoveRight } from "lucide-react";
+import { useContext, useEffect, useState } from "react";
+import { AlignJustify, MoveRight } from "lucide-react";
 import Button from "@/components/Button";
 const pages = [
   {
@@ -40,6 +40,7 @@ const pages = [
 ];
 
 function Heading() {
+  const [logged, setLogged] = useState(false);
   const { activePage, setActivePage } = useDataContext();
   useEffect(() => {
     setActivePage(parseInt(localStorage.getItem("activePage") || "0"));
@@ -49,15 +50,16 @@ function Heading() {
     setActivePage(index);
   };
   return (
-    <div className="fixed  w-full z-[999] flex justify-between items-center px-10 py-[30px] bg-secondary border-b-[2px] border-[#ffffff42] border-solid">
+    <div className="fixed  w-full z-[999] flex justify-between items-center p-[24px] sm:px-10 sm:py-[30px] bg-secondary border-b-[2px] border-[#ffffff42] border-solid ">
       <div className="logo-wrapper">
-        <span className="text-[18px] font-[600] text-white uppercase">
-          Web3
-        </span>
-        <span className="text-[18px] text-white uppercase">hackfest</span>
+        <img
+          className="w-[160px] h-auto"
+          src="assets/images/w3fs.avif"
+          alt=""
+        />
       </div>
 
-      <div className="menu-wrapper flex">
+      <div className="menu-wrapper sm:flex hidden">
         {pages.map((page, index) => (
           <HeadignButton
             key={index}
@@ -72,12 +74,41 @@ function Heading() {
       </div>
 
       <div className="user-actions-wrapper">
-        <Button size="sm" rounded={true} click={() => {}}>
-          <div className="flex gap-2">
-            <span className=" text-white">Đăng nhập</span>
-            <MoveRight className="" stroke="#fff" />
+        {logged}
+        {logged ? (
+          <div className="">
+            {/* handle show option button or user avatar */}
+            <div className="sm:hidden block">
+              <AlignJustify stroke="#fff" />
+            </div>
+            <div className="sm:flex hidden items-center gap-4 cursor-pointer">
+              <span className="text-white text-[17px] font-[500]">
+                suistark02
+              </span>
+              <div
+                className="w-[44px] h-[44px] rounded-[50%] bg-cover bg-center  border-[1px] border-primary"
+                style={{
+                  backgroundImage: `url('assets/images/persons/openart-image_Jyj2md-t_1726731886987_raw.jpg')`,
+                }}
+              ></div>
+            </div>
           </div>
-        </Button>
+        ) : (
+          <Button
+            size="sm"
+            rounded={true}
+            click={() => {
+              setLogged(true);
+            }}
+          >
+            <div className="flex gap-2">
+              <span className=" text-white">Đăng nhập</span>
+              <span>
+                <MoveRight className="sm:inline-block hidden" stroke="#fff" />
+              </span>
+            </div>
+          </Button>
+        )}
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ import { div, image, img } from "motion/react-client";
 import { useEffect, useRef, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import RotateICon from "@/components/RotateIcon";
-
+import { rewardsInfo } from "./ideathon/layout";
 const benifitsTag = [
   {
     icon: "https://framerusercontent.com/images/qmQExoaRiIDblDbazRJ2OZI8U.png",
@@ -106,7 +106,7 @@ const eventInfo = [
 
 const milestones = [
   {
-    src: "https://framerusercontent.com/images/fzZxjr0sL5OidKQmPNpmC15o6Y.png",
+    src: "assets/images/genesis.png",
     disable: false,
     title: "Genesis",
     period: "10/2024 - 3/2025",
@@ -120,14 +120,14 @@ const milestones = [
     ],
   },
   {
-    src: "https://framerusercontent.com/images/SXpmvIYqaNdsJR9uU5dEG4cRTY.png",
+    src: "assets/images/W4.png",
     disable: true,
     title: "Convergence",
     period: "03/2025 - 05/2025",
     tags: ["Bootcamp & Hackathon", "W3HF’25 Hackathon", "Main Conference"],
   },
   {
-    src: "https://framerusercontent.com/images/144qwEqrOKh4wyWxvvWBZnfzQF0.png",
+    src: "assets/images/W3.png",
     disable: true,
     title: "Acceleration",
     period: "05/2025 - 07/2025",
@@ -353,7 +353,7 @@ const activities = [
 export default function Home() {
   const [deg, setDeg] = useState<number>(0);
   const [loaded, setLoaded] = useState<boolean>(false);
-
+  const [logged, setLogged] = useState<boolean>(true);
   const value = useMotionValue(0);
 
   useMotionValueEvent(value, "change", (latest) => {
@@ -376,6 +376,10 @@ export default function Home() {
       clearInterval(refInterval.current as NodeJS.Timeout);
     };
   }, []);
+
+  const handleSubmit = () => {
+    //logic to handle on register now click
+  };
 
   return (
     <>
@@ -406,7 +410,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="w-[274px] h-[256px] animate-wave-slow">
+            <div className="w-[232px] h-[232px] sm:w-[274px] sm:h-[256px] animate-wave-slow">
               <img
                 className=""
                 src="https://framerusercontent.com/images/l6DoV80yKM4kCaJFEXrySkz9c2I.png"
@@ -416,20 +420,20 @@ export default function Home() {
             </div>
 
             <div className="main-content-wrapper justify-center relative z-30 flex flex-col items-center gap-5 w-[70%]">
-              <span className="block overflow-hidden h-[120px] text-[100px] font-[800] text-white">
+              <span className="block overflow-hidden  text-[32px] sm:text-[100px] font-[800] text-white">
                 <span
-                  className={`transition-all  opacity-0 block  ease-in-out ${
+                  className={`transition-all  opacity-0 block  ease-in-out text-center ${
                     loaded
                       ? "translate-y-[0] duration-700 opacity-100"
                       : "translate-y-[100px] opacity-0"
                   }`}
                 >
                   {/* image */}
-                  W3HF'25
+                  WEB3 HACKFEST 2025
                 </span>
               </span>
 
-              <span className="uppercase text-white text-[24px] font-[600]">
+              <span className="uppercase text-white text-[24px] font-[600] text-center">
                 A.I CONVERGENCE {`${loaded}`}
               </span>
 
@@ -440,10 +444,10 @@ export default function Home() {
                 cùng sự giao thoa đột phá giữa chúng.
               </span>
 
-              <Button rounded={false} size="md" click={() => {}}>
+              <Button rounded={false} size="md" click={handleSubmit}>
                 <div className="flex gap-2">
                   <span className="text-[18px] font-[500] text-white">
-                    Đăng ký ngay
+                    {logged ? "Nộp bài ngay" : "Đăng kí ngay"}
                   </span>
                   <MoveRight className="" stroke="#fff" />
                 </div>
@@ -467,7 +471,7 @@ export default function Home() {
           }}
           className="second-slide-wrapper pt-[100px] flex flex-col items-center relative z-100 min-h-[110vh]"
         >
-          <div className="flex flex-col items-center relative z-100 min-h-[110vh]">
+          <div className="flex flex-col items-center relative z-100 min-h-[110vh] w-pageContent">
             <div className="w-full z-101">
               <div className="front-glass  gap-10 w-full flex flex-col relative z-[10] items-center">
                 <RotateICon
@@ -491,16 +495,72 @@ export default function Home() {
                 </div> */}
                 <LoadOnScreen popup={false}>
                   <span
-                    className={`text-[48px] font-[600] text-white w-full text-center block`}
+                    className={`text-title font-[600] text-white w-full text-center block`}
                   >
-                    Quyền lợi tham gia
+                    Web3 & AI Ideathon
+                  </span>
+                  <span
+                    className={`font-[600] text-white  text-[20px] w-full text-center block mt-4 `}
+                  >
+                    Cuộc thi toàn quốc về ý tưởng công nghệ Web3 & AI Ideathon
                   </span>
                 </LoadOnScreen>
 
                 <LoadOnScreen popup={false}>
-                  <span className="flex gap-4 justify-center px-4">
+                  <div className="w-full  px-4 sm:px-10">
+                    <span className="text-[18px] text-[e4e4e6] block sm:w-[50%] w-full sm:text-left text-center font-[400] mb-10">
+                      <span className="font-[500]">WEB3 & AI IDEATHON -</span>
+                      được tổ chức trong khuôn khổ giai đoạn đầu tiên (Genesis)
+                      của chuỗi sự kiện Web3 HackFest 2025. Là sân chơi sáng tạo
+                      toàn quốc nơi các đội thi trình bày ý tưởng về việc ứng
+                      dụng AI và Web3 vào thực tiễn, từ phát triển các sản phẩm
+                      và ứng dụng góp phần thúc đẩy hệ sinh thái chuyển đổi số
+                      toàn diện.
+                    </span>
+                    <div className="w-full flex sm:justify-start justify-center items-center sm:flex-row flex-col gap-4">
+                      <Button hover rounded={false} size="md" click={() => {}}>
+                        <div className="flex gap-2">
+                          <span className="text-[18px] font-[500] text-white">
+                            {logged ? "Nộp bài ngay" : "Đăng kí ngay"}
+                          </span>
+                          <MoveRight className="" stroke="#fff" />
+                        </div>
+                      </Button>
+                      <Button
+                        hover
+                        reverse
+                        rounded={false}
+                        size="md"
+                        click={handleSubmit}
+                      >
+                        <div className="flex gap-2">
+                          <span className="text-[18px] font-[500] text-white">
+                            Thể lệ và hướng dẫn
+                          </span>
+                          <MoveRight className="" stroke="#fff" />
+                        </div>
+                      </Button>
+                    </div>
+                    <span className="text-title text-white w-full text-center sm:text-left mt-[62px] block">
+                      Giải thưởng
+                    </span>
+                    <div className="flex w-full sm:w-[800px] flex-wrap mt-4 flex-col sm:flex-row">
+                      {rewardsInfo.map((item, index) => (
+                        <li
+                          className="text-[18px] sm:w-[50%] w-full"
+                          key={index}
+                        >
+                          {item}
+                        </li>
+                      ))}
+                    </div>
+                  </div>
+                </LoadOnScreen>
+
+                {/* <LoadOnScreen popup={false}>
+                  <span className="flex gap-4 justify-center px-4 flex-wrap">
                     {benifitsTag.map((item, index) => (
-                      <div key={index} className="w-[20%]">
+                      <div key={index} className="w-[40%]  sm:w-[20%]">
                         <GlassmophismTag size="s" icon={item.icon} key={index}>
                           <span className="text-white mt-2 text-center text-[13px] font-[500]">
                             {item.title}
@@ -509,7 +569,7 @@ export default function Home() {
                       </div>
                     ))}
                   </span>
-                </LoadOnScreen>
+                </LoadOnScreen> */}
               </div>
             </div>
 
@@ -539,7 +599,7 @@ export default function Home() {
         opacity="s"
       >
         {eventInfo.map((item, index) => (
-          <div key={index} className="w-[23%]">
+          <div key={index} className="sm:w-[23%] w-[46%]">
             <LoadOnScreen popup={false}>
               <GlassmophismTag size="m" icon={item.icon} key={index}>
                 <span className="text-[48px] font-[600]">{item.value}</span>
@@ -561,6 +621,7 @@ export default function Home() {
           style={{ backgroundImage: `url('assets/images/leftArr.png')` }}
           className="absolute bg-center bg-contain bg-no-repeat  h-[418px] w-[237px] right-[-86px] rotate-[180deg]"
         ></div>
+
         <Slide
           full
           shappe="square"
@@ -569,7 +630,7 @@ export default function Home() {
           title={`Web3 HackFest Milestone`}
         >
           <LoadOnScreen popup={false}>
-            <div className="flex gap-4 justify-center">
+            <div className="flex gap-4 justify-center sm:flex-row flex-col">
               {milestones.map((item, index) => (
                 <Milestone
                   key={index}
@@ -601,9 +662,9 @@ export default function Home() {
       </Slide>
 
       <Slide bkg={false} key={5} title="Đơn vị tổ chức">
-        <div className="flex gap-8 w-full justify-between flex-wrap items-center ">
+        <div className="flex gap-8 w-full justify-between  flex-wrap items-center ">
           <LoadOnScreen popup={false}>
-            <div className="flex w-full justify-between items-center">
+            <div className="flex w-full justify-between items-center sm:flex-row flex-col sm:gap-0 gap-8">
               {hosts.map((item, index) => (
                 <div key={index} className="w-fit h-[100px]">
                   <img
@@ -623,17 +684,17 @@ export default function Home() {
       <Slide bkg={false} key={6} title="Web3 HackFest 2023">
         <div className="flex gap-8 w-full justify-between flex-wrap items-center ">
           <div className="flex w-full gap-[38px] justify-center flex-col items-center">
-            <span className="text-white text-[36px] font-[500]">
+            <span className="text-white text-[36px] font-[500] text-center">
               Những con số ấn tượng
             </span>
             <LoadOnScreen popup={true}>
-              <div className="flex items-center justify-between w-full">
+              <div className="flex items-center justify-between w-full flex-wrap gap-8 px-4">
                 {values.map((item, index) => (
                   <div
                     key={index}
-                    className="gap-2 flex flex-col justify-center items-center"
+                    className="gap-2 flex flex-col justify-center items-center sm:w-fit w-[42%]"
                   >
-                    <span className="text-disable text-[18px]">
+                    <span className="text-disable text-[18px] text-center">
                       {item.title}
                     </span>
                     <span className="text-primary text-[48px] font-[500]">
@@ -655,11 +716,14 @@ export default function Home() {
                   [1, 1, 2, 1],
                   [1, 1, 1, 1],
                 ].map((item, index) => (
-                  <div className="flex justify-between w-full" key={index}>
+                  <div
+                    className="flex justify-between w-full flex-wrap"
+                    key={index}
+                  >
                     {item.map((child_item, child_index) => (
                       <img
                         key={child_index}
-                        className="h-[48px] w-auto"
+                        className="sm:h-[48px] sm:w-auto w-[42%] h-auto"
                         src={`${
                           child_item == 1
                             ? "https://framerusercontent.com/images/MREXi78JgugwcKzmAcmRMibsMLw.png"
@@ -683,7 +747,10 @@ export default function Home() {
                   [1, 1, 2, 1],
                   [1, 1, 1, 1],
                 ].map((item, index) => (
-                  <div className="flex justify-between w-full" key={index}>
+                  <div
+                    className="flex justify-between w-full flex-wrap"
+                    key={index}
+                  >
                     {item.map((child_item, child_index) => (
                       <img
                         key={child_index}
@@ -719,8 +786,7 @@ export default function Home() {
                           : "https://framerusercontent.com/images/tFXz3HBTwq7RclZ70qUpt28OOE.png"
                       }
                       alt=""
-                    />{" "}
-                    h-
+                    />
                   </div>
                 ))}
               </div>
@@ -733,7 +799,7 @@ export default function Home() {
               {speakers.map((item, index) => (
                 <div
                   key={index}
-                  className="w-[230px] h-[280px] rounded-[10px] overflow-hidden relative"
+                  className="sm:w-[230px] w-[45%] h-[280px] rounded-[10px] overflow-hidden relative"
                 >
                   <div className="absolute top-0 left-0 bg-[#0000003e] p-2 w-full h-full flex items-end justify-start">
                     <div className="">
@@ -766,12 +832,12 @@ export default function Home() {
         </div>
       </Slide>
       <Slide bkg={true} full opacity="s" title="" shappe="square">
-        <div className="px-[64px] py-10 flex justify-center gap-4">
+        <div className="px-[64px] py-10 flex justify-center sm:flex-row flex-col gap-4">
           <div className="  flex flex-col gap-[10px]">
-            <span className="w-[480px] text-[24px] block text-white mb-[10px] font-[600]">
+            <span className="sm:w-[480px] w-full text-[24px] block text-white mb-[10px] font-[600]">
               Web3 HackFest 2023 – Unlimited Hacker
             </span>
-            <span className="w-[480px] block text-disable">
+            <span className="sm:w-[480px] w-full block text-disable">
               Sự kiện <span className="font-[600]">Web3 HackFest </span> là một
               lễ hội hackathon lớn được tổ chức nhằm tạo ra một không gian đầy
               thử thách và cơ hội cho tất cả builder, developer Web2 & Web3. Với

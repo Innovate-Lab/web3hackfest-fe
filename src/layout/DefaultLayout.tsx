@@ -68,16 +68,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         bottomSpace
         title=""
       >
-        <div className="w-full pt-[120px] note pb-[80px]">
+        <div className="w-full sm:pt-[120px] note pb-[80px] sm:px-0 px-4">
           {" "}
           <div className="flex justify-between w-full ">
             <div className="">
               <img
                 src="https://framerusercontent.com/images/EAcggmjePAgnMxUT7Yhc8x7fEBo.png"
                 alt=""
-                className="w-[230px] h-[52px] mb-4"
+                className="sm:w-[230px] sm:h-[52px] h-[42px] w-[195px] mb-4"
               />
-              <span className="text-white block mb-10 max-w-[440px]">
+              <span className="text-white block sm:text-[16px] text-[14px] mb-10 sm:max-w-[440px] max-w-[80%]">
                 Chuỗi sự kiện Công nghệ & Nhà phát triển Web3 lớn nhất Đông Nam
                 Á
               </span>
@@ -130,11 +130,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               </div>
             </div>
             <div className="flex flex-col items-center gap-6">
-              <span className="text-[24px] font-[500] text-white">
+              <span className="text-[16px] sm:text-[24px] font-[500] text-white text-center">
                 Tham gia group Zalo để được hỗ trợ:
               </span>
               <div className="flex flex-col items-center">
-                <span className="text-[17px] text-white max-w-[240px]">
+                <span className="sm:text-[17px] text-[14px] text-white max-w-[240px] text-center">
                   Web3 HackFest 2025 - AI Convergence
                 </span>
                 <img

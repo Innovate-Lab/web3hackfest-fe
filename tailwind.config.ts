@@ -20,6 +20,9 @@ export default {
       width: {
         pageContent: "var(--page-content-with)",
       },
+      fontSize: {
+        title: "var(--title-font-size)",
+      },
       keyframes: {
         wave: {
           "0%": { transform: "translateY(0)" },
