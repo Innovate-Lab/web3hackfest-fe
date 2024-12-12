@@ -799,7 +799,7 @@ export default function Home() {
               {speakers.map((item, index) => (
                 <div
                   key={index}
-                  className="sm:w-[230px] w-[45%] h-[280px] rounded-[10px] overflow-hidden relative"
+                  className="sm:w-[230px] w-[44%] h-[280px] rounded-[10px] overflow-hidden relative"
                 >
                   <div className="absolute top-0 left-0 bg-[#0000003e] p-2 w-full h-full flex items-end justify-start">
                     <div className="">

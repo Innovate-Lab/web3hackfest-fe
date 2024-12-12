@@ -130,7 +130,7 @@ function Ideathon() {
               </div>
             </div>
 
-            <div className="w-[274px] h-[256px] animate-wave-slow">
+            <div className="w-[232px] h-[232px] sm:w-[274px] sm:h-[256px] animate-wave-slow">
               <img
                 className=""
                 src="https://framerusercontent.com/images/fzZxjr0sL5OidKQmPNpmC15o6Y.png"
@@ -140,7 +140,7 @@ function Ideathon() {
             </div>
 
             <div className="main-content-wrapper justify-center relative z-30 flex flex-col items-center gap-5 w-[70%]">
-              <span className="block overflow-hidden h-[120px] text-[100px] font-[800] text-white">
+              <span className="block overflow-hidden h-[120px] text-[32px] sm:text-[100px] font-[800] text-white">
                 <span
                   className={`text-center transition-all  opacity-0 block  ease-in-out ${
                     loaded
@@ -153,7 +153,7 @@ function Ideathon() {
                 </span>
               </span>
 
-              <span className="uppercase text-white text-[24px] font-[600]">
+              <span className="uppercase text-white sm:text-[24px] text-[20px] font-[600] text-center">
                 Cuộc thi toàn quốc về ý tưởng công nghệ AI & Web3
               </span>
 
@@ -164,7 +164,7 @@ function Ideathon() {
                 giải quyết các vấn đề thực tiễn, kiến tạo tương lai số.
               </span>
 
-              <div className="flex gap-4">
+              <div className="flex gap-4 sm:flex-row flex-col items-center">
                 <Button hover rounded={false} size="md" click={() => {}}>
                   <div className="flex gap-2">
                     <span className="text-[18px] font-[500] text-white">
@@ -242,29 +242,29 @@ function Ideathon() {
                 </div>
               </div>
               <div className="slide-2-body flex justify-center w-pageContent flex-col items-center gap-4">
-                <span className="text-[45px] font-[500] text-white">
+                <span className="sm:text-[45px] text-[32px] font-[500] text-white">
                   Giải thưởng
                 </span>
-                <div className="flex flex-wrap justify-between w-full">
+                <div className="flex flex-wrap justify-between w-full sm:px-0 px-[16px] ">
                   {rewardsInfo.map((item, index) => (
                     <li
-                      className="w-[48%] text-[18px] font-[500] text-white"
+                      className="sm:w-[48%] text-[18px] font-[500] text-white"
                       key={index}
                     >
                       {item}
                     </li>
                   ))}
                 </div>
-                <div className="flex gap-4 w-full h-[512px]">
-                  <div className="px-8 border-[1px] border-[#ffffff26] rounded-[16px] backdrop-blur-lg bg-[#4e4e4e46] h-full w-[526px] flex flex-col justify-center">
+                <div className="flex gap-4 w-full sm:h-[512px]  flex-col sm:flex-row px-4 sm:px-0  items-center">
+                  <div className="px-8 sm:py-0 py-8 border-[1px] border-[#ffffff26] rounded-[16px] backdrop-blur-lg bg-[#4e4e4e46] h-full w-ful sm:w-[526px] flex flex-col justify-center">
                     <img
                       src="https://framerusercontent.com/images/EIbC88bc0wQGkfhwoybcspnmX0.png"
                       alt=""
-                      className="w-[94px] h-[100px] mb-9"
+                      className="sm:w-[94px] h-[66px] w-[64px] sm:h-[100px] mb-9"
                     />
                     <span className="text-white">1 GIẢI NHẤT</span>
                     <span className="text-white">Hiện kim</span>
-                    <span className="text-primary text-[50px] font-[600]">
+                    <span className="text-primary sm:text-[50px] text-[32px] font-[600]">
                       25 Triệu VNĐ
                     </span>
                     <span className="text-white">
@@ -272,17 +272,17 @@ function Ideathon() {
                       Và các phần thưởng hiện vật/ dịch vụ đặc biệt khác
                     </span>
                   </div>
-                  <div className="flex flex-col gap-4  w-[400px]">
+                  <div className="flex flex-col gap-4 w-ful h-full  sm:w-[400px] items-center">
                     {rewards.second.map((item, index) => (
                       <div
                         key={index}
-                        className="w-full h-[48%]  px-8 border-[1px] border-[#ffffff26] rounded-[16px] backdrop-blur-lg bg-[#4e4e4e46] flex flex-col justify-center"
+                        className="w-full h-[48%]  px-8 py-8 sm:py-0 border-[1px] border-[#ffffff26] rounded-[16px] backdrop-blur-lg bg-[#4e4e4e46] flex flex-col justify-center"
                       >
                         <span className="text-white block">{item.title}</span>
                         <span className="text-white block">
                           {item.rewardType}
                         </span>
-                        <span className="text-primary text-[45px] font-[600]">
+                        <span className="text-primary sm:text-[45px] text-[28px] font-[600]">
                           {item.amount}
                         </span>
                         <span className="text-white"> {item.more}</span>
@@ -290,12 +290,15 @@ function Ideathon() {
                     ))}
                   </div>
 
-                  <div className="w-[324px] flex flex-col gap-4 justify-between">
+                  <div className="w-[324px] flex flex-col gap-4 justify-between sm:h-full">
                     {rewards.thir.map((item, index) => (
-                      <div className="px-8 border-[1px] border-[#ffffff26] rounded-[16px] backdrop-blur-lg bg-[#4e4e4e46] w-full h-[32%] flex flex-col justify-center">
+                      <div
+                        key={index}
+                        className="px-8 sm:py-0 py-8 border-[1px] border-[#ffffff26] rounded-[16px] backdrop-blur-lg bg-[#4e4e4e46] w-full h-[32%] flex flex-col justify-center"
+                      >
                         <span className="text-white">{item.title}</span>
                         <span className="text-white">{item.rewardType}</span>
-                        <span className="text-primary text-[40px] font-[600]">
+                        <span className="text-primary text-[24px] sm:text-[40px] font-[600]">
                           {item.amount}
                         </span>
                       </div>
@@ -317,6 +320,7 @@ function Ideathon() {
           style={{ backgroundImage: `url('assets/images/leftArr.png')` }}
           className="absolute bg-center bg-contain bg-no-repeat  h-[418px] w-[237px] right-[-86px] rotate-[180deg]"
         ></div>
+
         <Slide
           full
           shappe="square"
@@ -329,11 +333,11 @@ function Ideathon() {
               <img
                 src="https://framerusercontent.com/images/ZpiffHjpTqEjMNZsxhcIAiURFE.jpg"
                 alt=""
-                className="w-[940px] h-[560px] rounded-[10px] border-[1px] border-[#ffffff26]"
+                className="sm:w-[940px] w-[92%] h-auto sm:h-[560px] rounded-[10px] border-[1px] border-[#ffffff26]"
               />
             </div>
           </LoadOnScreen>
-          <div className=" flex flex-col items-center gap-3">
+          <div className=" flex flex-col items-center gap-3 px-4">
             <span className="text-white block text-center">
               Bạn có ý tưởng đột phá về Web3 & AI?{" "}
             </span>
@@ -368,7 +372,7 @@ function Ideathon() {
         title="Lĩnh vực dự thi"
       >
         <div className="w-pageContent">
-          <div className="w-full flex gap-10 justify-between ">
+          <div className="w-full flex gap-10 justify-between sm:flex-row flex-col items-center">
             {contest.map((item, index) => (
               <div
                 key={index}
@@ -391,8 +395,8 @@ function Ideathon() {
         </div>
 
         <div className="w-full h-[2px] rounded-[2px] opacity-60 bg-primary mt-9"></div>
-        <div className=" w-full border-[1px] border-[#ffffff26] rounded-[16px] backdrop-blur-lg bg-[#4e4e4e46] h-full  flex  p-[10px]">
-          <div className="w-[50%] p-8">
+        <div className="mx-4 w-full border-[1px] border-[#ffffff26] rounded-[16px] backdrop-blur-lg bg-[#4e4e4e46] h-full  flex  sm:flex-row flex-col p-[10px]">
+          <div className="sm:w-[50%] p-8">
             <span className="text-[24px] font-[600] text-white block">
               Công nghệ chuỗi khối (Blockchain/ Web3)
             </span>
@@ -401,18 +405,18 @@ function Ideathon() {
               ứng dụng Web3 và giao dịch minh bạch không cần trung gian.
             </span>
           </div>
-          <div className="w-[50%] p-8">
+          <div className="sm:w-[50%] p-8">
             <span className="text-[20px] font-[600] text-white block mb-4">
               Các lĩnh vực tiềm năng:
             </span>
 
             <div className="w-full flex flex-col gap-[18px]">
               {potentials.map((item, index) => (
-                <div className="flex gap-[10px]">
+                <div key={index} className="flex gap-[10px]">
                   <span className="w-[28px] h-[28px] rounded-[4px] bg-primary text-black text-[18px] font-[500] flex items-center justify-center  ">
                     {index + 1}
                   </span>
-                  <span className="text-[18px] max-w-[520px] text-[#e4e4e6]">
+                  <span className="text-[18px] max-w-[80%] text-[#e4e4e6]">
                     {item}
                   </span>
                 </div>
@@ -438,10 +442,10 @@ function Ideathon() {
           <span className="text-white text-[24px]  font-[500]">
             Tiêu chí đánh giá:
           </span>
-          <div className="flex gap-6">
+          <div className="flex sm:gap-6 gap-2 flex-wrap justify-center">
             {evaluations.map((item, index) => (
-              <div className="w-[19%] px-8 py-6 border-[1px] border-[#ffffff26] rounded-[16px] backdrop-blur-lg bg-[#4e4e4e46] flex flex-col justify-center">
-                <span className="text-white text-center font-[600] text-[17px]">
+              <div className="sm:w-[18%] w-[30%] px-8 py-6 border-[1px] border-[#ffffff26] rounded-[16px] backdrop-blur-lg bg-[#4e4e4e46] flex flex-col justify-center">
+                <span className="text-white text-center font-[600] text-[14px] sm:text-[17px]">
                   {item}
                 </span>
               </div>
