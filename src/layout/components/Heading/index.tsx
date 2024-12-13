@@ -1,3 +1,4 @@
+"use client";
 import HeadignButton from "@/components/HeadingButton";
 import {
   DataContext,
@@ -8,6 +9,8 @@ import { title } from "process";
 import { useContext, useEffect, useState } from "react";
 import { AlignJustify, MoveRight } from "lucide-react";
 import Button from "@/components/Button";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 const pages = [
   {
     title: "Home",
@@ -41,6 +44,9 @@ const pages = [
 
 function Heading() {
   const [logged, setLogged] = useState(false);
+  const router = useRouter();
+  const { data: session } = useSession();
+
   const { activePage, setActivePage } = useDataContext();
   useEffect(() => {
     setActivePage(parseInt(localStorage.getItem("activePage") || "0"));
@@ -50,7 +56,7 @@ function Heading() {
     setActivePage(index);
   };
   return (
-    <div className="fixed  w-full z-[999] flex justify-between items-center p-[24px] sm:px-10 sm:py-[30px] bg-secondary border-b-[2px] border-[#ffffff42] border-solid ">
+    <div className="fixed  w-full z-[999] bg-black flex justify-between items-center p-[24px] sm:px-10 sm:py-[30px] bg-secondary border-b-[2px] border-[#ffffff42] border-solid ">
       <div className="logo-wrapper">
         <img
           className="w-[160px] h-auto"
@@ -74,31 +80,25 @@ function Heading() {
       </div>
 
       <div className="user-actions-wrapper">
-        {logged}
-        {logged ? (
-          <div className="">
-            {/* handle show option button or user avatar */}
-            <div className="sm:hidden block">
-              <AlignJustify stroke="#fff" />
-            </div>
-            <div className="sm:flex hidden items-center gap-4 cursor-pointer">
-              <span className="text-white text-[17px] font-[500]">
-                suistark02
-              </span>
-              <div
-                className="w-[44px] h-[44px] rounded-[50%] bg-cover bg-center  border-[1px] border-primary"
-                style={{
-                  backgroundImage: `url('assets/images/persons/openart-image_Jyj2md-t_1726731886987_raw.jpg')`,
-                }}
-              ></div>
-            </div>
-          </div>
-        ) : (
+        {/* {logged} */}
+        {session ?  (
+        <img
+          className="text-white h-auto w-8"
+          src="/icon/person.png"
+          
+          onClick={() => {
+            router.push("/profile");
+          }}
+        >
+          
+        </img>
+      ): (
           <Button
             size="sm"
             rounded={true}
             click={() => {
-              setLogged(true);
+              router.push("/signin");
+              // setLogged(true);
             }}
           >
             <div className="flex gap-2">

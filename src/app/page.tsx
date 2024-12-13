@@ -22,6 +22,8 @@ import { useEffect, useRef, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import RotateICon from "@/components/RotateIcon";
 import { rewardsInfo } from "./ideathon/layout";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 const benifitsTag = [
   {
     icon: "https://framerusercontent.com/images/qmQExoaRiIDblDbazRJ2OZI8U.png",
@@ -355,7 +357,8 @@ export default function Home() {
   const [loaded, setLoaded] = useState<boolean>(false);
   const [logged, setLogged] = useState<boolean>(true);
   const value = useMotionValue(0);
-
+  const { data: session } = useSession();
+  const router =useRouter()
   useMotionValueEvent(value, "change", (latest) => {
     console.log(latest);
   });
@@ -378,6 +381,13 @@ export default function Home() {
   }, []);
 
   const handleSubmit = () => {
+    if(session){
+      router.push("/genesis")
+
+    }
+    else{
+      router.push("/signin")
+    }
     //logic to handle on register now click
   };
 
@@ -447,7 +457,7 @@ export default function Home() {
               <Button rounded={false} size="md" click={handleSubmit}>
                 <div className="flex gap-2">
                   <span className="text-[18px] font-[500] text-white">
-                    {logged ? "Nộp bài ngay" : "Đăng kí ngay"}
+                    {session ? "Nộp bài ngay" : "Đăng kí ngay"}
                   </span>
                   <MoveRight className="" stroke="#fff" />
                 </div>
