@@ -16,6 +16,7 @@ export default {
         disable: "var(--disable)",
         secondary: "var(--secondary)",
         primaryGradient: "var(--primary-gradient)",
+        field: "var(--bg-input)",
       },
       width: {
         pageContent: "var(--page-content-with)",

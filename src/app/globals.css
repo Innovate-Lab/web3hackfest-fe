@@ -10,6 +10,8 @@
   --disable: #94969d;
   --page-content-with: 100%;
   --title-font-size: 32px;
+
+  --bg-input: #2f2f2f;
   --primary-gradient: linear-gradient(
     90deg,
     var(--primary) 0%,
