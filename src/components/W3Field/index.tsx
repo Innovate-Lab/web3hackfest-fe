@@ -12,7 +12,9 @@ interface Props {
 function W3Field(props: Props) {
   return (
     <>
-      <span className="text-white text-[36px] font-[500]">{props.title}</span>
+      <span className="text-white text-[36px] font-[500] text-center">
+        {props.title}
+      </span>
 
       {props.children}
       <Button hover={true} rounded={false} size="sm" click={props.button.click}>
