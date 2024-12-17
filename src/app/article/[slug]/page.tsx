@@ -32,7 +32,7 @@ const page = () => {
         <Markdown>{markdown}</Markdown>
         </div>
       </div>
-      <div className=" inset-0  absolute top-[100] left-0  bg-blue-600 opacity-50 blur-3xl w-full  h-[300px] z-[-1]"></div>
+      <div className="  absolute top-[50] left-0  bg-blue-600 opacity-50 blur-3xl w-full  h-[300px] z-[0] "></div>
 
     </div>
   );
