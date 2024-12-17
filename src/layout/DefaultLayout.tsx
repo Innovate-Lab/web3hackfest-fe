@@ -5,6 +5,7 @@ import { Poppins } from "next/font/google";
 import { useDataContext } from "@/provider/DataContext";
 import Slide from "@/components/Slide";
 import clsx from "clsx";
+import SidebarIcon from "./SidebarIcon";
 const popins = Poppins({
   display: "swap",
   subsets: ["latin-ext"],
@@ -58,8 +59,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   return (
     <div className={clsx(popins.className, "bg-black")}>
       <Heading />
-      <div className="px-[100px] bg-black min-h-[100vh] pt-[108px]">
+      <div className="px-[100px] bg-black min-h-[100vh] pt-[108px] relative">
         {children}
+        <SidebarIcon/>
+
       </div>
       <Slide bottomSpace title="">
         <div className="w-full px-[120px] pt-[150px] pb-[80px]">
