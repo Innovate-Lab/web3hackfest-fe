@@ -1,3 +1,4 @@
+import { axiosInstance } from "@/axios/axios";
 import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -17,32 +18,25 @@ export const authOptions: AuthOptions = {
           if (!credentials?.username || !credentials?.password) {
             throw new Error("Missing credentials");
           }
-
           // Gọi API backend để xác thực người dùng
-          const response = await fetch("http://localhost:3001/user/login", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              email: credentials.username,
-              password: credentials.password,
-            }),
+          const response = await axiosInstance.post('/user/login',{
+            email:credentials.username,
+            password:credentials.password
+          }).then((e)=>{
+              return e.data.data
+          }).catch((e)=>{
+            throw e
           })
-          // .then((e)=>{
-          //   console.log(e)
-          // }).catch((e)=>{
-          //   console.log(e)
-          // })
-          if (!response.ok) {
-            throw new Error("Invalid credentials");
-          }
+        
+          // if (!response.ok) {
+          //   throw new Error("Invalid credentials");
+          // }
 
-          // Lấy thông tin người dùng từ API
-          const user = await response.json();
+          // // Lấy thông tin người dùng từ API
+          const user = await response ;
           // Kiểm tra xem API trả về thông tin hợp lệ hay không
           if (user ) {
-            return user.data; // Trả về đối tượng người dùng cho NextAuth
+            return user; // Trả về đối tượng người dùng cho NextAuth
           } else {
             throw new Error("User not found");
           }
@@ -69,7 +63,7 @@ export const authOptions: AuthOptions = {
       else if(user && trigger==="signUp"){
 
       }
-      console.log(token)
+      console.log("token")
 
       return token;
     },

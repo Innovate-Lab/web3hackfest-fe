@@ -7,7 +7,6 @@ import 'react-quill-new/dist/quill.snow.css';
 function Page() {
 
   return <div className='flex flex-col w-full relative min-h-screen justify-center items-center'>
-     {/* <ReactQuill theme="snow" value={value} onChange={setValue} /> */}
   <div className='z-10'>
   <ArticleForm/>
 

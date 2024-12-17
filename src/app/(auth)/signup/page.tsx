@@ -1,5 +1,6 @@
 "use client";
 import { useToast } from "@/app/hooks/use-toast";
+import { axiosInstance } from "@/axios/axios";
 import InputComponent, { InputType } from "@/components/signup/InputComponent";
 import React, { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
@@ -46,38 +47,33 @@ const page = () => {
     };
   
     try {
-      const response = await fetch("http://localhost:3001/user/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      });
+      // Gửi yêu cầu đăng ký người dùng
+      const response = await axiosInstance.post('/user/signup', requestBody);
   
-      if (!response.ok) {
-        // Handle HTTP errors
-        const errorData = await response.json();
-        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+      // Kiểm tra nếu response không thành công
+      if (response.status !== 200) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
   
-      const responseData = await response.json();
-      console.log("Response data:", responseData);
+      // Xử lý dữ liệu phản hồi
+      console.log("Response data:", response.data);
       toast({
         title: "Đăng ký thành công",
         description: "Hãy xác nhận trong Email để tiếp tục đăng nhập",
-        variant:"success"
-      })
-
+        variant: "success",
+      });
+  
     } catch (error: any) {
-      console.log(error)
+      // Xử lý lỗi nếu có
       console.error("Error during signup:", error.message || error);
       toast({
         title: "Đăng ký thất bại",
         description: `${error.message}`,
-        variant:"error"
-      })
+        variant: "error",
+      });
     }
   };
+  
   return (
     // <div classNameName="backdrop-blur-lg bg-[rgba(78,78,78,0.2)] rounded-lg p-4 w-[400px] h-[438px]">
 
