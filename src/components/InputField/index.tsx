@@ -7,7 +7,11 @@ interface Props {
   placeholder: string;
   errorMessage: string;
   max?: number;
+  textarea?: boolean;
+  requires?: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+
+  areaChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 function InputField(props: Props) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,13 +20,24 @@ function InputField(props: Props) {
   return (
     <div className="w-full flex flex-col gap-[10px]">
       <span className="text-white text-[16px] block">{props.label}</span>
-      <input
-        value={props.value}
-        placeholder={props.placeholder}
-        type={props.type}
-        onChange={(e) => handleChange(e)}
-        className="w-full p-4 bg-field outline-none text-white rounded-[10px] focus-within:outline-[#c9c8cc]"
-      />
+
+      {props.textarea ? (
+        <textarea
+          placeholder={props.placeholder}
+          value={props.value}
+          onChange={(e) => props.areaChange && props.areaChange(e)}
+          className="w-full sm:min-h-[160px] p-4 bg-field outline-none text-white rounded-[10px] focus-within:outline-[#c9c8cc]"
+        />
+      ) : (
+        <input
+          value={props.value}
+          placeholder={props.placeholder}
+          type={props.type}
+          onChange={(e) => handleChange(e)}
+          className="w-full p-4 bg-field outline-none text-white rounded-[10px] focus-within:outline-[#c9c8cc]"
+        />
+      )}
+
       <span className="text-red-500 text-[13px] block">
         {props.errorMessage}
       </span>
