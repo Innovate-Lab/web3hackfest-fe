@@ -1,12 +1,15 @@
 "use client";
 import { useToast } from "@/app/hooks/use-toast";
 import { axiosInstance } from "@/axios/axios";
-import InputComponent, { InputType } from "@/components/signup/InputComponent";
 import React, { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useRouter } from "next/navigation";
 
-const page = () => {
-  const { toast } = useToast()
+const Page = () => {
+  const { toast } = useToast();
+  const router=useRouter()
 
   const [password, setPassword] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
@@ -18,10 +21,12 @@ const page = () => {
   const [validUppercase, setValidUppercase] = useState(false);
   const [validLowercase, setValidLowercase] = useState(false);
   const [validNumber, setValidNumber] = useState(false);
+
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
-  const handlePasswordChange = (e) => {
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPassword(value);
 
@@ -30,9 +35,57 @@ const page = () => {
     setValidLowercase(/[a-z]/.test(value));
     setValidNumber(/[0-9]/.test(value));
   };
+
+  const validateInputs = (): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^0\d{9}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/; // Kiểm tra ít nhất 1 chữ cái in hoa, 1 chữ cái thường, 1 chữ số và độ dài tối thiểu 8 ký tự
+  
+    if (!name || !email || !phone || !password) {
+      toast({
+        title: "Thông báo",
+        description: "Vui lòng điền đầy đủ tất cả các ô thông tin.",
+        variant: "error",
+      });
+      return false;
+    }
+  
+    if (!emailRegex.test(email)) {
+      toast({
+        title: "Lỗi định dạng",
+        description: "Email không hợp lệ.",
+        variant: "error",
+      });
+      return false;
+    }
+  
+    if (!phoneRegex.test(phone)) {
+      toast({
+        title: "Lỗi định dạng",
+        description: "Số điện thoại phải có 10 số và bắt đầu bằng số 0.",
+        variant: "error",
+      });
+      return false;
+    }
+  
+    if (!passwordRegex.test(password)) {
+      toast({
+        title: "Lỗi định dạng mật khẩu",
+        description: "Mật khẩu phải có ít nhất 8 ký tự, 1 chữ hoa, 1 chữ thường và 1 số.",
+        variant: "error",
+      });
+      return false;
+    }
+  
+    return true;
+  };
+  
+
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
-  
+    if (!validateInputs()) return;
+
+
     const requestBody = {
       email: email,
       username: name,
@@ -45,26 +98,21 @@ const page = () => {
         utm_campaign: "asdfasdf",
       },
     };
-  
+
     try {
-      // Gửi yêu cầu đăng ký người dùng
-      const response = await axiosInstance.post('/user/signup', requestBody);
-  
-      // Kiểm tra nếu response không thành công
+      const response = await axiosInstance.post("/user/signup", requestBody);
+
       if (response.status !== 200) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-  
-      // Xử lý dữ liệu phản hồi
-      console.log("Response data:", response.data);
+
       toast({
         title: "Đăng ký thành công",
         description: "Hãy xác nhận trong Email để tiếp tục đăng nhập",
         variant: "success",
       });
-  
+      router.push("/signup/thank-you")
     } catch (error: any) {
-      // Xử lý lỗi nếu có
       console.error("Error during signup:", error.message || error);
       toast({
         title: "Đăng ký thất bại",
@@ -73,11 +121,8 @@ const page = () => {
       });
     }
   };
-  
-  return (
-    // <div classNameName="backdrop-blur-lg bg-[rgba(78,78,78,0.2)] rounded-lg p-4 w-[400px] h-[438px]">
 
-    // </div>
+  return (
     <div className="flex flex-col gap-8 justify-center items-center p-8">
       <div className="text-white text-[45px] text-center">
         Đăng ký tài khoản Web3 HackFest
@@ -90,57 +135,62 @@ const page = () => {
         Lưu ý: Đảm bảo các thông tin chính xác để Bạn tổ chức có thể liên hệ
         nhận giải thưởng và quà tặng khi cần thiết
       </div>
-      <div className="backdrop-blur-lg bg-[rgba(78,78,78,0.2)] rounded-lg px-8 py-6 w-[536px]  ">
-        <form action="#" method="POST">
-          <InputComponent
-            title={"Họ và tên"}
-            value={name}
-            setValue={setName}
-            type={InputType.Text}
-          />
-          <InputComponent
-            title={"Số điện thoại"}
-            value={phone}
-            setValue={setPhone}
-            type={InputType.Phone}
-          />
-          <InputComponent
-            title={"Email"}
-            value={email}
-            setValue={setEmail}
-            type={InputType.Email}
-          />
-          <div className="mb-4 relative">
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-white p-2 mb-1 text-[16px]"
-            >
-              Password
-            </label>
+      <div className="backdrop-blur-lg bg-[rgba(78,78,78,0.2)] rounded-lg px-8 py-6 w-[536px] text-white">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <Label className="text-white">Họ và tên</Label>
+            <Input
+              placeholder="Họ và tên"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="focus:outline-none focus:ring-0 border-none bg-[#F9F7FA1F] p-4"
+              type="text"
+            />
+          </div>
+          <div>
+            <Label className="text-white">Số điện thoại</Label>
+            <Input
+              placeholder="Số điện thoại"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="focus:outline-none focus:ring-0 border-none bg-[#F9F7FA1F] p-4"
+              maxLength={10}
+              type="tel"
+            />
+          </div>
+          <div>
+            <Label className="text-white">Email</Label>
+            <Input
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="focus:outline-none focus:ring-0 border-none bg-[#F9F7FA1F] p-4"
+              type="email"
+            />
+          </div>
+          <div>
+            <Label className="text-white">Password</Label>
             <div className="relative">
-              <input
-                type={`${ showPassword ? "text" : "password"}`}
-                id="password"
-                name="password"
-                className="w-full p-[15px] bg-[rgba(249,247,250,0.12)] rounded-xl text-white"
-                placeholder="password"
+              <Input
+                placeholder="Password"
+                type={showPassword ? "text" : "password"}
                 value={password}
-                onChange={handlePasswordChange} // Fixing the onChange handler
-                required
+                onChange={handlePasswordChange}
+                className="focus:outline-none focus:ring-0 border-none bg-[#F9F7FA1F] p-4"
+
               />
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
                 className="absolute inset-y-0 right-4 flex items-center text-gray-400"
               >
-                {showPassword ? "🙈" : "👁️"} {/* Use icons if preferred */}
+                {showPassword ? "🙈" : "👁️"}
               </button>
             </div>
           </div>
           <button
             type="submit"
-            className="w-full bg-[#358FCE] text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
-            onClick={handleSubmit}
+            className="w-full bg-[#358FCE] text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             Đăng ký
           </button>
@@ -177,14 +227,6 @@ const page = () => {
               <IoCloseSharp className="self-center text-[16px]" />
               Ít nhất một chữ số
             </div>
-            {/* <div
-              className={`flex gap-1 text-[12px] ${
-                validSpecialChar ? "text-white" : "text-gray-400"
-              }`}
-            >
-              <IoCloseSharp className="self-center text-[16px]" />
-              Ít nhất một ký tự đặc biệt
-            </div> */}
           </div>
         </form>
       </div>
@@ -192,4 +234,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
