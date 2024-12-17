@@ -7,7 +7,7 @@ import {
 } from "@/provider/DataContext";
 import { title } from "process";
 import { useContext, useEffect, useState } from "react";
-import { AlignJustify, MoveRight } from "lucide-react";
+import { AlignJustify, MoveRight, X } from "lucide-react";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -44,8 +44,11 @@ const pages = [
 
 function Heading() {
   const [logged, setLogged] = useState(false);
+
   const router = useRouter();
   const { data: session } = useSession();
+
+  const [showMenu, setShowMenu] = useState(false);
 
   const { activePage, setActivePage } = useDataContext();
   useEffect(() => {
@@ -65,7 +68,7 @@ function Heading() {
         /> */}
       </div>
 
-      <div className="menu-wrapper sm:flex hidden">
+      <div className="menu-wrapper sm:flex hidden ">
         {pages.map((page, index) => (
           <HeadignButton
             key={index}
@@ -80,19 +83,71 @@ function Heading() {
       </div>
 
       <div className="user-actions-wrapper">
-        {/* {logged} */}
-        {session ?  (
-        <img
-          className="text-white h-auto w-8"
-          src="/icon/person.png"
-          
-          onClick={() => {
-            router.push("/profile");
-          }}
-        >
-          
-        </img>
-      ): (
+
+        {logged}
+        {session ? (
+          <div className="">
+            {/* handle show option button or user avatar */}
+            <div className="sm:hidden block ">
+              <span
+                className="h-fit sm:hidden"
+                onClick={() => setShowMenu(!showMenu)}
+              >
+                <AlignJustify stroke="#fff" />
+              </span>
+              {showMenu && (
+                <div
+                  className={`menu-wrapper gap-6 sm:hidden absolute top-0 right-0 w-full h-[100vh] bg-black pt-6 pr-4 rounded-[10px] shadow-sm 
+                    ${
+                      showMenu
+                        ? "transition-all ease-linear duration-200 h-[100vh]"
+                        : "h-0"
+                    }
+                    `}
+                >
+                  <div className="w-full flex justify-end">
+                    <span
+                      className="p-2 cursor-pointer"
+                      onClick={() => {
+                        setShowMenu(false);
+                      }}
+                    >
+                      <X stroke="#fff" />
+                    </span>
+                  </div>
+
+                  <div className="p-4">
+                    {pages.map((page, index) => (
+                      <HeadignButton
+                        textLeft
+                        key={index}
+                        text={page.title}
+                        to={page.to}
+                        active={activePage === index}
+                        click={() => {
+                          handlePageChange(index);
+                          setShowMenu(false);
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className="sm:flex hidden items-center gap-4 cursor-pointer">
+              <span className="text-white text-[17px] font-[500]">
+                suistark02
+              </span>
+              <div
+                className="w-[44px] relative h-[44px] rounded-[50%] bg-cover bg-center  border-[1px] border-primary"
+                style={{
+                  backgroundImage: `url('assets/images/persons/openart-image_Jyj2md-t_1726731886987_raw.jpg')`,
+                }}
+              ></div>
+            </div>
+          </div>
+        ) : (
+
           <Button
             size="sm"
             rounded={true}
