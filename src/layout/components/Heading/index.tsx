@@ -1,3 +1,4 @@
+"use client";
 import HeadignButton from "@/components/HeadingButton";
 import {
   DataContext,
@@ -8,6 +9,8 @@ import { title } from "process";
 import { useContext, useEffect, useState } from "react";
 import { AlignJustify, MoveRight, X } from "lucide-react";
 import Button from "@/components/Button";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 const pages = [
   {
     title: "Home",
@@ -41,7 +44,12 @@ const pages = [
 
 function Heading() {
   const [logged, setLogged] = useState(false);
+
+  const router = useRouter();
+  const { data: session } = useSession();
+
   const [showMenu, setShowMenu] = useState(false);
+
   const { activePage, setActivePage } = useDataContext();
   useEffect(() => {
     setActivePage(parseInt(localStorage.getItem("activePage") || "0"));
@@ -51,13 +59,13 @@ function Heading() {
     setActivePage(index);
   };
   return (
-    <div className="fixed  w-full z-[999] flex justify-between items-center p-[24px] sm:px-10 sm:py-[30px] bg-secondary border-b-[2px] border-[#ffffff42] border-solid ">
+    <div className="fixed  w-full z-[999] bg-black flex justify-between items-center p-[24px] sm:px-10 sm:py-[30px] bg-secondary border-b-[2px] border-[#ffffff42] border-solid ">
       <div className="logo-wrapper">
-        <img
+        {/* <img
           className="w-[160px] h-auto"
           src="assets/images/w3fs.avif"
           alt=""
-        />
+        /> */}
       </div>
 
       <div className="menu-wrapper sm:flex hidden ">
@@ -75,8 +83,9 @@ function Heading() {
       </div>
 
       <div className="user-actions-wrapper">
+
         {logged}
-        {logged ? (
+        {session ? (
           <div className="">
             {/* handle show option button or user avatar */}
             <div className="sm:hidden block ">
@@ -138,11 +147,13 @@ function Heading() {
             </div>
           </div>
         ) : (
+
           <Button
             size="sm"
             rounded={true}
             click={() => {
-              setLogged(true);
+              router.push("/signin");
+              // setLogged(true);
             }}
           >
             <div className="flex gap-2">
