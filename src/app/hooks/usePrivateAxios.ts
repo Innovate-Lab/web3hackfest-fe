@@ -17,7 +17,7 @@ export const usePrivate = () => {
           console.log(session.access_token)
 
           if (session?.access_token) {
-            const bear = `Bearer ${session.access_token}`
+            const bear = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NzYxM2QxNzhkMmViZDdkZjVjNTE3OTQiLCJyb2xlIjoidXNlciIsInR5cGUiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE3MzQ0MjYyNDksImV4cCI6MTczNDQyOTg0OX0.oxtYUVJk6dTvSKiX1eEHLIenUJggtWofEhP9x2Digjo`
 
             config.headers["Authorization"] = bear;
             console.log(bear)

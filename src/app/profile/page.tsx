@@ -68,6 +68,7 @@ const page = () => {
           variant:"success",
           title:"Cập nhật thông tin thành công"
         })
+        setIsEditing(false)
       })
       .catch((error) => {
         // Kiểm tra và log chi tiết lỗi

@@ -1,5 +1,7 @@
 "use client";
-import InputComponent, { InputType } from "@/components/signup/InputComponent";
+import { useToast } from "@/app/hooks/use-toast";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -16,6 +18,7 @@ const page = () => {
   const [password, setPassword] = useState<string>("");
   const [emailError, setEmailError] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
+  const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,10 +28,16 @@ const page = () => {
 
     // Kiểm tra email
     if (!email) {
-      setEmailError("Email không được để trống");
+      toast({
+        title: "Email không được để trống",
+        variant: "error",
+      });        
       valid = false;
     } else if (!validateEmail(email)) {
-      setEmailError("Email không hợp lệ");
+      toast({
+        title: "Email không hợp lệ",
+        variant: "error",
+      });          
       valid = false;
     } else {
       setEmailError(null); // Clear email error
@@ -36,7 +45,10 @@ const page = () => {
 
     // Kiểm tra password
     if (!password) {
-      setPasswordError("Password không được để trống");
+      toast({
+        title: "Password không được để trống",
+        variant: "error",
+      });         
       valid = false;
     } else {
       setPasswordError(null); // Clear password error
@@ -61,59 +73,65 @@ const page = () => {
   return (
     <div className="flex flex-col gap-8">
       <div className="text-white text-[45px] text-center">Đăng nhập</div>
-      <div className="backdrop-blur-lg bg-[rgba(78,78,78,0.2)] rounded-lg px-8 py-6 w-[536px]">
+      <div className="backdrop-blur-lg bg-[rgba(78,78,78,0.2)] rounded-lg px-8 py-6 w-[536px] text-white">
         <form action="#" method="POST" className="flex flex-col gap-5">
           <div>
-            <InputComponent
-              setValue={setEmail}
-              title="Email"
+          <Label className="text-white">Email</Label>
+
+            <Input
               value={email}
-              type={InputType.Text}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              className="focus:outline-none focus:ring-0 border-none bg-[#F9F7FA1F] p-4"
+              type="email"
+
             />
             {emailError && (
               <span className="text-red-500 text-sm">{emailError}</span>
             )}
           </div>
           <div>
-            <InputComponent
-              setValue={setPassword}
-              title="Password"
+          <Label className="text-white">Mật khẩu</Label>
+
+            <Input
               value={password}
-              type={InputType.Password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              type="password"
+              className="focus:outline-none focus:ring-0 border-none bg-[#F9F7FA1F] p-4"
             />
             {passwordError && (
               <span className="text-red-500 text-sm">{passwordError}</span>
             )}
           </div>
-            <div>
+          <div>
             <button
-            type="submit"
-            className="w-full bg-[#358FCE] text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
-            onClick={handleSubmit}
-          >
-            Đăng nhập
-          </button>
+              type="submit"
+              className="w-full bg-[#358FCE] text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+              onClick={handleSubmit}
+            >
+              Đăng nhập
+            </button>
 
-          <button
-            type="submit"
-            className="w-full bg-[#17171B] text-white py-2 px-4 rounded-md mb-4"
-            onClick={() => {
-              router.push("/signup");
-            }}
-          >
-            Đăng ký tài khoản
-          </button>
-          <button
-            type="submit"
-            className="w-full bg-[#17171B] text-white py-2 px-4 rounded-md mb-4"
-            onClick={() => {
-              router.push("/forgot-password");
-            }}
-          >
-            Quên mật khẩu
-          </button>
-            </div>
-          
+            <button
+              className="w-full bg-[#17171B] text-white py-2 px-4 rounded-md mb-4"
+              onClick={(e) => {
+                e.preventDefault(); // Ngăn chặn hành động mặc định của nút (nếu có)
+                router.push("/signup"); // Chuyển hướng đến trang đăng ký
+              }}
+            >
+              Đăng ký tài khoản
+            </button>
+            <button
+ 
+              className="w-full bg-[#17171B] text-white py-2 px-4 rounded-md mb-4"
+              onClick={(e) => {
+                e.preventDefault(); // Ngăn chặn hành động mặc định của nút (nếu có)
+                router.push("/forgot-password"); // Chuyển hướng đến trang đăng ký
+              }}            >
+              Quên mật khẩu
+            </button>
+          </div>
         </form>
       </div>
     </div>
