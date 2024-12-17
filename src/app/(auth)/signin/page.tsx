@@ -1,4 +1,5 @@
 "use client";
+import { useToast } from "@/app/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signIn } from "next-auth/react";
@@ -17,6 +18,7 @@ const page = () => {
   const [password, setPassword] = useState<string>("");
   const [emailError, setEmailError] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
+  const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,10 +28,16 @@ const page = () => {
 
     // Kiểm tra email
     if (!email) {
-      setEmailError("Email không được để trống");
+      toast({
+        title: "Email không được để trống",
+        variant: "error",
+      });        
       valid = false;
     } else if (!validateEmail(email)) {
-      setEmailError("Email không hợp lệ");
+      toast({
+        title: "Email không hợp lệ",
+        variant: "error",
+      });          
       valid = false;
     } else {
       setEmailError(null); // Clear email error
@@ -37,7 +45,10 @@ const page = () => {
 
     // Kiểm tra password
     if (!password) {
-      setPasswordError("Password không được để trống");
+      toast({
+        title: "Password không được để trống",
+        variant: "error",
+      });         
       valid = false;
     } else {
       setPasswordError(null); // Clear password error
@@ -103,21 +114,21 @@ const page = () => {
             </button>
 
             <button
-              type="submit"
               className="w-full bg-[#17171B] text-white py-2 px-4 rounded-md mb-4"
-              onClick={() => {
-                router.push("/signup");
+              onClick={(e) => {
+                e.preventDefault(); // Ngăn chặn hành động mặc định của nút (nếu có)
+                router.push("/signup"); // Chuyển hướng đến trang đăng ký
               }}
             >
               Đăng ký tài khoản
             </button>
             <button
-              type="submit"
+ 
               className="w-full bg-[#17171B] text-white py-2 px-4 rounded-md mb-4"
-              onClick={() => {
-                router.push("/forgot-password");
-              }}
-            >
+              onClick={(e) => {
+                e.preventDefault(); // Ngăn chặn hành động mặc định của nút (nếu có)
+                router.push("/forgot-password"); // Chuyển hướng đến trang đăng ký
+              }}            >
               Quên mật khẩu
             </button>
           </div>
