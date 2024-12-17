@@ -5,15 +5,20 @@ type Props = {
   hover?: boolean;
   reverse?: boolean;
   children: React.ReactNode;
+  full?: boolean;
 };
 
 function Button(props: Props) {
   return (
     <div
       onClick={props.click}
-      className={`w-fit transition-all duration-200 ease-in ${
-        props.rounded ? "sm:rounded-[100px] rounded-[10px]" : "rounded-[10px]"
-      } ${
+      className={` transition-all duration-200 ease-in 
+        active:scale-95 active:transition-all active:duration-200 active:ease-out
+
+      ${props.full ? "w-full" : "w-fit"}
+        ${
+          props.rounded ? "sm:rounded-[100px] rounded-[10px]" : "rounded-[10px]"
+        } ${
         props.size == "sm" ? "px-[16px] py-[10px]" : "px-[20px] py-[14px]"
       }  cursor-pointer ${
         !props.reverse ? "bg-primary" : "bg-[rgba(45,45,56)]"
