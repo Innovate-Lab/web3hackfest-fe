@@ -7,6 +7,8 @@ import RotateICon from "@/components/RotateIcon";
 import Slide from "@/components/Slide";
 import { MoveRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export const rewardsInfo = [
   `Giải thưởng hiện kim: 100,000,000 VNĐ`,
@@ -93,7 +95,8 @@ const evaluations = [
 
 function Ideathon() {
   const [loaded, setLoaded] = useState<boolean>(false);
-
+  const { status } = useSession();
+  const router = useRouter();
   useEffect(() => {
     setLoaded(true);
   }, []);
@@ -165,10 +168,21 @@ function Ideathon() {
               </span>
 
               <div className="flex gap-4 sm:flex-row flex-col items-center">
-                <Button hover rounded={false} size="md" click={() => {}}>
+                <Button
+                  hover
+                  rounded={false}
+                  size="md"
+                  click={() => {
+                    router.push(
+                      status == "authenticated" ? "/genesis" : "/signup"
+                    );
+                  }}
+                >
                   <div className="flex gap-2">
                     <span className="text-[18px] font-[500] text-white">
-                      Đăng ký ngay
+                      {status === "authenticated"
+                        ? "Nộp bài ngay"
+                        : "Đăng ký ngay"}
                     </span>
                     <MoveRight className="" stroke="#fff" />
                   </div>
