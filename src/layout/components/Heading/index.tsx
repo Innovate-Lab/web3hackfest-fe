@@ -126,6 +126,18 @@ function Heading() {
                         }}
                       />
                     ))}
+                    {session.user && (
+                      <HeadignButton
+                        textLeft
+                        text={"Profile"}
+                        to={"/profile"}
+                        active={activePage === 9}
+                        click={() => {
+                          handlePageChange(9);
+                          setShowMenu(false);
+                        }}
+                      />
+                    )}
                   </div>
                 </div>
               )}
