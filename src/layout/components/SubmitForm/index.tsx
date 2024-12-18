@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 import { usePrivate } from "@/app/hooks/usePrivateAxios";
 import { toast, useToast } from "@/app/hooks/use-toast";
 import { Pencil } from "lucide-react";
+import { Contest } from "@/app/profile/page";
 export type Info = {
   name: string;
   email: string;
@@ -20,7 +21,7 @@ export type Project = {
   link: string;
   descritpion?: string;
 };
-function SubmitForm({ view }: { view?: boolean }) {
+function SubmitForm({ view, data }: { view?: boolean; data: Contest }) {
   const [field, setField] = useState<string>("");
   const [numOfMem, setNumOfMem] = useState<number>(1);
   const session = useSession();
@@ -32,16 +33,33 @@ function SubmitForm({ view }: { view?: boolean }) {
     message: "",
   });
   const [project, setProject] = useState<Project>({
-    name: "",
-    link: "",
-    descritpion: "",
+    name: data.projectName || "",
+    link: data.projectLink || "",
+    descritpion: data.projectDescription || "",
   });
   const [capInfo, setCapInfo] = useState<Info>({
-    name: "",
-    email: "",
-    phone: "",
-    job: "",
+    name: data.name || "",
+    email: data.email || "",
+    phone: data.phone || "",
+    job: data.job || "",
   });
+
+  console.log("data ---", data, capInfo);
+
+  useEffect(() => {
+    setCapInfo({
+      name: data.name || "",
+      email: data.email || "",
+      phone: data.phone || "",
+      job: data.job || "",
+    });
+    setProject({
+      name: data.projectName || "",
+      link: data.projectLink || "",
+      descritpion: data.projectDescription || "",
+    });
+    setNumOfMem(data.numOfMems || 1);
+  }, [data]);
 
   const handleUpdate = () => {
     console.log("update");

@@ -6,9 +6,19 @@ import { useToast } from "../hooks/use-toast";
 import { usePrivate } from "../hooks/usePrivateAxios";
 import SubmitForm from "@/layout/components/SubmitForm";
 
+export type Contest = {
+  name: string;
+  email: string;
+  phone: string;
+  job: string;
+  numOfMems: number;
+  projectName: string;
+  projectLink: string;
+  projectDescription: string;
+};
+
 const page = () => {
   const { data: session } = useSession();
-
   // State to manage editing mode
   const [isEditing, setIsEditing] = useState(false);
   // State to manage input values
@@ -29,6 +39,16 @@ const page = () => {
   const [backupData, setBackupData] = useState(formData);
   const { toast } = useToast();
   const privateAxios = usePrivate();
+  const [contestData, setContestData] = useState<Contest>({
+    name: "",
+    email: "",
+    phone: "",
+    job: "",
+    numOfMems: 0,
+    projectName: "",
+    projectLink: "",
+    projectDescription: "",
+  });
   // Handle input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -104,6 +124,30 @@ const page = () => {
       alert("Đã xảy ra lỗi khi cập nhật.");
     }
   };
+
+  useEffect(() => {
+    const res = privateAxios
+      .get("/contest/get")
+      .then((res) => {
+        const data = res.data.data.contest;
+        console.log(data);
+        setContestData({
+          name: data.members[0].name,
+          email: data.members[0].email,
+          phone: data.members[0].phone,
+          job: data.members[0].job,
+          numOfMems: data.numberOfMembers,
+          projectName: data.contestName,
+          projectLink: data.link,
+          projectDescription: data.description,
+        });
+      })
+      .catch((err) => {
+        console.warn(err);
+      });
+
+    console.log(res);
+  }, []);
 
   return (
     <div className="w-full text-[#E4E4E6]">
@@ -194,7 +238,7 @@ const page = () => {
       <div className="w-full p-10 flex justify-center">
         <span className="text-white text-[32px]">Thông tin bài dự thi</span>
       </div>
-      <SubmitForm view={true} />
+      <SubmitForm data={contestData} view={true} />
     </div>
   );
 };
