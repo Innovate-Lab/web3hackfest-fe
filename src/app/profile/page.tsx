@@ -4,6 +4,7 @@ import { useSession, signOut } from "next-auth/react";
 import { axiosInstance, axiosInstancePrivate } from "@/axios/axios";
 import { useToast } from "../hooks/use-toast";
 import { usePrivate } from "../hooks/usePrivateAxios";
+import SubmitForm from "@/layout/components/SubmitForm";
 
 const page = () => {
   const { data: session } = useSession();
@@ -23,11 +24,11 @@ const page = () => {
       });
     }
   }, [session]);
-  
+
   // Backup state for canceling edits
   const [backupData, setBackupData] = useState(formData);
-  const {toast} = useToast()
-  const privateAxios =usePrivate()
+  const { toast } = useToast();
+  const privateAxios = usePrivate();
   // Handle input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -60,35 +61,38 @@ const page = () => {
       //     phone: formData.phone,
       //   }),
       // });
-      const response = await privateAxios.patch('/user/update-info',{
+      const response = await privateAxios
+        .patch("/user/update-info", {
           username: formData.username,
           phoneNumber: formData.phone,
-      }).then((res)=>{
-        toast({
-          variant:"success",
-          title:"Cập nhật thông tin thành công"
         })
-        setIsEditing(false)
-      })
-      .catch((error) => {
-        // Kiểm tra và log chi tiết lỗi
-        if (error.response) {
-          console.log("Response Error Data:", error.response.data);
-          console.log("Response Status Code:", error.response.status);
-          console.log("Response Headers:", error.response.headers);
-        } else if (error.request) {
-          console.log("Request Error (no response):", error.request);
-        } else {
-          console.log("Other Error Message:", error.message);
-        }
-    
-        toast({
-          variant: "error",
-          title: "Cập nhật thông tin thất bại",
-          description:
-            error.response?.data?.message || "Đã có lỗi xảy ra, vui lòng thử lại.",
+        .then((res) => {
+          toast({
+            variant: "success",
+            title: "Cập nhật thông tin thành công",
+          });
+          setIsEditing(false);
+        })
+        .catch((error) => {
+          // Kiểm tra và log chi tiết lỗi
+          if (error.response) {
+            console.log("Response Error Data:", error.response.data);
+            console.log("Response Status Code:", error.response.status);
+            console.log("Response Headers:", error.response.headers);
+          } else if (error.request) {
+            console.log("Request Error (no response):", error.request);
+          } else {
+            console.log("Other Error Message:", error.message);
+          }
+
+          toast({
+            variant: "error",
+            title: "Cập nhật thông tin thất bại",
+            description:
+              error.response?.data?.message ||
+              "Đã có lỗi xảy ra, vui lòng thử lại.",
+          });
         });
-      });
       // if (response.ok) {
       //   alert("Cập nhật thành công!");
       //   setIsEditing(false);
@@ -187,6 +191,10 @@ const page = () => {
           </div>
         </div>
       </div>
+      <div className="w-full p-10 flex justify-center">
+        <span className="text-white text-[32px]">Thông tin bài dự thi</span>
+      </div>
+      <SubmitForm view={true} />
     </div>
   );
 };
