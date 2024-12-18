@@ -43,8 +43,6 @@ const pages = [
 ];
 
 function Heading() {
-  const [logged, setLogged] = useState(false);
-
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -83,8 +81,6 @@ function Heading() {
       </div>
 
       <div className="user-actions-wrapper">
-
-        {logged}
         {session ? (
           <div className="">
             {/* handle show option button or user avatar */}
@@ -134,9 +130,14 @@ function Heading() {
                 </div>
               )}
             </div>
-            <div className="sm:flex hidden items-center gap-4 cursor-pointer">
+            <div
+              onClick={() => {
+                router.push("/profile");
+              }}
+              className="sm:flex hidden items-center gap-4 cursor-pointer"
+            >
               <span className="text-white text-[17px] font-[500]">
-                suistark02
+                {session?.user?.username}
               </span>
               <div
                 className="w-[44px] relative h-[44px] rounded-[50%] bg-cover bg-center  border-[1px] border-primary"
@@ -147,7 +148,6 @@ function Heading() {
             </div>
           </div>
         ) : (
-
           <Button
             size="sm"
             rounded={true}
