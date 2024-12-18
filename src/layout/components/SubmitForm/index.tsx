@@ -3,7 +3,9 @@ import InputField from "@/components/InputField";
 import Dropdown from "../DropDown";
 import { useEffect, useState } from "react";
 import Button from "@/components/Button";
-
+import { useSession } from "next-auth/react";
+import { usePrivate } from "@/app/hooks/usePrivateAxios";
+import { useToast } from "@/app/hooks/use-toast";
 export type Info = {
   name: string;
   email: string;
@@ -20,6 +22,9 @@ function SubmitForm() {
   const [field, setField] = useState<string>("");
   const [numOfMem, setNumOfMem] = useState<number>(1);
   const [description, setDescription] = useState<string>("");
+  const session = useSession();
+  const privateAxios = usePrivate();
+
   const [error, setError] = useState<{ id: number; message: string }>({
     id: -1,
     message: "",
@@ -38,7 +43,8 @@ function SubmitForm() {
 
   const checkingData = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+    const linkREgex =
+      /^(https?:\/\/)?([\w\d\-]+\.){1,}[a-z]{2,}(:\d+)?(\/[\w\d\-._~:/?#[\]@!$&'()*+,;=]*)?$/i;
     if (field === "") {
       setError({ id: 0, message: "Field is required" });
       return false;
@@ -59,6 +65,7 @@ function SubmitForm() {
       setError({ id: 3, message: "Phone is required" });
       return false;
     }
+
     if (capInfo.job === "") {
       setError({ id: 4, message: "Job is required" });
       return false;
@@ -71,6 +78,11 @@ function SubmitForm() {
       setError({ id: 6, message: "Link is required" });
       return false;
     }
+    if (!linkREgex.test(project.link)) {
+      setError({ id: 6, message: "Link is not valid" });
+      return false;
+    }
+
     if (project.descritpion === "") {
       setError({ id: 7, message: "Description is required" });
       return false;
@@ -105,11 +117,53 @@ function SubmitForm() {
     },
   ]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    const refactorMems = mems.map((mem) => ({
+      name: mem.name || null,
+      email: mem.email || null,
+      phone: mem.phone || null,
+      job: mem.job || null,
+    }));
     if (checkingData()) {
-      console.log({ field, ...capInfo, ...project });
+      const res = await privateAxios
+        .post("/contest/submit", {
+          numberOfMembers: numOfMem,
+          members: [capInfo, ...refactorMems.slice(0, numOfMem - 1)],
+          field,
+          contestName: project.name,
+          link: project.link,
+          description: project.descritpion,
+        })
+        .then((res) => {
+          alert("Đăng ký thành công");
+          console.log(res);
+        })
+        .catch((e) => {
+          console.log(e.response.data.message);
+          alert("submit error");
+        });
+      console.log(res);
+
+      console.log({
+        numberOfMembers: numOfMem,
+        members: [capInfo, ...refactorMems.slice(0, numOfMem - 1)],
+        field,
+        contestName: project.name,
+        link: project.link,
+        description: project.descritpion,
+      });
     }
   };
+
+  useEffect(() => {
+    console.log(session.data?.user);
+    setCapInfo((prev) => ({
+      ...prev,
+      name: session.data?.user?.username || "",
+      email: session.data?.user?.email || "",
+      phone: session?.data?.user?.phone || "",
+    }));
+  }, [session.data?.user]);
   return (
     <div className="flex justify-center flex-col items-center">
       <div className="flex gap-5 justify-center flex-col bg-[#1b1b21] rounded-[10px] border-[1px] border-[#ffffff1a] p-8 sm:w-[1100px] w-[92%]">
