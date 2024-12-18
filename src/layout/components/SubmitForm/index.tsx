@@ -33,32 +33,30 @@ function SubmitForm({ view, data }: { view?: boolean; data: Contest }) {
     message: "",
   });
   const [project, setProject] = useState<Project>({
-    name: data.projectName || "",
-    link: data.projectLink || "",
-    descritpion: data.projectDescription || "",
+    name: data?.projectName || "",
+    link: data?.projectLink || "",
+    descritpion: data?.projectDescription || "",
   });
   const [capInfo, setCapInfo] = useState<Info>({
-    name: data.name || "",
-    email: data.email || "",
-    phone: data.phone || "",
-    job: data.job || "",
+    name: data?.name || "",
+    email: data?.email || "",
+    phone: data?.phone || "",
+    job: data?.job || "",
   });
-
-  console.log("data ---", data, capInfo);
 
   useEffect(() => {
     setCapInfo({
-      name: data.name || "",
-      email: data.email || "",
-      phone: data.phone || "",
-      job: data.job || "",
+      name: data?.name || "",
+      email: data?.email || "",
+      phone: data?.phone || "",
+      job: data?.job || "",
     });
     setProject({
-      name: data.projectName || "",
-      link: data.projectLink || "",
-      descritpion: data.projectDescription || "",
+      name: data?.projectName || "",
+      link: data?.projectLink || "",
+      descritpion: data?.projectDescription || "",
     });
-    setNumOfMem(data.numOfMems || 1);
+    setNumOfMem(data?.numOfMems || 1);
   }, [data]);
 
   const handleUpdate = () => {
