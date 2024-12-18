@@ -21,7 +21,7 @@ export type Project = {
   link: string;
   descritpion?: string;
 };
-function SubmitForm({ view, data }: { view?: boolean; data: Contest }) {
+function SubmitForm({ view, data }: { view?: boolean; data?: Contest }) {
   const [field, setField] = useState<string>("");
   const [numOfMem, setNumOfMem] = useState<number>(1);
   const session = useSession();
