@@ -1,10 +1,10 @@
 "use client";
-import InputComponent from "@/components/signup/InputComponent";
-import React, { useEffect, useState } from "react";
+import InputComponent, { InputType } from "@/components/signup/InputComponent";
+import React, { useState } from "react";
 import { axiosInstance } from "@/axios/axios";
 import { toast } from "@/hooks/use-toast";
 
-const page = () => {
+const Page = () => {
   const [email, setEmail] = useState<string>("");
   const validateEmail = (email: string) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -65,7 +65,12 @@ const page = () => {
       </div>
       <div className="backdrop-blur-lg bg-[rgba(78,78,78,0.2)] rounded-lg px-8 py-6 w-[536px]  ">
         <form action="#" method="POST">
-          <InputComponent setValue={setEmail} value={email} title="Email" />
+          <InputComponent
+            type={InputType.Text}
+            setValue={setEmail}
+            value={email}
+            title="Email"
+          />
 
           <div
             onClick={handleSendEmail}
@@ -79,4 +84,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -7,41 +7,41 @@ import LoadOnScreen from "@/components/LoadOnScreen";
 import Milestone from "@/components/Milestone";
 import Slide from "@/components/Slide";
 import W3Field from "@/components/W3Field";
-import { url } from "inspector";
 import { MoveRight } from "lucide-react";
-import {
-  useScroll,
-  motion,
-  useTransform,
-  useMotionValue,
-  useMotionValueEvent,
-  useInView,
-} from "motion/react";
-import { div, image, img } from "motion/react-client";
+import { useMotionValue, useMotionValueEvent } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import Skeleton from "react-loading-skeleton";
 import RotateICon from "@/components/RotateIcon";
-import { rewardsInfo } from "./ideathon/layout";
+
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-const benifitsTag = [
-  {
-    icon: "https://framerusercontent.com/images/qmQExoaRiIDblDbazRJ2OZI8U.png",
-    title: `Hỗ trợ và cố vấn từ các chuyên gia`,
-  },
-  {
-    icon: "https://framerusercontent.com/images/qmQExoaRiIDblDbazRJ2OZI8U.png",
-    title: `Tiếp cận tài nguyên học tập và công nghệ trên nền tảng OpenEdu`,
-  },
-  {
-    icon: "https://framerusercontent.com/images/qmQExoaRiIDblDbazRJ2OZI8U.png",
-    title: `Chứng minh năng lực và nâng cao hình ảnh cá nhân`,
-  },
-  {
-    icon: "https://framerusercontent.com/images/qmQExoaRiIDblDbazRJ2OZI8U.png",
-    title: `Cơ hội gọi vốn và khởi nghiệp`,
-  },
+
+const rewardsInfo = [
+  `Giải thưởng hiện kim: 100,000,000 VNĐ`,
+  `Học bổng từ các đơn vị tài trợ`,
+  `Quà tặng từ Ban Tổ Chức`,
+  `Credit cho các API và dịch vụ phát triển`,
+  `Cơ hội tham gia "Incubation Program"`,
+  `Giấy xác nhận tham gia cuộc thi cho tất cả các thí sinh`,
+  `Tham gia miễn phí các buổi đào tạo chuyên sâu với Mentor`,
 ];
+// const benifitsTag = [
+//   {
+//     icon: "https://framerusercontent.com/images/qmQExoaRiIDblDbazRJ2OZI8U.png",
+//     title: `Hỗ trợ và cố vấn từ các chuyên gia`,
+//   },
+//   {
+//     icon: "https://framerusercontent.com/images/qmQExoaRiIDblDbazRJ2OZI8U.png",
+//     title: `Tiếp cận tài nguyên học tập và công nghệ trên nền tảng OpenEdu`,
+//   },
+//   {
+//     icon: "https://framerusercontent.com/images/qmQExoaRiIDblDbazRJ2OZI8U.png",
+//     title: `Chứng minh năng lực và nâng cao hình ảnh cá nhân`,
+//   },
+//   {
+//     icon: "https://framerusercontent.com/images/qmQExoaRiIDblDbazRJ2OZI8U.png",
+//     title: `Cơ hội gọi vốn và khởi nghiệp`,
+//   },
+// ];
 
 const eventInfo = [
   {
@@ -353,40 +353,37 @@ const activities = [
 ];
 
 export default function Home() {
-  const [deg, setDeg] = useState<number>(0);
   const [loaded, setLoaded] = useState<boolean>(false);
-  const [logged, setLogged] = useState<boolean>(true);
+  const [logged] = useState<boolean>(true);
   const value = useMotionValue(0);
   const { data: session } = useSession();
-  const router =useRouter()
+  const router = useRouter();
   useMotionValueEvent(value, "change", (latest) => {
     console.log(latest);
   });
 
   // const opacity = useTransform(scrollYProgress, [0, 1], []);
 
-  const refInterval = useRef<NodeJS.Timeout | null>(null);
+  // const refInterval = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     setLoaded(true);
   }, []);
 
-  useEffect(() => {
-    refInterval.current = setInterval(() => {
-      setDeg((prev) => prev + 1);
-    }, 4000 / 360);
-    return () => {
-      clearInterval(refInterval.current as NodeJS.Timeout);
-    };
-  }, []);
+  // useEffect(() => {
+  //   refInterval.current = setInterval(() => {
+  //     setDeg((prev) => prev + 1);
+  //   }, 4000 / 360);
+  //   return () => {
+  //     clearInterval(refInterval.current as NodeJS.Timeout);
+  //   };
+  // }, []);
 
   const handleSubmit = () => {
-    if(session){
-      router.push("/genesis")
-
-    }
-    else{
-      router.push("/signin")
+    if (session) {
+      router.push("/genesis");
+    } else {
+      router.push("/signin");
     }
     //logic to handle on register now click
   };

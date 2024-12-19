@@ -1,12 +1,7 @@
 "use client";
 import HeadignButton from "@/components/HeadingButton";
-import {
-  DataContext,
-  DataProvider,
-  useDataContext,
-} from "@/provider/DataContext";
-import { title } from "process";
-import { useContext, useEffect, useState } from "react";
+import { useDataContext } from "@/provider/DataContext";
+import { useEffect, useState } from "react";
 import { AlignJustify, MoveRight, X } from "lucide-react";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";

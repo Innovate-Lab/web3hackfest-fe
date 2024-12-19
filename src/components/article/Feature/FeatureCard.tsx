@@ -1,16 +1,18 @@
-'use client';
+"use client";
 import React from "react";
-import { useRouter } from 'next/navigation'
-import Markdown from 'react-markdown'
+import { useRouter } from "next/navigation";
 
 const FeatureCard = () => {
   const router = useRouter();
 
-  const handleNavigate = ()=>{
-    router.push("/article/abc")
-  }
+  const handleNavigate = () => {
+    router.push("/article/abc");
+  };
   return (
-    <div className="flex flex-col gap-6 w-full cursor-pointer" onClick={handleNavigate}>
+    <div
+      className="flex flex-col gap-6 w-full cursor-pointer"
+      onClick={handleNavigate}
+    >
       <img
         src="/article/article.webp"
         alt=""

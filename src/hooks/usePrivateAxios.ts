@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import axios from "axios";
 import { getSession } from "next-auth/react";
 import { axiosInstancePrivate } from "@/axios/axios";
 
@@ -14,7 +13,6 @@ export const usePrivate = () => {
         try {
           const session = await getSession(); // Lấy session từ NextAuth
           console.log("session");
-          console.log(session.access_token);
 
           if (session?.access_token) {
             const bear = `Bearer ${session.access_token}`;

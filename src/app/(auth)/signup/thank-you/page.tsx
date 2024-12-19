@@ -1,15 +1,11 @@
 "use client";
 import { toast } from "@/hooks/use-toast";
-import { usePrivate } from "@/hooks/usePrivateAxios";
-import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import { axiosInstance } from "@/axios/axios";
 
-const page = () => {
+const Page = () => {
   const [enable, setEnable] = useState(false);
   const [countdown, setCountdown] = useState(6);
-  const privateAxios = usePrivate();
-  const session = useSession();
   useEffect(() => {
     const timer = setInterval(() => {
       setCountdown((prev) => prev - 1);
@@ -33,13 +29,13 @@ const page = () => {
       .get(
         `user/resend-verify-account?userId=${localStorage.getItem("user_id")}`
       )
-      .then((res) => {
+      .then(() => {
         toast({
           title: "Email xác nhận đã được gửi!",
           variant: "success",
         });
       })
-      .catch((err) => {
+      .catch(() => {
         toast({
           title: "Có lỗi xảy ra!",
           variant: "error",
@@ -108,4 +104,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

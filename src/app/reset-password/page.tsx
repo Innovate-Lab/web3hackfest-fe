@@ -1,12 +1,10 @@
 "use client";
-import InputField from "@/components/InputField";
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { IoCloseSharp } from "react-icons/io5";
 import Button from "@/components/Button";
 import { axiosInstance } from "@/axios/axios";
-import { useRouter } from "next/router";
 import { toast } from "../../hooks/use-toast";
 import { useSearchParams } from "next/navigation";
 function ResetPassword() {
@@ -18,7 +16,7 @@ function ResetPassword() {
   const [validLowercase, setValidLowercase] = useState(false);
   const [validNumber, setValidNumber] = useState(false);
   const [showconfirm, setShowconfirm] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;

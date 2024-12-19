@@ -1,10 +1,9 @@
-export const metadata = {
-    title: "Schedule",
-    description: "Schedule page",
-
+function Schedule() {
+  return (
+    <>
+      <h1 className="text-xl font-[700] text-red-500">Schedule</h1>
+    </>
+  );
 }
-function RootLayout({children}: {children: React.ReactNode}) {
-    return ( <>{children}</> );
-}
 
-export default RootLayout;
+export default Schedule;

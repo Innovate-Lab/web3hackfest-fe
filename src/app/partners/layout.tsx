@@ -1,9 +1,8 @@
-function Partners() {
-  return (
-    <>
-      <h1 className="text-xl font-[700] text-red-500">Partners</h1>
-    </>
-  );
+export const metadata = {
+  title: "Partners",
+  description: "Partners page",
+};
+function RootLayout({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 }
-
-export default Partners;
+export default RootLayout;

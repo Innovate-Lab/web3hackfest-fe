@@ -140,7 +140,7 @@ function PartnerForm() {
           label=""
           value={data.message}
           placeholder="Message"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {}}
+          onChange={() => {}}
           areaChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
             if (error.id == 5) setError({ id: -1, message: "" });
             setData((prev) => ({ ...prev, message: e.target.value }));

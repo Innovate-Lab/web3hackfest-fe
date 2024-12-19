@@ -23,14 +23,13 @@ const Page = () => {
   const [validNumber, setValidNumber] = useState(false);
 
   const searchParams = useSearchParams();
-  const [utm, setUtm] = useState<string>('');
-  const [utmSource, setUtmSource] = useState<string>('default_source');
-  const [utmMedium, setUtmMedium] = useState<string>('default_medium');
-  const [utmCampaign, setUtmCampaign] = useState<string>('default_campaign');
-
+  const [utm, setUtm] = useState<string>("");
+  const [utmSource, setUtmSource] = useState<string>("default_source");
+  const [utmMedium, setUtmMedium] = useState<string>("default_medium");
+  const [utmCampaign, setUtmCampaign] = useState<string>("default_campaign");
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       // Now we know we're on the client side, so it's safe to use window
       setUtm(window.location.href);
       setUtmSource(searchParams.get("utm_source") || "default_source");
@@ -131,10 +130,14 @@ const Page = () => {
         variant: "success",
       });
       router.push("/signup/thank-you");
-    } catch (error: any) {
+    } catch (error) {
+      console.error(
+        "Error during signup:",
+        (error as { message: string }).message || error
+      );
       toast({
         title: "Đăng ký thất bại",
-        description: `${error.response.data.message}`,
+        description: `${(error as { message: string }).message}`,
         variant: "error",
       });
     }

@@ -1,6 +1,3 @@
-import { image } from "motion/react-client";
-import LoadOnScreen from "../LoadOnScreen";
-
 interface Props {
   title: string;
   image: string;

@@ -12,8 +12,8 @@ const validateEmail = (email: string) => {
   return regex.test(email);
 };
 
-const page = () => {
-  const {pushRouteWithQuery} = useCustomRouter();
+const Page = () => {
+  const { pushRouteWithQuery } = useCustomRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [emailError, setEmailError] = useState<string | null>(null);
@@ -142,4 +142,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

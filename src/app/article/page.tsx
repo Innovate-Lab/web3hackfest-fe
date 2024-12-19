@@ -1,6 +1,5 @@
 import BannerArticle from "@/components/article/BannerArticle";
 import FeatureArticle from "@/components/article/Feature/FeatureArticle";
-import FooterArticle from "@/components/article/FooterArticle";
 import RecentArticle from "@/components/article/Recent/RecentArticle";
 
 function Blog() {

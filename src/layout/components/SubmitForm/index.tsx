@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Button from "@/components/Button";
 import { useSession } from "next-auth/react";
 import { usePrivate } from "@/hooks/usePrivateAxios";
-import { toast, useToast } from "@/hooks/use-toast";
+import { toast } from "@/hooks/use-toast";
 import { Pencil } from "lucide-react";
 import { Contest } from "@/app/profile/page";
 export type Info = {
@@ -155,12 +155,13 @@ function SubmitForm({ view, data }: { view?: boolean; data?: Contest }) {
           link: project.link,
           description: project.descritpion,
         })
-        .then((res) => {
+        .then(() => {
           toast({
             title: "Nộp bài thành công",
             description: "Bài nộp của bạn đã được ghi nhận",
             variant: "success",
           });
+
           // router.push("/signup/thank-you");
         })
         .catch((e) => {
@@ -468,7 +469,7 @@ function SubmitForm({ view, data }: { view?: boolean; data?: Contest }) {
               type="text"
               label="Mô tả ngắn về dự án*"
               textarea
-              onChange={(e) => {}}
+              onChange={() => {}}
               areaChange={(e) => {
                 if (error.id == 7) setError({ id: -1, message: "" });
                 setProject((prev) => ({
