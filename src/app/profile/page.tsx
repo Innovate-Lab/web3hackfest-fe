@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { axiosInstance, axiosInstancePrivate } from "@/axios/axios";
-import { useToast } from "../hooks/use-toast";
-import { usePrivate } from "../hooks/usePrivateAxios";
+import { useToast } from "../../hooks/use-toast";
+import { usePrivate } from "../../hooks/usePrivateAxios";
 import SubmitForm from "@/layout/components/SubmitForm";
 
 export type Contest = {

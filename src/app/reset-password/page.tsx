@@ -7,7 +7,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import Button from "@/components/Button";
 import { axiosInstance } from "@/axios/axios";
 import { useRouter } from "next/router";
-import { toast } from "../hooks/use-toast";
+import { toast } from "../../hooks/use-toast";
 function ResetPassword() {
   const [password, setPassword] = useState<string>("");
   const [confirm, setConfirm] = useState<string>("");

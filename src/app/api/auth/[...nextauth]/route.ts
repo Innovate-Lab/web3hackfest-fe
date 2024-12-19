@@ -25,7 +25,13 @@ export const authOptions: AuthOptions = {
           }).then((e)=>{
               return e.data.data
           }).catch((e)=>{
-            throw e
+            console.log(e.response.data)
+            if (e.response && e.response.data ) {
+             if( e.response.data.code===1001)
+              throw new Error("Sai thông tin đăng nhập");
+            } 
+            throw new Error("Lỗi đăng nhập");
+
           })
         
           // if (!response.ok) {

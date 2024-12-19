@@ -2,7 +2,7 @@
 import InputComponent from "@/components/signup/InputComponent";
 import React, { useEffect, useState } from "react";
 import { axiosInstance } from "@/axios/axios";
-import { toast } from "@/app/hooks/use-toast";
+import { toast } from "@/hooks/use-toast";
 
 const page = () => {
   const [email, setEmail] = useState<string>("");
