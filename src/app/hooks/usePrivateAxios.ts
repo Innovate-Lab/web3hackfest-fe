@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import axios from "axios";
 import { getSession } from "next-auth/react";
 import { axiosInstancePrivate } from "@/axios/axios";
 

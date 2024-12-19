@@ -1,10 +1,10 @@
 "use client";
 import InputComponent from "@/components/signup/InputComponent";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { axiosInstance } from "@/axios/axios";
 import { toast } from "@/app/hooks/use-toast";
 
-const page = () => {
+const Page = () => {
   const [email, setEmail] = useState<string>("");
   const validateEmail = (email: string) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -79,4 +79,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

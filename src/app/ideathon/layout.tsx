@@ -458,7 +458,10 @@ function Ideathon() {
           </span>
           <div className="flex sm:gap-6 gap-2 flex-wrap justify-center">
             {evaluations.map((item, index) => (
-              <div className="sm:w-[18%] w-[30%] px-8 py-6 border-[1px] border-[#ffffff26] rounded-[16px] backdrop-blur-lg bg-[#4e4e4e46] flex flex-col justify-center">
+              <div
+                key={index}
+                className="sm:w-[18%] w-[30%] px-8 py-6 border-[1px] border-[#ffffff26] rounded-[16px] backdrop-blur-lg bg-[#4e4e4e46] flex flex-col justify-center"
+              >
                 <span className="text-white text-center font-[600] text-[14px] sm:text-[17px]">
                   {item}
                 </span>

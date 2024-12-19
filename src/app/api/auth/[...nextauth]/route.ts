@@ -3,39 +3,46 @@ import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: AuthOptions = {
-  secret: process.env.NEXTAUTH_SECRET, 
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: { label: "Email", type: "text", placeholder: "abc@gmail.com" },
+        username: {
+          label: "Email",
+          type: "text",
+          placeholder: "abc@gmail.com",
+        },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         try {
-          console.log(credentials)
+          console.log(credentials);
           // Kiểm tra nếu credentials không hợp lệ
           if (!credentials?.username || !credentials?.password) {
             throw new Error("Missing credentials");
           }
           // Gọi API backend để xác thực người dùng
-          const response = await axiosInstance.post('/user/login',{
-            email:credentials.username,
-            password:credentials.password
-          }).then((e)=>{
-              return e.data.data
-          }).catch((e)=>{
-            throw e
-          })
-        
+          const response = await axiosInstance
+            .post("/user/login", {
+              email: credentials.username,
+              password: credentials.password,
+            })
+            .then((e) => {
+              return e.data.data;
+            })
+            .catch((e) => {
+              throw e;
+            });
+
           // if (!response.ok) {
           //   throw new Error("Invalid credentials");
           // }
 
           // // Lấy thông tin người dùng từ API
-          const user = await response ;
+          const user = await response;
           // Kiểm tra xem API trả về thông tin hợp lệ hay không
-          if (user ) {
+          if (user) {
             return user; // Trả về đối tượng người dùng cho NextAuth
           } else {
             throw new Error("User not found");
@@ -50,7 +57,7 @@ export const authOptions: AuthOptions = {
   callbacks: {
     async jwt({ token, user, trigger }) {
       // Add user information and tokens to the JWT when the user logs in for the first time
-      if (user && trigger==="signIn") {
+      if (user && trigger === "signIn") {
         token.access_token = user.tokens.access_token;
         token.refresh_token = user.tokens.refresh_token;
         token.user = {
@@ -59,18 +66,15 @@ export const authOptions: AuthOptions = {
           phone: user.user_info.phone,
           username: user.user_info.username,
         };
+      } else if (user && trigger === "signUp") {
       }
-      else if(user && trigger==="signUp"){
-
-      }
-      console.log("token")
+      console.log("token");
 
       return token;
     },
     async session({ session, token }) {
       // Add token and user information to the session object
-      if(token){
-
+      if (token) {
         session.access_token = token.access_token;
         session.refresh_token = token.refresh_token;
         session.user = {
@@ -79,16 +83,14 @@ export const authOptions: AuthOptions = {
           phone: token.user.phone,
           username: token.user.username,
         };
-
       }
- 
+
       return session;
     },
   },
-  
+
   pages: {
     signIn: "/signin", // Đường dẫn đến trang đăng nhập
-
   },
 };
 

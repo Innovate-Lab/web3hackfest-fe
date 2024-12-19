@@ -2,7 +2,6 @@
 import React, { useEffect } from "react";
 import Heading from "@/layout/components/Heading";
 import { Poppins } from "next/font/google";
-import { useDataContext } from "@/provider/DataContext";
 import Slide from "@/components/Slide";
 import clsx from "clsx";
 const popins = Poppins({

@@ -1,11 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
-import { axiosInstance, axiosInstancePrivate } from "@/axios/axios";
 import { useToast } from "../hooks/use-toast";
 import { usePrivate } from "../hooks/usePrivateAxios";
-import SubmitForm from "@/layout/components/SubmitForm";
-import { ChevronDown } from "lucide-react";
 import SummitedProject from "@/components/SummitedProject";
 
 export type Contest = {
@@ -35,7 +32,7 @@ export type ContestDetails = {
   numberOfMembers: number;
 };
 
-const page = () => {
+const Page = () => {
   const { data: session } = useSession();
   // State to manage editing mode
   const [isEditing, setIsEditing] = useState(false);
@@ -57,16 +54,7 @@ const page = () => {
   const [backupData, setBackupData] = useState(formData);
   const { toast } = useToast();
   const privateAxios = usePrivate();
-  const [contestData, setContestData] = useState<Contest>({
-    name: "",
-    email: "",
-    phone: "",
-    job: "",
-    numOfMems: 0,
-    projectName: "",
-    projectLink: "",
-    projectDescription: "",
-  });
+
   const [contests, setContests] = useState<Contest[]>([]);
 
   // Handle input changes
@@ -106,7 +94,7 @@ const page = () => {
           username: formData.username,
           phoneNumber: formData.phone,
         })
-        .then((res) => {
+        .then(() => {
           toast({
             variant: "success",
             title: "Cập nhật thông tin thành công",
@@ -133,6 +121,7 @@ const page = () => {
               "Đã có lỗi xảy ra, vui lòng thử lại.",
           });
         });
+      console.log(response);
       // if (response.ok) {
       //   alert("Cập nhật thành công!");
       //   setIsEditing(false);
@@ -272,4 +261,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

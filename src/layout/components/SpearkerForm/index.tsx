@@ -199,7 +199,7 @@ function SpeakerForm() {
 
         <InputField
           value={data.moreInfo}
-          onChange={(e) => {}}
+          onChange={() => {}}
           areaChange={(e) => setData({ ...data, moreInfo: e.target.value })}
           type="text"
           placeholder="Message"
@@ -209,7 +209,7 @@ function SpeakerForm() {
         />
         <InputField
           value={data.interest}
-          onChange={(e) => {}}
+          onChange={() => {}}
           areaChange={(e) => setData({ ...data, interest: e.target.value })}
           type="text"
           placeholder="Message"
@@ -220,7 +220,7 @@ function SpeakerForm() {
         {/* interests */}
         <InputField
           value={data.previousSpeakingEngagements}
-          onChange={(e) => {}}
+          onChange={() => {}}
           areaChange={(e) =>
             setData({ ...data, previousSpeakingEngagements: e.target.value })
           }

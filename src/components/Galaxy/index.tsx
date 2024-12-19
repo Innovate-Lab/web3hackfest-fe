@@ -3,7 +3,6 @@ import fGalaxy from "../../../public/assets/images/galaxy/galaxy1.svg";
 import sGalaxy from "../../../public/assets/images/galaxy/galaxy1.svg";
 import tGalaxy from "../../../public/assets/images/galaxy/galaxy1.svg";
 import foGalaxy from "../../../public/assets/images/galaxy/galaxy1.svg";
-import Image from "next/image";
 const srcSets = [
   "https://framerusercontent.com/images/0ufeneiW2NUlEhrhtdq3rbCEoc.svg?scale-down-to=512 512w,https://framerusercontent.com/images/0ufeneiW2NUlEhrhtdq3rbCEoc.svg 606w",
   "https://framerusercontent.com/images/Jff30AAWnFjT5Sao96znjDkVt40.svg?scale-down-to=512 512w,https://framerusercontent.com/images/Jff30AAWnFjT5Sao96znjDkVt40.svg 606w",

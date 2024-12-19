@@ -112,11 +112,14 @@ const Page = () => {
         variant: "success",
       });
       router.push("/signup/thank-you");
-    } catch (error: any) {
-      console.error("Error during signup:", error.message || error);
+    } catch (error) {
+      console.error(
+        "Error during signup:",
+        (error as { message: string }).message || error
+      );
       toast({
         title: "Đăng ký thất bại",
-        description: `${error.message}`,
+        description: `${(error as { message: string }).message}`,
         variant: "error",
       });
     }

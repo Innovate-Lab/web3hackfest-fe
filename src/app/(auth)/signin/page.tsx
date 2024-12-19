@@ -12,7 +12,7 @@ const validateEmail = (email: string) => {
   return regex.test(email);
 };
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -137,4 +137,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
