@@ -8,6 +8,7 @@ import Button from "@/components/Button";
 import { axiosInstance } from "@/axios/axios";
 import { useRouter } from "next/router";
 import { toast } from "../../hooks/use-toast";
+import { useSearchParams } from "next/navigation";
 function ResetPassword() {
   const [password, setPassword] = useState<string>("");
   const [confirm, setConfirm] = useState<string>("");
@@ -17,8 +18,7 @@ function ResetPassword() {
   const [validLowercase, setValidLowercase] = useState(false);
   const [validNumber, setValidNumber] = useState(false);
   const [showconfirm, setShowconfirm] = useState(false);
-  const [token, setToken] = useState<string>("");
-  //   const router = useRouter();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -39,16 +39,15 @@ function ResetPassword() {
   };
 
   useEffect(() => {
-    const getToken = new URLSearchParams(window.location.search).get("token");
-    if (!getToken) {
-      alert("fail to get token");
-      //   router.push("/forgot-password");
+    console.log(searchParams);
+    if (!searchParams) {
+      // alert("fail to get token");
+      //router.push("/forgot-password");
       return;
     }
 
-    setToken(getToken || "");
     axiosInstance
-      .get(`/user/check-token-reset-password?token=${token}`)
+      .get(`/user/check-token-reset-password?token=${searchParams[1]}`)
       .then((res) => {
         console.log(res.data);
       })
@@ -66,17 +65,28 @@ function ResetPassword() {
           token: new URLSearchParams(window.location.search).get("token"),
         })
         .then((res) => {
+          toast({
+            title: "Successfull!",
+            description: "Đổi mật khẩu thành công",
+            variant: "success",
+          });
           console.log(res.data);
         })
         .catch((err) => {
+          toast({
+            title: "Error!",
+            description: "Đổi mật khẩu không thành công",
+            variant: "error",
+          });
           console.log(err);
         });
 
       console.log(res);
     } else {
       toast({
-        title: "Lỗi",
+        title: "Error!",
         description: "Mật khẩu không hợp lệ",
+        variant: "error",
       });
     }
   };

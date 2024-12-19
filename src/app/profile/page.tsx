@@ -5,6 +5,8 @@ import { axiosInstance, axiosInstancePrivate } from "@/axios/axios";
 import { useToast } from "../../hooks/use-toast";
 import { usePrivate } from "../../hooks/usePrivateAxios";
 import SubmitForm from "@/layout/components/SubmitForm";
+import { ChevronDown } from "lucide-react";
+import SummitedProject from "@/components/SummitedProject";
 
 export type Contest = {
   name: string;
@@ -15,6 +17,22 @@ export type Contest = {
   projectName: string;
   projectLink: string;
   projectDescription: string;
+};
+
+export type ContestDetails = {
+  contestName: string;
+  created: string;
+  description: string;
+  field: string;
+  id: string;
+  link: string;
+  members: Array<{
+    name: string;
+    email: string;
+    phone: string;
+    job: string;
+  }>;
+  numberOfMembers: number;
 };
 
 const page = () => {
@@ -49,6 +67,8 @@ const page = () => {
     projectLink: "",
     projectDescription: "",
   });
+  const [contests, setContests] = useState<Contest[]>([]);
+
   // Handle input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -129,18 +149,23 @@ const page = () => {
     const res = privateAxios
       .get("/contest/get")
       .then((res) => {
-        const data = res.data.data.contest;
-        console.log(data);
-        setContestData({
-          name: data.members[0].name,
-          email: data.members[0].email,
-          phone: data.members[0].phone,
-          job: data.members[0].job,
-          numOfMems: data.numberOfMembers,
-          projectName: data.contestName,
-          projectLink: data.link,
-          projectDescription: data.description,
-        });
+        if (res?.data?.data?.contests) {
+          console.log(res.data.data.contests);
+          setContests(
+            res.data.data.contests.map((contest: ContestDetails) => {
+              return {
+                name: contest.members[0].name,
+                email: contest.members[0].email,
+                phone: contest.members[0].phone,
+                job: contest.members[0].job,
+                numOfMems: contest.numberOfMembers,
+                projectName: contest.contestName,
+                projectLink: contest.link,
+                projectDescription: contest.description,
+              };
+            })
+          );
+        }
       })
       .catch((err) => {
         console.warn(err);
@@ -238,7 +263,11 @@ const page = () => {
       <div className="w-full p-10 flex justify-center">
         <span className="text-white text-[32px]">Thông tin bài dự thi</span>
       </div>
-      <SubmitForm data={contestData} view={true} />
+      <div className="flex flex-col items-center justify-center">
+        {contests.map((contest, index) => (
+          <SummitedProject key={index} contest={contest} />
+        ))}
+      </div>
     </div>
   );
 };

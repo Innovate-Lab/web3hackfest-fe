@@ -27,7 +27,6 @@ function SubmitForm({ view, data }: { view?: boolean; data?: Contest }) {
   const session = useSession();
   const privateAxios = usePrivate();
   const [disable, setDisable] = useState<boolean>(view ? true : false);
-
   const [error, setError] = useState<{ id: number; message: string }>({
     id: -1,
     message: "",
@@ -157,8 +156,12 @@ function SubmitForm({ view, data }: { view?: boolean; data?: Contest }) {
           description: project.descritpion,
         })
         .then((res) => {
-          alert("Đăng ký thành công");
-          console.log(res);
+          toast({
+            title: "Nộp bài thành công",
+            description: "Bài nộp của bạn đã được ghi nhận",
+            variant: "success",
+          });
+          // router.push("/signup/thank-you");
         })
         .catch((e) => {
           console.log(e.response.data.message);
@@ -512,29 +515,31 @@ function SubmitForm({ view, data }: { view?: boolean; data?: Contest }) {
           </div>
         )}
       </div>
-      <div className="w-full mt-8 flex justify-center mb-8">
-        <div className="flex w-[80%]  sm:w-fit flex-col gap-6 items-center bg-[#1b1b21] rounded-[10px] border-[1px] border-[#ffffff1a] p-8">
-          <span className="text-[18px] sm:text-[24px] text-white font-[600] text-center">
-            Tham gia group Zalo để được hỗ trợ:
-          </span>
-          <img
-            src="assets/images/zaloQr.avif"
-            alt=""
-            className="sm:w-[220px] w-[120px] h-[120px] sm:h-[220px] rounded-[10px]"
-          />
-          <span className="text-[16px] sm:text-[16px] text-white text-center">
-            Tham gia group Zalo để được hỗ trợ:
-          </span>{" "}
-          <span
-            onClick={() => {
-              window.open("https://zalo.me/g/btdwwx469", "_blank");
-            }}
-            className="text-[16px] mt-[-8px] sm:text-[16px] text-white text-center cursor-pointer"
-          >
-            https://zalo.me/g/btdwwx469
-          </span>
+      {!view && (
+        <div className="w-full mt-8 flex justify-center mb-8">
+          <div className="flex w-[80%]  sm:w-fit flex-col gap-6 items-center bg-[#1b1b21] rounded-[10px] border-[1px] border-[#ffffff1a] p-8">
+            <span className="text-[18px] sm:text-[24px] text-white font-[600] text-center">
+              Tham gia group Zalo để được hỗ trợ:
+            </span>
+            <img
+              src="assets/images/zaloQr.avif"
+              alt=""
+              className="sm:w-[220px] w-[120px] h-[120px] sm:h-[220px] rounded-[10px]"
+            />
+            <span className="text-[16px] sm:text-[16px] text-white text-center">
+              Tham gia group Zalo để được hỗ trợ:
+            </span>{" "}
+            <span
+              onClick={() => {
+                window.open("https://zalo.me/g/btdwwx469", "_blank");
+              }}
+              className="text-[16px] mt-[-8px] sm:text-[16px] text-white text-center cursor-pointer"
+            >
+              https://zalo.me/g/btdwwx469
+            </span>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

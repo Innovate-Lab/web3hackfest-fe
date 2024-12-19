@@ -31,7 +31,25 @@ const page = () => {
         })
         .catch((err) => {
           console.log(err);
-          alert("");
+          if (err.code == "ERR_NETWORK") {
+            toast({
+              title: "Lỗi",
+              description: "Kiểm tra kết nối mạng",
+              variant: "error",
+            });
+          } else if (err.response.data.code == 1000) {
+            toast({
+              title: "Lỗi",
+              description: "Email không tồn tại trong hệ thống",
+              variant: "error",
+            });
+          } else {
+            toast({
+              title: "Lỗi",
+              description: "Có lỗi xảy ra",
+              variant: "error",
+            });
+          }
         });
 
       console.log(res);
