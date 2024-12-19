@@ -31,13 +31,13 @@ const page = () => {
       toast({
         title: "Email không được để trống",
         variant: "error",
-      });        
+      });
       valid = false;
     } else if (!validateEmail(email)) {
       toast({
         title: "Email không hợp lệ",
         variant: "error",
-      });          
+      });
       valid = false;
     } else {
       setEmailError(null); // Clear email error
@@ -48,7 +48,7 @@ const page = () => {
       toast({
         title: "Password không được để trống",
         variant: "error",
-      });         
+      });
       valid = false;
     } else {
       setPasswordError(null); // Clear password error
@@ -76,7 +76,7 @@ const page = () => {
       <div className="backdrop-blur-lg bg-[rgba(78,78,78,0.2)] rounded-lg px-8 py-6 w-[536px] text-white">
         <form action="#" method="POST" className="flex flex-col gap-5">
           <div>
-          <Label className="text-white">Email</Label>
+            <Label className="text-white">Email</Label>
 
             <Input
               value={email}
@@ -84,14 +84,13 @@ const page = () => {
               placeholder="Email"
               className="focus:outline-none focus:ring-0 border-none bg-[#F9F7FA1F] p-4"
               type="email"
-
             />
             {emailError && (
               <span className="text-red-500 text-sm">{emailError}</span>
             )}
           </div>
           <div>
-          <Label className="text-white">Mật khẩu</Label>
+            <Label className="text-white">Mật khẩu</Label>
 
             <Input
               value={password}
@@ -123,12 +122,12 @@ const page = () => {
               Đăng ký tài khoản
             </button>
             <button
- 
               className="w-full bg-[#17171B] text-white py-2 px-4 rounded-md mb-4"
               onClick={(e) => {
                 e.preventDefault(); // Ngăn chặn hành động mặc định của nút (nếu có)
                 router.push("/forgot-password"); // Chuyển hướng đến trang đăng ký
-              }}            >
+              }}
+            >
               Quên mật khẩu
             </button>
           </div>

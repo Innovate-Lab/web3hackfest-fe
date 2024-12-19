@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -18,7 +18,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
     <div
       className="min-h-screen bg-cover bg-center bg-no-repeat flex justify-center items-center"
       style={{
-        backgroundImage: `url('/auth/background-auth.png')`,
+        backgroundImage: `url('assets/images/bkgs/primaryBkg.png')`,
       }}
     >
       {children}

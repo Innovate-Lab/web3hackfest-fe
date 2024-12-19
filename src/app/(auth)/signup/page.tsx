@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 const Page = () => {
   const { toast } = useToast();
-  const router=useRouter()
+  const router = useRouter();
 
   const [password, setPassword] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
@@ -40,7 +40,7 @@ const Page = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^0\d{9}$/;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/; // Kiểm tra ít nhất 1 chữ cái in hoa, 1 chữ cái thường, 1 chữ số và độ dài tối thiểu 8 ký tự
-  
+
     if (!name || !email || !phone || !password) {
       toast({
         title: "Thông báo",
@@ -49,7 +49,7 @@ const Page = () => {
       });
       return false;
     }
-  
+
     if (!emailRegex.test(email)) {
       toast({
         title: "Lỗi định dạng",
@@ -58,7 +58,7 @@ const Page = () => {
       });
       return false;
     }
-  
+
     if (!phoneRegex.test(phone)) {
       toast({
         title: "Lỗi định dạng",
@@ -67,24 +67,23 @@ const Page = () => {
       });
       return false;
     }
-  
+
     if (!passwordRegex.test(password)) {
       toast({
         title: "Lỗi định dạng mật khẩu",
-        description: "Mật khẩu phải có ít nhất 8 ký tự, 1 chữ hoa, 1 chữ thường và 1 số.",
+        description:
+          "Mật khẩu phải có ít nhất 8 ký tự, 1 chữ hoa, 1 chữ thường và 1 số.",
         variant: "error",
       });
       return false;
     }
-  
+
     return true;
   };
-  
 
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     if (!validateInputs()) return;
-
 
     const requestBody = {
       email: email,
@@ -105,13 +104,14 @@ const Page = () => {
       if (response.status !== 200) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
+      localStorage.setItem("user_id", response.data.data.user_info.id);
+      alert("Đăng ký thành công");
       toast({
         title: "Đăng ký thành công",
         description: "Hãy xác nhận trong Email để tiếp tục đăng nhập",
         variant: "success",
       });
-      router.push("/signup/thank-you")
+      router.push("/signup/thank-you");
     } catch (error: any) {
       console.error("Error during signup:", error.message || error);
       toast({
@@ -177,7 +177,6 @@ const Page = () => {
                 value={password}
                 onChange={handlePasswordChange}
                 className="focus:outline-none focus:ring-0 border-none bg-[#F9F7FA1F] p-4"
-
               />
               <button
                 type="button"

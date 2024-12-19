@@ -9,6 +9,7 @@ interface Props {
   max?: number;
   textarea?: boolean;
   requires?: boolean;
+  disabled?: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 
   areaChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
@@ -23,6 +24,7 @@ function InputField(props: Props) {
 
       {props.textarea ? (
         <textarea
+          disabled={props.disabled}
           placeholder={props.placeholder}
           value={props.value}
           onChange={(e) => props.areaChange && props.areaChange(e)}
@@ -30,6 +32,7 @@ function InputField(props: Props) {
         />
       ) : (
         <input
+          disabled={props.disabled}
           value={props.value}
           placeholder={props.placeholder}
           type={props.type}

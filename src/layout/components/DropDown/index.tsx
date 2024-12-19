@@ -24,7 +24,7 @@ const Dropdown = (props: Props) => {
   return (
     <>
       <div className="relative w-full">
-        <span className="text-white text-[16px]">{props.title}</span>
+        <span className="text-white text-[16px] block mb-4">{props.title}</span>
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`w-full   bg-[#2f2f2f] text-white p-3 rounded-md shadow-sm flex justify-between items-center focus:border-[1px] focus:border-primary ${

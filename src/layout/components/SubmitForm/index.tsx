@@ -1,9 +1,14 @@
 "use client";
 import InputField from "@/components/InputField";
+
 import Dropdown from "../DropDown";
 import { useEffect, useState } from "react";
 import Button from "@/components/Button";
-
+import { useSession } from "next-auth/react";
+import { usePrivate } from "@/app/hooks/usePrivateAxios";
+import { toast, useToast } from "@/app/hooks/use-toast";
+import { Pencil } from "lucide-react";
+import { Contest } from "@/app/profile/page";
 export type Info = {
   name: string;
   email: string;
@@ -16,29 +21,52 @@ export type Project = {
   link: string;
   descritpion?: string;
 };
-function SubmitForm() {
+function SubmitForm({ view, data }: { view?: boolean; data?: Contest }) {
   const [field, setField] = useState<string>("");
   const [numOfMem, setNumOfMem] = useState<number>(1);
-  const [description, setDescription] = useState<string>("");
+  const session = useSession();
+  const privateAxios = usePrivate();
+  const [disable, setDisable] = useState<boolean>(view ? true : false);
+
   const [error, setError] = useState<{ id: number; message: string }>({
     id: -1,
     message: "",
   });
   const [project, setProject] = useState<Project>({
-    name: "",
-    link: "",
-    descritpion: "",
+    name: data?.projectName || "",
+    link: data?.projectLink || "",
+    descritpion: data?.projectDescription || "",
   });
   const [capInfo, setCapInfo] = useState<Info>({
-    name: "",
-    email: "",
-    phone: "",
-    job: "",
+    name: data?.name || "",
+    email: data?.email || "",
+    phone: data?.phone || "",
+    job: data?.job || "",
   });
+
+  useEffect(() => {
+    setCapInfo({
+      name: data?.name || "",
+      email: data?.email || "",
+      phone: data?.phone || "",
+      job: data?.job || "",
+    });
+    setProject({
+      name: data?.projectName || "",
+      link: data?.projectLink || "",
+      descritpion: data?.projectDescription || "",
+    });
+    setNumOfMem(data?.numOfMems || 1);
+  }, [data]);
+
+  const handleUpdate = () => {
+    console.log("update");
+  };
 
   const checkingData = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+    const linkREgex =
+      /^(https?:\/\/)?([\w\d\-]+\.){1,}[a-z]{2,}(:\d+)?(\/[\w\d\-._~:/?#[\]@!$&'()*+,;=]*)?$/i;
     if (field === "") {
       setError({ id: 0, message: "Field is required" });
       return false;
@@ -59,6 +87,7 @@ function SubmitForm() {
       setError({ id: 3, message: "Phone is required" });
       return false;
     }
+
     if (capInfo.job === "") {
       setError({ id: 4, message: "Job is required" });
       return false;
@@ -71,6 +100,11 @@ function SubmitForm() {
       setError({ id: 6, message: "Link is required" });
       return false;
     }
+    if (!linkREgex.test(project.link)) {
+      setError({ id: 6, message: "Link is not valid" });
+      return false;
+    }
+
     if (project.descritpion === "") {
       setError({ id: 7, message: "Description is required" });
       return false;
@@ -105,30 +139,106 @@ function SubmitForm() {
     },
   ]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    const refactorMems = mems.map((mem) => ({
+      name: mem.name || null,
+      email: mem.email || null,
+      phone: mem.phone || null,
+      job: mem.job || null,
+    }));
     if (checkingData()) {
-      console.log({ field, ...capInfo, ...project });
+      const res = await privateAxios
+        .post("/contest/submit", {
+          numberOfMembers: numOfMem,
+          members: [capInfo, ...refactorMems.slice(0, numOfMem - 1)],
+          field,
+          contestName: project.name,
+          link: project.link,
+          description: project.descritpion,
+        })
+        .then((res) => {
+          alert("Đăng ký thành công");
+          console.log(res);
+        })
+        .catch((e) => {
+          console.log(e.response.data.message);
+          alert("submit error");
+        });
+      console.log(res);
+
+      console.log({
+        numberOfMembers: numOfMem,
+        members: [capInfo, ...refactorMems.slice(0, numOfMem - 1)],
+        field,
+        contestName: project.name,
+        link: project.link,
+        description: project.descritpion,
+      });
     }
   };
+
+  useEffect(() => {
+    console.log(session.data?.user);
+    if (!disable) {
+      setCapInfo((prev) => ({
+        ...prev,
+        name: session.data?.user?.username || "",
+        email: session.data?.user?.email || "",
+        phone: session?.data?.user?.phone || "",
+      }));
+    }
+  }, [session.data?.user]);
   return (
     <div className="flex justify-center flex-col items-center">
       <div className="flex gap-5 justify-center flex-col bg-[#1b1b21] rounded-[10px] border-[1px] border-[#ffffff1a] p-8 sm:w-[1100px] w-[92%]">
+        {view && (
+          <div className="w-full flex justify-end">
+            {disable ? (
+              <span
+                onClick={() => {
+                  setDisable(false);
+                }}
+                className="cursor-pointer hover:scale-110 hover:transition-all hover:duration-200 hover:ease-linear"
+              >
+                <Pencil stroke="#358fce" />
+              </span>
+            ) : (
+              <Button
+                rounded={false}
+                click={() => {
+                  setDisable(true);
+                }}
+                size="sm"
+              >
+                Cancel
+              </Button>
+            )}
+          </div>
+        )}
         <div className="w-full ">
-          <Dropdown
-            error={error.id == 0}
-            onSelect={(option: string) => {
-              setError({ id: -1, message: "" });
-              setField(option);
-            }}
-            value={field}
-            title="Lĩnh vực dự thi*"
-          />
+          {disable ? (
+            <>
+              <span className="block text-white mb-4 ">Lĩnh vực dự thi*</span>
+              <span className="w-full block bg-field p-4 rounded-[10px]">{`linh vuc du thi`}</span>
+            </>
+          ) : (
+            <Dropdown
+              error={error.id == 0}
+              onSelect={(option: string) => {
+                setError({ id: -1, message: "" });
+                setField(option);
+              }}
+              value={field}
+              title="Lĩnh vực dự thi*"
+            />
+          )}
         </div>
         <div className="sm:w-[50%] w-[100%] text-left flex flex-col gap-5">
           <span className="text-white text-[19px] font-[500]">
             Thông tin đội thi
           </span>
           <InputField
+            disabled={disable}
             value={numOfMem}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               if (e.target.value === "") {
@@ -153,6 +263,7 @@ function SubmitForm() {
           <div className=" w-[100%] text-left flex   flex-wrap gap-5 ">
             <div className="w-full sm:w-[48%]">
               <InputField
+                disabled={disable}
                 value={capInfo.name}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   if (error.id == 1) setError({ id: -1, message: "" });
@@ -166,6 +277,7 @@ function SubmitForm() {
             </div>
             <div className="w-full sm:w-[48%]">
               <InputField
+                disabled={disable}
                 value={capInfo.email}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   setCapInfo((prev) => ({ ...prev, email: e.target.value }));
@@ -179,6 +291,7 @@ function SubmitForm() {
             </div>{" "}
             <div className="w-full sm:w-[48%]">
               <InputField
+                disabled={disable}
                 value={capInfo.phone}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   setCapInfo((prev) => ({ ...prev, phone: e.target.value }));
@@ -192,6 +305,7 @@ function SubmitForm() {
             </div>{" "}
             <div className="w-full sm:w-[48%]">
               <InputField
+                disabled={disable}
                 value={capInfo.job}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   setCapInfo((prev) => ({ ...prev, job: e.target.value }));
@@ -224,6 +338,7 @@ function SubmitForm() {
                   {" "}
                   <div className="w-full sm:w-[48%]">
                     <InputField
+                      disabled={disable}
                       value={mems[index].name}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         setMems((prev) => {
@@ -244,6 +359,7 @@ function SubmitForm() {
                   </div>
                   <div className="w-full sm:w-[48%]">
                     <InputField
+                      disabled={disable}
                       value={mems[index].email}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         setMems((prev) => {
@@ -264,6 +380,7 @@ function SubmitForm() {
                   </div>{" "}
                   <div className="w-full sm:w-[48%]">
                     <InputField
+                      disabled={disable}
                       value={mems[index].phone}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         setMems((prev) => {
@@ -284,6 +401,7 @@ function SubmitForm() {
                   </div>{" "}
                   <div className="w-full sm:w-[48%]">
                     <InputField
+                      disabled={disable}
                       value={mems[index].job}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         setMems((prev) => {
@@ -310,6 +428,7 @@ function SubmitForm() {
               Thông tin dự án*
             </span>
             <InputField
+              disabled={disable}
               value={project.name}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setProject((prev) => ({ ...prev, name: e.target.value }));
@@ -324,6 +443,7 @@ function SubmitForm() {
               Thông tin dự án*
             </span>
             <InputField
+              disabled={disable}
               value={project.link}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setProject((prev) => ({ ...prev, link: e.target.value }));
@@ -338,6 +458,7 @@ function SubmitForm() {
             />
 
             <InputField
+              disabled={disable}
               errorMessage={error.id === 7 ? error.message : ""}
               placeholder="Message"
               value={project.descritpion || ""}
@@ -360,21 +481,36 @@ function SubmitForm() {
           kiểm tra mail. Mọi thông tin thắc mắc liên hệ qua nhóm Zalo hỗ trợ
           cuộc thi
         </div>
-        <div className="flex w-full sm:justify-start justify-center">
-          {" "}
-          <Button
-            hover
-            rounded={false}
-            size="md"
-            click={() => {
-              handleSubmit();
-            }}
-          >
-            <span className="text-white block sm:px-[200px]">
-              Xác nhận nộp bài
-            </span>
-          </Button>
-        </div>
+        {!disable && (
+          <div className="flex w-full sm:justify-start justify-center">
+            {" "}
+            {!view ? (
+              <Button
+                hover
+                rounded={false}
+                size="md"
+                click={() => {
+                  handleSubmit();
+                }}
+              >
+                <span className="text-white block sm:px-[200px]">
+                  Xác nhận nộp bài
+                </span>
+              </Button>
+            ) : (
+              <Button
+                hover
+                rounded={false}
+                size="md"
+                click={() => {
+                  handleUpdate();
+                }}
+              >
+                <span className="text-white block sm:px-[200px]">Cập nhật</span>
+              </Button>
+            )}
+          </div>
+        )}
       </div>
       <div className="w-full mt-8 flex justify-center mb-8">
         <div className="flex w-[80%]  sm:w-fit flex-col gap-6 items-center bg-[#1b1b21] rounded-[10px] border-[1px] border-[#ffffff1a] p-8">
