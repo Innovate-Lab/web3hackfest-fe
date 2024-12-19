@@ -1,9 +1,9 @@
-export const metadata = {
-  title: "Hackathon",
-  description: "Hackathon page",
-};
-function RootLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+function Hackathon() {
+  return (
+    <>
+      <h1 className="font-[700] text-red-500 text-xl">Hackathon</h1>
+    </>
+  );
 }
 
-export default RootLayout;
+export default Hackathon;

@@ -5,8 +5,8 @@ import Dropdown from "../DropDown";
 import { useEffect, useState } from "react";
 import Button from "@/components/Button";
 import { useSession } from "next-auth/react";
-import { usePrivate } from "@/app/hooks/usePrivateAxios";
-import { toast } from "@/app/hooks/use-toast";
+import { usePrivate } from "@/hooks/usePrivateAxios";
+import { toast } from "@/hooks/use-toast";
 import { Pencil } from "lucide-react";
 import { Contest } from "@/app/profile/page";
 export type Info = {

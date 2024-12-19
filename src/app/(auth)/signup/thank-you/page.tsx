@@ -1,5 +1,5 @@
 "use client";
-import { toast } from "@/app/hooks/use-toast";
+import { toast } from "@/hooks/use-toast";
 import React, { useEffect, useState } from "react";
 import { axiosInstance } from "@/axios/axios";
 

@@ -11,9 +11,19 @@ import { MoveRight } from "lucide-react";
 import { useMotionValue, useMotionValueEvent } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import RotateICon from "@/components/RotateIcon";
-import { rewardsInfo } from "./ideathon/layout";
+
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+
+const rewardsInfo = [
+  `Giải thưởng hiện kim: 100,000,000 VNĐ`,
+  `Học bổng từ các đơn vị tài trợ`,
+  `Quà tặng từ Ban Tổ Chức`,
+  `Credit cho các API và dịch vụ phát triển`,
+  `Cơ hội tham gia "Incubation Program"`,
+  `Giấy xác nhận tham gia cuộc thi cho tất cả các thí sinh`,
+  `Tham gia miễn phí các buổi đào tạo chuyên sâu với Mentor`,
+];
 // const benifitsTag = [
 //   {
 //     icon: "https://framerusercontent.com/images/qmQExoaRiIDblDbazRJ2OZI8U.png",
@@ -343,7 +353,6 @@ const activities = [
 ];
 
 export default function Home() {
-  const [setDeg] = useState<number>(0);
   const [loaded, setLoaded] = useState<boolean>(false);
   const [logged] = useState<boolean>(true);
   const value = useMotionValue(0);
@@ -355,7 +364,7 @@ export default function Home() {
 
   // const opacity = useTransform(scrollYProgress, [0, 1], []);
 
-  const refInterval = useRef<NodeJS.Timeout | null>(null);
+  // const refInterval = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     setLoaded(true);

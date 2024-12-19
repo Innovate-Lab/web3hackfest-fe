@@ -1,11 +1,11 @@
 "use client";
-import { useToast } from "@/app/hooks/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { axiosInstance } from "@/axios/axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Page = () => {
   const { toast } = useToast();
@@ -21,6 +21,22 @@ const Page = () => {
   const [validUppercase, setValidUppercase] = useState(false);
   const [validLowercase, setValidLowercase] = useState(false);
   const [validNumber, setValidNumber] = useState(false);
+
+  const searchParams = useSearchParams();
+  const [utm, setUtm] = useState<string>("");
+  const [utmSource, setUtmSource] = useState<string>("default_source");
+  const [utmMedium, setUtmMedium] = useState<string>("default_medium");
+  const [utmCampaign, setUtmCampaign] = useState<string>("default_campaign");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Now we know we're on the client side, so it's safe to use window
+      setUtm(window.location.href);
+      setUtmSource(searchParams.get("utm_source") || "default_source");
+      setUtmMedium(searchParams.get("utm_medium") || "default_medium");
+      setUtmCampaign(searchParams.get("utm_campaign") || "default_campaign");
+    }
+  }, [searchParams]);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
@@ -85,16 +101,19 @@ const Page = () => {
     e.preventDefault();
     if (!validateInputs()) return;
 
+    console.log("utm_source:", utmSource);
+    console.log("utm_medium:", utmMedium);
+    console.log("utm_campaign:", utmCampaign);
     const requestBody = {
       email: email,
       username: name,
       phoneNumber: phone,
       password: password,
       utm_data: {
-        utm: "asdfasd",
-        utm_source: "asdfasdf",
-        utm_medium: "saasdfasdf",
-        utm_campaign: "asdfasdf",
+        utm: utm,
+        utm_source: utmSource,
+        utm_medium: utmMedium,
+        utm_campaign: utmCampaign,
       },
     };
 
@@ -105,7 +124,6 @@ const Page = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       localStorage.setItem("user_id", response.data.data.user_info.id);
-      alert("Đăng ký thành công");
       toast({
         title: "Đăng ký thành công",
         description: "Hãy xác nhận trong Email để tiếp tục đăng nhập",

@@ -1,8 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
-import { useToast } from "../hooks/use-toast";
-import { usePrivate } from "../hooks/usePrivateAxios";
+// import { useToast } from "../hooks/use-toast";
+import { useToast } from "@/hooks/use-toast";
+import { usePrivate } from "../../hooks/usePrivateAxios";
 import SummitedProject from "@/components/SummitedProject";
 
 export type Contest = {
@@ -33,7 +34,7 @@ export type ContestDetails = {
 };
 
 const Page = () => {
-  const { data: session } = useSession();
+  const { data: session, update } = useSession();
   // State to manage editing mode
   const [isEditing, setIsEditing] = useState(false);
   // State to manage input values
@@ -99,6 +100,10 @@ const Page = () => {
             variant: "success",
             title: "Cập nhật thông tin thành công",
           });
+          update({
+            username: formData.username,
+            phoneNumber: formData.phone,
+          });
           setIsEditing(false);
         })
         .catch((error) => {
@@ -156,8 +161,8 @@ const Page = () => {
           );
         }
       })
-      .catch((err) => {
-        console.warn(err);
+      .catch(() => {
+        // console.warn(err);
       });
 
     console.log(res);

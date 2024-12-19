@@ -1,3 +1,5 @@
+// import NextAuth from "next-auth"
+// import { JWT } from "next-auth/jwt"
 import { IUser } from "./IUser";
 
 declare module "next-auth/jwt" {

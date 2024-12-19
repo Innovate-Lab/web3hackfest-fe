@@ -1,4 +1,5 @@
 "use client";
+//@ts-nocheck
 import React, { useState } from "react";
 
 export enum InputType {
@@ -12,7 +13,9 @@ export enum InputType {
 interface InputProps {
   title: string;
   value: string | number;
-  setValue: React.Dispatch<React.SetStateAction<string>> | React.Dispatch<React.SetStateAction<number>>;
+  setValue:
+    | React.Dispatch<React.SetStateAction<string>>
+    | React.Dispatch<React.SetStateAction<number>>;
   type: InputType;
 }
 
@@ -23,8 +26,10 @@ const InputComponent = ({ title, value, setValue, type }: InputProps) => {
     if (type === InputType.Phone) {
       // Limit input to 10 digits
       const input = e.target.value.replace(/\D/g, "").slice(0, 10);
+      //@ts-ignore
       setValue(input);
     } else {
+      //@ts-ignore
       setValue(e.target.value);
     }
   };

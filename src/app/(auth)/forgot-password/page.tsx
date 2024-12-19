@@ -1,8 +1,8 @@
 "use client";
-import InputComponent from "@/components/signup/InputComponent";
+import InputComponent, { InputType } from "@/components/signup/InputComponent";
 import React, { useState } from "react";
 import { axiosInstance } from "@/axios/axios";
-import { toast } from "@/app/hooks/use-toast";
+import { toast } from "@/hooks/use-toast";
 
 const Page = () => {
   const [email, setEmail] = useState<string>("");
@@ -65,7 +65,12 @@ const Page = () => {
       </div>
       <div className="backdrop-blur-lg bg-[rgba(78,78,78,0.2)] rounded-lg px-8 py-6 w-[536px]  ">
         <form action="#" method="POST">
-          <InputComponent setValue={setEmail} value={email} title="Email" />
+          <InputComponent
+            type={InputType.Text}
+            setValue={setEmail}
+            value={email}
+            title="Email"
+          />
 
           <div
             onClick={handleSendEmail}

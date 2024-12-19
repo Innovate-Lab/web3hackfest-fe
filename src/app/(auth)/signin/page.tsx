@@ -1,10 +1,10 @@
 "use client";
-import { useToast } from "@/app/hooks/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { useCustomRouter } from "@/hooks/useCustomRouter";
 
 // Hàm kiểm tra email hợp lệ
 const validateEmail = (email: string) => {
@@ -13,7 +13,7 @@ const validateEmail = (email: string) => {
 };
 
 const Page = () => {
-  const router = useRouter();
+  const { pushRouteWithQuery } = useCustomRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [emailError, setEmailError] = useState<string | null>(null);
@@ -64,7 +64,12 @@ const Page = () => {
     });
 
     if (result?.error) {
-      console.error("Sign-in failed:", result.error);
+      console.log(result);
+      toast({
+        title: result.error || "Error",
+        variant: "error",
+      });
+      // console.error("Sign-in failed:", result.error);
     } else {
       console.log("Sign-in successful:", result);
     }
@@ -74,7 +79,7 @@ const Page = () => {
     <div className="flex flex-col gap-8">
       <div className="text-white text-[45px] text-center">Đăng nhập</div>
       <div className="backdrop-blur-lg bg-[rgba(78,78,78,0.2)] rounded-lg px-8 py-6 w-[536px] text-white">
-        <form action="#" method="POST" className="flex flex-col gap-5">
+        <form className="flex flex-col gap-5">
           <div>
             <Label className="text-white">Email</Label>
 
@@ -116,7 +121,7 @@ const Page = () => {
               className="w-full bg-[#17171B] text-white py-2 px-4 rounded-md mb-4"
               onClick={(e) => {
                 e.preventDefault(); // Ngăn chặn hành động mặc định của nút (nếu có)
-                router.push("/signup"); // Chuyển hướng đến trang đăng ký
+                pushRouteWithQuery("/signup"); // Chuyển hướng đến trang đăng ký
               }}
             >
               Đăng ký tài khoản
@@ -125,7 +130,7 @@ const Page = () => {
               className="w-full bg-[#17171B] text-white py-2 px-4 rounded-md mb-4"
               onClick={(e) => {
                 e.preventDefault(); // Ngăn chặn hành động mặc định của nút (nếu có)
-                router.push("/forgot-password"); // Chuyển hướng đến trang đăng ký
+                pushRouteWithQuery("/forgot-password"); // Chuyển hướng đến trang đăng ký
               }}
             >
               Quên mật khẩu

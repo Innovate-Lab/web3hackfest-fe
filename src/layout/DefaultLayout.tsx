@@ -4,6 +4,7 @@ import Heading from "@/layout/components/Heading";
 import { Poppins } from "next/font/google";
 import Slide from "@/components/Slide";
 import clsx from "clsx";
+import SidebarIcon from "./SidebarIcon";
 const popins = Poppins({
   display: "swap",
   subsets: ["latin-ext"],
@@ -57,17 +58,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   return (
     <div className={clsx(popins.className, "bg-black")}>
       <Heading />
-      <div className=" bg-black min-h-[100vh] pt-[108px]">{children}</div>
-      <Slide
-        hFull={true}
+      <div className=" bg-black min-h-[100vh] pt-[108px] relative">
+        {children}
+        <SidebarIcon/>
+
+      </div>
+      <Slide  hFull={true}
         bkg={true}
         possition="l"
         shappe="square"
         opacity="s"
         bottomSpace
-        title=""
-      >
-        <div className="w-full sm:pt-[120px] note pb-[80px] sm:px-0 px-4">
+        title="">
+        <div className="w-full px-[120px] pt-[150px] pb-[80px]">
           {" "}
           <div className="flex justify-between w-full ">
             <div className="">
