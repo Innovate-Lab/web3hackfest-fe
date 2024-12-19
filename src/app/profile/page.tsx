@@ -36,7 +36,7 @@ export type ContestDetails = {
 };
 
 const page = () => {
-  const { data: session } = useSession();
+  const { data: session, update } = useSession();
   // State to manage editing mode
   const [isEditing, setIsEditing] = useState(false);
   // State to manage input values
@@ -111,6 +111,11 @@ const page = () => {
             variant: "success",
             title: "Cập nhật thông tin thành công",
           });
+          update({
+            username:formData.username,
+            phoneNumber: formData.phone,
+
+          })
           setIsEditing(false);
         })
         .catch((error) => {

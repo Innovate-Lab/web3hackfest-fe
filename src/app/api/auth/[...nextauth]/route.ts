@@ -1,8 +1,9 @@
+
 import { axiosInstance } from "@/axios/axios";
-import NextAuth, { AuthOptions } from "next-auth";
+import NextAuth, {AuthOptions, NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-export const authOptions: AuthOptions = {
+export const authOptions: NextAuthOptions   = {
   secret: process.env.NEXTAUTH_SECRET, 
   providers: [
     CredentialsProvider({
@@ -54,20 +55,33 @@ export const authOptions: AuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user, trigger }) {
+    async jwt({ token, user, trigger, session }) {
       // Add user information and tokens to the JWT when the user logs in for the first time
       if (user && trigger==="signIn") {
+
         token.access_token = user.tokens.access_token;
+
         token.refresh_token = user.tokens.refresh_token;
         token.user = {
+
           id: user.user_info.id,
+
           email: user.user_info.email,
           phone: user.user_info.phone,
           username: user.user_info.username,
         };
       }
-      else if(user && trigger==="signUp"){
+      // else if(user && trigger==="signUp"){
 
+      // }
+      else if (trigger === "update" && session?.username && session?.phoneNumber) {
+        // Note, that `session` can be any arbitrary object, remember to validate it!
+        token.user={
+          ...token.user,
+          username:session?.username,
+          phone:session?.phoneNumber,
+         
+        }
       }
       console.log("token")
 

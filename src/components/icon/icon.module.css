@@ -1,0 +1,36 @@
+.iconWrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .iconWrapper::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px; /* Kích thước hiệu ứng lan toả */
+    height: 60px;
+    background-color: blue; /* Màu xanh nhạt */
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: rippleEffect 1.5s infinite; /* Hiệu ứng chạy vô hạn */
+    z-index: -1;
+  }
+  
+  @keyframes rippleEffect {
+    0% {
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1.5);
+      opacity: 0;
+    }
+  }
+  
+  .iconImage {
+    width: 40px; /* Kích thước icon */
+    height: 40px;
+    z-index: 1;
+  }
+  

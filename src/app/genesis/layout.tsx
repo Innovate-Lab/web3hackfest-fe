@@ -2,8 +2,10 @@
 import Button from "@/components/Button";
 import SubmitForm from "@/layout/components/SubmitForm";
 import { MoveRight } from "lucide-react";
+import { useSession } from "next-auth/react";
 function Submit() {
   const logged = false;
+  const {data: session, status} = useSession()
   return (
     <div className="pt-[80px]">
       <div className="w-full flex justify-center flex-col items-center gap-8">
@@ -20,7 +22,7 @@ function Submit() {
         <Button rounded={false} size="md" click={() => {}}>
           <div className="flex gap-2">
             <span className="text-[18px] font-[500] text-white">
-              {logged ? "Nộp bài ngay" : "Đăng kí ngay"}
+              {status ==="authenticated"? "Nộp bài ngay" : "Đăng kí ngay"}
             </span>
             <MoveRight className="" stroke="#fff" />
           </div>

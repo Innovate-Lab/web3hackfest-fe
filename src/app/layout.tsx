@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import localFont from "next/font/local";
 import "./globals.css";
@@ -17,7 +17,6 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,22 +24,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-          <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-          >
-        
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <SessionProvider>
-
-                <DataProvider>
-              <DefaultLayout>
-                    {children}
-                    <Toaster />
-
-              </DefaultLayout>
-                </DataProvider>
-                </SessionProvider>
-
-          </body>
+          <DataProvider>
+            <DefaultLayout>
+              {children}
+              <Toaster />
+            </DefaultLayout>
+          </DataProvider>
+        </SessionProvider>
+      </body>
     </html>
   );
 }
