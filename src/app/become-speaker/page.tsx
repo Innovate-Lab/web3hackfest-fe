@@ -18,9 +18,9 @@ function BecomePartner() {
     <div className="pt-[80px]">
       <div className="w-full flex justify-center flex-col items-center gap-8">
         <span className="text-white text-[40px] font-[500]">
-          Trở thành đối tác
+          Trở thành diễn giả
         </span>
-        <PartnerForm />
+        <SpeakerForm />
       </div>
     </div>
   );
