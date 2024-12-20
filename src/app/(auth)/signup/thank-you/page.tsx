@@ -5,7 +5,7 @@ import { axiosInstance } from "@/axios/axios";
 
 const Page = () => {
   const [enable, setEnable] = useState(false);
-  const [countdown, setCountdown] = useState(6);
+  const [countdown, setCountdown] = useState(60);
   useEffect(() => {
     const timer = setInterval(() => {
       setCountdown((prev) => prev - 1);
