@@ -51,10 +51,10 @@ const SigninForm = () => {
   };
 
   return (
-    <div className="backdrop-blur-lg bg-[rgba(78,78,78,0.2)] rounded-lg px-8 py-6 w-[536px] text-white">
+    <div className="backdrop-blur-lg bg-[rgba(78,78,78,0.2)] rounded-lg  px-4 sm:px-8 py-6 w-full sm:w-[536px] text-white">
       <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
         <div>
-          <Label className="text-white">Email</Label>
+          <Label className="text-white mb-2 block">Email</Label>
           <Input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -64,7 +64,7 @@ const SigninForm = () => {
           />
         </div>
         <div>
-          <Label className="text-white">Mật khẩu</Label>
+          <Label className="text-white mb-2 block">Mật khẩu</Label>
           <Input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
