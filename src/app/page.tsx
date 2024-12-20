@@ -367,10 +367,10 @@ const activities = [
 
 export default function Home() {
   const [loaded, setLoaded] = useState<boolean>(false);
-  const [logged] = useState<boolean>(true);
   const value = useMotionValue(0);
   const { data: session } = useSession();
   const router = useRouter();
+  const { status } = useSession();
   useMotionValueEvent(value, "change", (latest) => {
     console.log(latest);
   });
@@ -537,10 +537,23 @@ export default function Home() {
                       </span>
                     </span>
                     <div className="w-full flex sm:justify-start justify-center items-center sm:flex-row flex-col gap-4">
-                      <Button hover rounded={false} size="md" click={() => {}}>
+                      <Button
+                        hover
+                        rounded={false}
+                        size="md"
+                        click={() => {
+                          if (status == "authenticated") {
+                            router.push("/genesis");
+                          } else {
+                            router.push("/signup");
+                          }
+                        }}
+                      >
                         <div className="flex gap-2">
                           <span className="text-[18px] font-[500] text-white">
-                            {logged ? "Nộp bài ngay" : "Đăng kí ngay"}
+                            {status == "authenticated"
+                              ? "Nộp bài ngay"
+                              : "Đăng kí ngay"}
                           </span>
                           <MoveRight className="" stroke="#fff" />
                         </div>
@@ -734,7 +747,12 @@ export default function Home() {
 
             <W3Field
               title="Nhà tài trợ 2023"
-              button={{ title: "Become Our Sponsor", click: () => {} }}
+              button={{
+                title: "Become Our Sponsor",
+                click: () => {
+                  router.push("/become-partner");
+                },
+              }}
             >
               <div className="flex flex-col gap-4 w-[90%] mt">
                 {[
@@ -750,11 +768,11 @@ export default function Home() {
                     {item.map((child_item, child_index) => (
                       <img
                         key={child_index}
-                        className="sm:h-[48px] sm:w-auto w-[42%] h-auto"
+                        className="sm:h-[48px] sm:w-auto  w-auto h-[18px]"
                         src={`${
                           child_item == 1
                             ? "https://framerusercontent.com/images/MREXi78JgugwcKzmAcmRMibsMLw.png"
-                            : "https://framerusercontent.com/images/AyCXhQ2U9xiePn7fvSG19x4s.png"
+                            : "https://framerusercontent.com/images/edEhmDVWGBMjovrSTptO9gS1ZE.png"
                         }`}
                       />
                     ))}
@@ -781,7 +799,7 @@ export default function Home() {
                     {item.map((child_item, child_index) => (
                       <img
                         key={child_index}
-                        className="h-[48px] w-auto"
+                        className="sm:h-[48px] h-[18px] w-auto"
                         src={`${
                           child_item == 1
                             ? "https://framerusercontent.com/images/MREXi78JgugwcKzmAcmRMibsMLw.png"
@@ -799,18 +817,18 @@ export default function Home() {
               button={{ title: "Become Our Partner", click: () => {} }}
             >
               {" "}
-              <div className="flex gap-4 w-[90%] mt flex-wrap items-center justify-center">
+              <div className="flex gap-4 sm:w-[90%] mt flex-wrap items-center justify-center">
                 {[
                   1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1,
                   2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1,
                 ].map((item, index) => (
-                  <div className="px-8 w-fit" key={index}>
+                  <div className="sm:px-8 w-fit  px-4" key={index}>
                     <img
-                      className="h-[48px] w-auto object-cover object-center"
+                      className="sm:h-[48px] h-[30px] w-auto object-cover object-center"
                       src={
                         item == 1
                           ? "https://framerusercontent.com/images/asVCrm0gQCx2fAYWMItUP6JUaU.png"
-                          : "https://framerusercontent.com/images/tFXz3HBTwq7RclZ70qUpt28OOE.png"
+                          : "https://framerusercontent.com/images/u1sUQGeRqksYLP72YFi2f7vdM.png"
                       }
                       alt=""
                     />

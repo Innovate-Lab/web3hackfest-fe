@@ -16,7 +16,7 @@ function Slide(props: Props) {
   return (
     <div
       className={`slide relative   z-[0]  ${
-        !props.bottomSpace && "pb-[150px]"
+        !props.bottomSpace && "pb-[80px] sm:pb-[150px]"
       } `}
     >
       {props.bkg && (

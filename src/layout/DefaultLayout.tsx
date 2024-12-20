@@ -71,9 +71,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         bottomSpace
         title=""
       >
-        <div className="w-full px-[120px] pt-[150px] pb-[80px]">
+        <div className="w-full px-4 sm:px-[120px] pt-10 sm:pt-[150px] pb-[80px]">
           {" "}
-          <div className="flex justify-between w-full ">
+          <div className="flex justify-between w-full sm:flex-row flex-col sm:gap-0 gap-10 ">
             <div className="">
               <img
                 src="https://framerusercontent.com/images/EAcggmjePAgnMxUT7Yhc8x7fEBo.png"
@@ -103,29 +103,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <span
                   onClick={() => {
                     window.open(
-                      "https://www.facebook.com/web3hackfest?locale=vi_VN",
+                      "https://www.linkedin.com/company/web3-hackfest/",
                       "_blank"
                     );
                   }}
                   className="flex items-center justify-center hover:bg-[#1e283d] cursor-pointer w-[48px] h-[48px] rounded-[10px] bg-secondary"
                 >
                   <img
-                    src="https://framerusercontent.com/images/xhYMiExR4XdCd4s2bnoL0pdXOec.png"
+                    src="https://framerusercontent.com/images/G2z0j4V64y4M8ouz7yNi6R4vk.svg"
                     alt=""
                     className="w-[24px] h-[24px]"
                   />
                 </span>
                 <span
                   onClick={() => {
-                    window.open(
-                      "https://www.facebook.com/web3hackfest?locale=vi_VN",
-                      "_blank"
-                    );
+                    window.open("https://x.com/w3hf_official", "_blank");
                   }}
                   className="flex items-center justify-center hover:bg-[#1e283d] cursor-pointer w-[48px] h-[48px] rounded-[10px] bg-secondary"
                 >
                   <img
-                    src="https://framerusercontent.com/images/xhYMiExR4XdCd4s2bnoL0pdXOec.png"
+                    src="https://framerusercontent.com/images/pi07XEcl0WhZJgYMvg9cF6dv0.svg"
                     alt=""
                     className="w-[24px] h-[24px]"
                   />

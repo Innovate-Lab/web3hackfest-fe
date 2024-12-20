@@ -11,7 +11,7 @@ function Milestone(props: Props) {
     <div className="w-fit flex items-center justify-center flex-col">
       <div className="w-[280px] h-[280px] flex flex-col justify-center items-center ">
         <img
-          className={`block w-[120px] sm:w-[175px]  rounded-inherit object-center object-cover ${
+          className={`block w-[175px]  rounded-inherit object-center object-cover ${
             props.disable ? "" : "animate-wave-slow"
           } `}
           src={props.src}
@@ -24,7 +24,7 @@ function Milestone(props: Props) {
               : "assets/images/base.png"
           }
           alt=""
-          className={`sm:mt-[-24px] mt-[-8px] h-auto sm:w-[86px] w-[54px] ${
+          className={`sm:mt-[-24px] mt-[-12px] h-auto sm:w-[86px] w-[80px] ${
             props.disable && "mr-[4px]"
           }`}
         />
