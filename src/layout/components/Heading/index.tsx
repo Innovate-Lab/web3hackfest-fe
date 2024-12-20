@@ -15,18 +15,18 @@ const pages = [
     title: "Ideathon",
     to: "/ideathon",
   },
-  {
-    title: "Hackathon",
-    to: "/hackathon",
-  },
+  // {
+  //   title: "Hackathon",
+  //   to: "/hackathon",
+  // },
   // {
   //   title: "Schedule",
   //   to: "/schedule",
   // },
-  // {
-  //   title: "Blog",
-  //   to: "/blog",
-  // },
+  {
+    title: "Article",
+    to: "/article",
+  },
   // {
   //   title: "Partners",
   //   to: "/partners",
