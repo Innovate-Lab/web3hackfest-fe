@@ -30,7 +30,7 @@ function Milestone(props: Props) {
         />
       </div>
 
-      <div className="milestone-content p-6 w-[80%] sm:w-[380px] min-h-[400px] rounded-[10px] bg-gradient-to-br from-[#00000066] to-[#1b1b21]">
+      <div className="milestone-content p-6 w-[80%] sm:w-[380px] min-h-[400px] rounded-[10px] hover:bg-gradient-to-bl hover:from-primary hover:to-[#1b1b21] bg-gradient-to-br from-[#00000066] to-[#1b1b21]">
         <div className="flex flex-col items-center gap-2">
           <span className="text-[19px] text-white block">
             Phase: {props.index + 1}

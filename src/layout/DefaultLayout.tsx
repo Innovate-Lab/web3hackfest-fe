@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect } from "react";
 import Heading from "@/layout/components/Heading";
-import { Poppins } from "next/font/google";
+import { Be_Vietnam_Pro } from "next/font/google";
 import Slide from "@/components/Slide";
 import clsx from "clsx";
 import SidebarIcon from "./SidebarIcon";
-const popins = Poppins({
+const beVietnamPro = Be_Vietnam_Pro({
   display: "swap",
   subsets: ["latin-ext"],
   weight: ["400", "500", "600", "700"],
@@ -56,20 +56,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   });
 
   return (
-    <div className={clsx(popins.className, "bg-black")}>
+    <div className={clsx(beVietnamPro.className, "bg-black")}>
       <Heading />
       <div className=" bg-black min-h-[100vh] pt-[108px] relative">
         {children}
-        <SidebarIcon/>
-
+        <SidebarIcon />
       </div>
-      <Slide  hFull={true}
+      <Slide
+        hFull={true}
         bkg={true}
         possition="l"
         shappe="square"
         opacity="s"
         bottomSpace
-        title="">
+        title=""
+      >
         <div className="w-full px-[120px] pt-[150px] pb-[80px]">
           {" "}
           <div className="flex justify-between w-full ">

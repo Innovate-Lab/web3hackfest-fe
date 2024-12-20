@@ -25,7 +25,7 @@ function LoadOnScreen(props: Props) {
             ? `
         ${
           isInView || fsLoad
-            ? `transition-all ease-out duration-700 translate-y-[0]`
+            ? `transition-all ease-out duration-300 translate-y-[0]`
             : `translate-y-[40px]`
         }
         `

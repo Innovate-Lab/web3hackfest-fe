@@ -144,9 +144,22 @@ const milestones = [
 ];
 
 const hosts = [
-  "https://framerusercontent.com/images/YSfEfbd7RhIpjqvWTl9LxnxzvM.png",
-  "https://framerusercontent.com/images/a7BXTlct1rp61eBh3u5NO10XMI.png?scale-down-to=1024",
-  "https://framerusercontent.com/images/8r6v2sdjLNlDcTukXUZU4ViPs.png?scale-down-to=1024",
+  {
+    size: "128",
+    mobildSize: "",
+    image:
+      "https://framerusercontent.com/images/YSfEfbd7RhIpjqvWTl9LxnxzvM.png",
+  },
+  {
+    size: "100",
+    image:
+      "https://framerusercontent.com/images/a7BXTlct1rp61eBh3u5NO10XMI.png?scale-down-to=1024",
+  },
+  {
+    size: "100",
+    image:
+      "https://framerusercontent.com/images/8r6v2sdjLNlDcTukXUZU4ViPs.png?scale-down-to=1024",
+  },
 ];
 
 const values = [
@@ -426,10 +439,10 @@ export default function Home() {
               />
             </div>
 
-            <div className="main-content-wrapper justify-center relative z-30 flex flex-col items-center gap-5 w-[70%]">
-              <span className="block overflow-hidden  text-[32px] sm:text-[100px] font-[800] text-white">
+            <div className="main-content-wrapper justify-center relative z-30 flex flex-col items-center gap-5">
+              <span className="block overflow-hidden  text-[32px] sm:text-[68px] font-[800] text-white">
                 <span
-                  className={`transition-all  opacity-0 block  ease-in-out text-center ${
+                  className={`transition-all [font-family:var(--font-batman)] opacity-0 block ease-in-out text-center ${
                     loaded
                       ? "translate-y-[0] duration-700 opacity-100"
                       : "translate-y-[100px] opacity-0"
@@ -441,14 +454,11 @@ export default function Home() {
               </span>
 
               <span className="uppercase text-white text-[24px] font-[600] text-center">
-                A.I CONVERGENCE {`${loaded}`}
+                A.I CONVERGENCE
               </span>
 
-              <span className="text-disable text-center text-[17px]">
-                W3HF’25: Web3 & AI Convergence: Hội nghị AI và Web3 lớn nhất
-                Đông Nam Á, nơi quy tụ những nhà đổi mới, nhà sáng lập và người
-                kiến tạo để khám phá và vượt qua giới hạn của công nghệ AI, Web3
-                cùng sự giao thoa đột phá giữa chúng.
+              <span className="block  w-[70%] font-[500] text-white min-h-[60px]  text-center text-[17px]">
+                The largest Web3 Dev & Tech Conference in Southeast Asia
               </span>
 
               <Button rounded={false} size="md" click={handleSubmit}>
@@ -515,14 +525,16 @@ export default function Home() {
 
                 <LoadOnScreen popup={false}>
                   <div className="w-full  px-4 sm:px-10">
-                    <span className="text-[18px] text-[e4e4e6] block sm:w-[50%] w-full sm:text-left text-center font-[400] mb-10">
+                    <span className="text-[18px] text-[e4e4e6] block sm:w-[64%] w-full sm:text-left text-center font-[400] mb-10">
                       <span className="font-[500]">WEB3 & AI IDEATHON -</span>
-                      được tổ chức trong khuôn khổ giai đoạn đầu tiên (Genesis)
-                      của chuỗi sự kiện Web3 HackFest 2025. Là sân chơi sáng tạo
-                      toàn quốc nơi các đội thi trình bày ý tưởng về việc ứng
-                      dụng AI và Web3 vào thực tiễn, từ phát triển các sản phẩm
-                      và ứng dụng góp phần thúc đẩy hệ sinh thái chuyển đổi số
-                      toàn diện.
+                      <span className="font-[400]">
+                        được tổ chức trong khuôn khổ giai đoạn đầu tiên
+                        (Genesis) của chuỗi sự kiện Web3 HackFest 2025. Là sân
+                        chơi sáng tạo toàn quốc nơi các đội thi trình bày ý
+                        tưởng về việc ứng dụng AI và Web3 vào thực tiễn, từ phát
+                        triển các sản phẩm và ứng dụng góp phần thúc đẩy hệ sinh
+                        thái chuyển đổi số toàn diện.
+                      </span>
                     </span>
                     <div className="w-full flex sm:justify-start justify-center items-center sm:flex-row flex-col gap-4">
                       <Button hover rounded={false} size="md" click={() => {}}>
@@ -551,10 +563,10 @@ export default function Home() {
                     <span className="text-title text-white w-full text-center sm:text-left mt-[62px] block">
                       Giải thưởng
                     </span>
-                    <div className="flex w-full sm:w-[800px] flex-wrap mt-4 flex-col sm:flex-row">
+                    <div className="flex w-full sm:w-[80%] justify-between flex-wrap mt-4 flex-col sm:flex-row">
                       {rewardsInfo.map((item, index) => (
                         <li
-                          className="text-[18px] sm:w-[50%] w-full"
+                          className="text-[18px] font-[400] sm:w-[44%] w-full"
                           key={index}
                         >
                           {item}
@@ -671,14 +683,18 @@ export default function Home() {
       <Slide bkg={false} key={5} title="Đơn vị tổ chức">
         <div className="flex gap-8 w-full justify-between  flex-wrap items-center ">
           <LoadOnScreen popup={false}>
-            <div className="flex w-full justify-between items-center sm:flex-row flex-col sm:gap-0 gap-8">
+            <div className="flex w-full justify-between items-center">
               {hosts.map((item, index) => (
-                <div key={index} className="w-fit h-[100px]">
+                <div
+                  key={index}
+                  className="w-fit h-[100px] sm:scale-100 scale-[0.4]"
+                >
                   <img
-                    src={item}
+                    src={item.image}
                     alt=""
                     sizes=""
-                    className="w-auto h-[100px] object-cover object-center"
+                    style={{ height: `${item.size}px` }}
+                    className={`w-auto   object-cover object-center`}
                   />
                 </div>
               ))}
@@ -808,7 +824,7 @@ export default function Home() {
                   key={index}
                   className="sm:w-[230px] w-[44%] h-[280px] rounded-[10px] overflow-hidden relative"
                 >
-                  <div className="absolute top-0 left-0 bg-[#0000003e] p-2 w-full h-full flex items-end justify-start">
+                  <div className="absolute top-0 left-0 p-2 w-full h-full flex items-end justify-start bg-gradient-to-t from-[#000000b3] to-transparent">
                     <div className="">
                       <span
                         onClick={() => {
@@ -824,7 +840,7 @@ export default function Home() {
                       </span>
                       <span className="text-[#AEB0B6] text-[13px]">
                         {item.info}
-                      </span>{" "}
+                      </span>
                     </div>
                   </div>
                   <img

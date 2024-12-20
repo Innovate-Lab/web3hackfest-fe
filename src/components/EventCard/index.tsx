@@ -13,7 +13,7 @@ function EventCard(props: Props) {
           {/* <img src={props.image} alt="" className="w-full h-full" /> */}
         </div>
       </div>
-      <div className="absolute bottom-0 h-full w-full left-0 right-0 bg-[#0000002b] z-[102]"></div>
+      <div className="absolute bottom-0 h-full w-full left-0 right-0 bg-gradient-to-t from-[#000000b3] to-transparent z-[102]"></div>
       <span
         style={{ zIndex: "103" }}
         className="text-white text-[18px] bottom-[12px] left-[14px] absolute z-[103] font-[500] block"
