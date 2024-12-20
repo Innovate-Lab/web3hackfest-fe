@@ -144,22 +144,22 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex flex-col gap-8 justify-center items-center p-8">
-      <div className="text-white text-[45px] text-center">
+    <div className="flex flex-col gap-4 sm:gap-8 justify-center items-center sm:p-8 w-pageContent px-4">
+      <div className="text-white text-[24px] sm:text-[45px] text-center">
         Đăng ký tài khoản Web3 HackFest
       </div>
-      <div className="text-[#94969D] text-[16px] text-center w-[50%]">
+      <div className="text-[#94969D] text-[13px] sm:text-[16px] text-center w-full sm:w-[50%]">
         Vui lòng đăng ký tài khoản để tham gia cuộc thi Web3 & AI Ideathon và
         nhận thông tin các hoạt động của Web3 HackFest
       </div>
-      <div className="text-white text-[16px] text-center w-[50%]">
+      <div className="text-white text-[13px] sm:text-[16px] text-center w-full sm:w-[50%]">
         Lưu ý: Đảm bảo các thông tin chính xác để Bạn tổ chức có thể liên hệ
         nhận giải thưởng và quà tặng khi cần thiết
       </div>
-      <div className="backdrop-blur-lg bg-[rgba(78,78,78,0.2)] rounded-lg px-8 py-6 w-[536px] text-white">
+      <div className="backdrop-blur-lg bg-[rgba(78,78,78,0.2)] rounded-lg px-8 py-6 w-[100%] sm:w-[536px] text-white">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <Label className="text-white">Họ và tên</Label>
+            <Label className="text-white mb-2 block">Họ và tên</Label>
             <Input
               placeholder="Họ và tên"
               value={name}
@@ -169,7 +169,7 @@ const Signup = () => {
             />
           </div>
           <div>
-            <Label className="text-white">Số điện thoại</Label>
+            <Label className="text-white  mb-2 block">Số điện thoại</Label>
             <Input
               placeholder="Số điện thoại"
               value={phone}
@@ -180,7 +180,7 @@ const Signup = () => {
             />
           </div>
           <div>
-            <Label className="text-white">Email</Label>
+            <Label className="text-white  mb-2 block">Email</Label>
             <Input
               placeholder="Email"
               value={email}
@@ -190,7 +190,7 @@ const Signup = () => {
             />
           </div>
           <div>
-            <Label className="text-white">Password</Label>
+            <Label className="text-white  mb-2 block">Password</Label>
             <div className="relative">
               <Input
                 placeholder="Password"
