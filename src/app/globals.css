@@ -16,6 +16,11 @@
     var(--secondary) 100%
   );
 }
+@layer base {
+  h1 {
+    @apply text-3xl font-bold my-3;
+  }
+}
 /* desktop ui */
 @media (min-width: 1310px) {
   :root {

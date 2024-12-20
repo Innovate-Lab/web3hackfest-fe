@@ -5,7 +5,7 @@ const FeatureArticle = () => {
   const example = new Array(2).fill(null)
   return (
     <div className='flex flex-col'>
-      <div className='text-white text-xl'>
+      <div className='text-white text-[34px]'>
       Feature
       </div>
       <div className='flex gap-[48px] mt-5'>

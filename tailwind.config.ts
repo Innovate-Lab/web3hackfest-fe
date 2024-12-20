@@ -18,6 +18,7 @@ export default {
         secondary: "var(--secondary)",
         primaryGradient: "var(--primary-gradient)",
         field: "var(--bg-input)",
+        subText:"#53C7EA",
         // background: 'hsl(var(--background))',
         // 	foreground: 'hsl(var(--foreground))',
         // 	primary: {
