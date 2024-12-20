@@ -19,7 +19,6 @@ function ResetPassword() {
   const [validNumber, setValidNumber] = useState(false);
   const [showconfirm, setShowconfirm] = useState(false);
   const searchParams = useSearchParams();
-
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPassword(value);
@@ -39,7 +38,8 @@ function ResetPassword() {
   };
 
   useEffect(() => {
-    if (!searchParams) {
+    if (!searchParams || !searchParams.get("token")) {
+      window.location.href = "/forgot-password";
       return;
     }
 
@@ -53,7 +53,7 @@ function ResetPassword() {
       })
       .catch((err) => {
         if (err.response?.status !== 500) {
-          alert("Redirecting to forgot-password page...");
+          window.location.href = "/forgot-password";
         }
       });
   }, [searchParams]);
