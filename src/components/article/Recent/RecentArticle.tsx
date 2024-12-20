@@ -7,7 +7,7 @@ const RecentArticle = () => {
   return (
     <div className='flex flex-col'>
       <div className='text-white text-[34px]'>
-        Recent
+        Recent 
       </div>
       <div className='grid grid-cols-2 gap-[48px] mt-5'>
         {ArticleData.map((e, i) => {
