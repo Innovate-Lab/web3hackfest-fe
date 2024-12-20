@@ -144,9 +144,22 @@ const milestones = [
 ];
 
 const hosts = [
-  "https://framerusercontent.com/images/YSfEfbd7RhIpjqvWTl9LxnxzvM.png",
-  "https://framerusercontent.com/images/a7BXTlct1rp61eBh3u5NO10XMI.png?scale-down-to=1024",
-  "https://framerusercontent.com/images/8r6v2sdjLNlDcTukXUZU4ViPs.png?scale-down-to=1024",
+  {
+    size: "128",
+    mobildSize: "",
+    image:
+      "https://framerusercontent.com/images/YSfEfbd7RhIpjqvWTl9LxnxzvM.png",
+  },
+  {
+    size: "100",
+    image:
+      "https://framerusercontent.com/images/a7BXTlct1rp61eBh3u5NO10XMI.png?scale-down-to=1024",
+  },
+  {
+    size: "100",
+    image:
+      "https://framerusercontent.com/images/8r6v2sdjLNlDcTukXUZU4ViPs.png?scale-down-to=1024",
+  },
 ];
 
 const values = [
@@ -354,10 +367,10 @@ const activities = [
 
 export default function Home() {
   const [loaded, setLoaded] = useState<boolean>(false);
-  const [logged] = useState<boolean>(true);
   const value = useMotionValue(0);
   const { data: session } = useSession();
   const router = useRouter();
+  const { status } = useSession();
   useMotionValueEvent(value, "change", (latest) => {
     console.log(latest);
   });
@@ -426,10 +439,10 @@ export default function Home() {
               />
             </div>
 
-            <div className="main-content-wrapper justify-center relative z-30 flex flex-col items-center gap-5 w-[70%]">
-              <span className="block overflow-hidden  text-[32px] sm:text-[100px] font-[800] text-white">
+            <div className="main-content-wrapper justify-center relative z-30 flex flex-col items-center gap-5">
+              <span className="block overflow-hidden  text-[32px] sm:text-[68px] font-[800] text-white">
                 <span
-                  className={`transition-all  opacity-0 block  ease-in-out text-center ${
+                  className={`transition-all [font-family:var(--font-batman)] opacity-0 block ease-in-out text-center ${
                     loaded
                       ? "translate-y-[0] duration-700 opacity-100"
                       : "translate-y-[100px] opacity-0"
@@ -441,14 +454,11 @@ export default function Home() {
               </span>
 
               <span className="uppercase text-white text-[24px] font-[600] text-center">
-                A.I CONVERGENCE {`${loaded}`}
+                A.I CONVERGENCE
               </span>
 
-              <span className="text-disable text-center text-[17px]">
-                W3HF’25: Web3 & AI Convergence: Hội nghị AI và Web3 lớn nhất
-                Đông Nam Á, nơi quy tụ những nhà đổi mới, nhà sáng lập và người
-                kiến tạo để khám phá và vượt qua giới hạn của công nghệ AI, Web3
-                cùng sự giao thoa đột phá giữa chúng.
+              <span className="block  w-[70%] font-[500] text-white min-h-[60px]  text-center text-[17px]">
+                The largest Web3 Dev & Tech Conference in Southeast Asia
               </span>
 
               <Button rounded={false} size="md" click={handleSubmit}>
@@ -514,21 +524,36 @@ export default function Home() {
                 </LoadOnScreen>
 
                 <LoadOnScreen popup={false}>
-                  <div className="w-full  px-4 sm:px-10">
-                    <span className="text-[18px] text-[e4e4e6] block sm:w-[50%] w-full sm:text-left text-center font-[400] mb-10">
+                  <div className="w-full  px-4 sm:px-10 sm:backdrop-blur-0 backdrop-blur-[10px]">
+                    <span className="text-[14px] sm:text-[18px] text-[e4e4e6] block sm:w-[64%] w-full sm:text-left text-center font-[400] mb-10">
                       <span className="font-[500]">WEB3 & AI IDEATHON -</span>
-                      được tổ chức trong khuôn khổ giai đoạn đầu tiên (Genesis)
-                      của chuỗi sự kiện Web3 HackFest 2025. Là sân chơi sáng tạo
-                      toàn quốc nơi các đội thi trình bày ý tưởng về việc ứng
-                      dụng AI và Web3 vào thực tiễn, từ phát triển các sản phẩm
-                      và ứng dụng góp phần thúc đẩy hệ sinh thái chuyển đổi số
-                      toàn diện.
+                      <span className="font-[400]">
+                        được tổ chức trong khuôn khổ giai đoạn đầu tiên
+                        (Genesis) của chuỗi sự kiện Web3 HackFest 2025. Là sân
+                        chơi sáng tạo toàn quốc nơi các đội thi trình bày ý
+                        tưởng về việc ứng dụng AI và Web3 vào thực tiễn, từ phát
+                        triển các sản phẩm và ứng dụng góp phần thúc đẩy hệ sinh
+                        thái chuyển đổi số toàn diện.
+                      </span>
                     </span>
                     <div className="w-full flex sm:justify-start justify-center items-center sm:flex-row flex-col gap-4">
-                      <Button hover rounded={false} size="md" click={() => {}}>
+                      <Button
+                        hover
+                        rounded={false}
+                        size="md"
+                        click={() => {
+                          if (status == "authenticated") {
+                            router.push("/genesis");
+                          } else {
+                            router.push("/signup");
+                          }
+                        }}
+                      >
                         <div className="flex gap-2">
                           <span className="text-[18px] font-[500] text-white">
-                            {logged ? "Nộp bài ngay" : "Đăng kí ngay"}
+                            {status == "authenticated"
+                              ? "Nộp bài ngay"
+                              : "Đăng kí ngay"}
                           </span>
                           <MoveRight className="" stroke="#fff" />
                         </div>
@@ -551,10 +576,10 @@ export default function Home() {
                     <span className="text-title text-white w-full text-center sm:text-left mt-[62px] block">
                       Giải thưởng
                     </span>
-                    <div className="flex w-full sm:w-[800px] flex-wrap mt-4 flex-col sm:flex-row">
+                    <div className="flex w-full sm:w-[80%] justify-between flex-wrap mt-4 flex-col sm:flex-row">
                       {rewardsInfo.map((item, index) => (
                         <li
-                          className="text-[18px] sm:w-[50%] w-full"
+                          className="text-[14px] sm:text-[18px] font-[400] sm:w-[44%] w-full"
                           key={index}
                         >
                           {item}
@@ -656,7 +681,7 @@ export default function Home() {
 
       <Slide bkg={true} key={3} title="Chuỗi hoạt động trong sự kiện">
         <LoadOnScreen popup={false}>
-          <div className="flex gap-8 w-full flex-wrap justify-center">
+          <div className="flex sm:gap-8 gap-4  w-full flex-wrap sm:justify-center justify-between px-4">
             {activities.map((item, index) => (
               <EventCard
                 key={index}
@@ -671,14 +696,22 @@ export default function Home() {
       <Slide bkg={false} key={5} title="Đơn vị tổ chức">
         <div className="flex gap-8 w-full justify-between  flex-wrap items-center ">
           <LoadOnScreen popup={false}>
-            <div className="flex w-full justify-between items-center sm:flex-row flex-col sm:gap-0 gap-8">
+            <div className="flex w-full justify-between items-center">
               {hosts.map((item, index) => (
-                <div key={index} className="w-fit h-[100px]">
+                <div
+                  key={index}
+                  className="w-fit sm:h-[100px] sm:scale-100 px-2"
+                >
+                  {/* 36 60 - 100 120 */}
                   <img
-                    src={item}
+                    src={item.image}
                     alt=""
                     sizes=""
-                    className="w-auto h-[100px] object-cover object-center"
+                    className={`w-auto ${
+                      item.size == "128"
+                        ? "h-[60px] sm:h-[128px]"
+                        : "h-[36px] sm:h-[100px]"
+                    }   object-cover object-center`}
                   />
                 </div>
               ))}
@@ -714,7 +747,12 @@ export default function Home() {
 
             <W3Field
               title="Nhà tài trợ 2023"
-              button={{ title: "Become Our Sponsor", click: () => {} }}
+              button={{
+                title: "Become Our Sponsor",
+                click: () => {
+                  router.push("/become-partner");
+                },
+              }}
             >
               <div className="flex flex-col gap-4 w-[90%] mt">
                 {[
@@ -730,11 +768,11 @@ export default function Home() {
                     {item.map((child_item, child_index) => (
                       <img
                         key={child_index}
-                        className="sm:h-[48px] sm:w-auto w-[42%] h-auto"
+                        className="sm:h-[48px] sm:w-auto  w-auto h-[18px]"
                         src={`${
                           child_item == 1
                             ? "https://framerusercontent.com/images/MREXi78JgugwcKzmAcmRMibsMLw.png"
-                            : "https://framerusercontent.com/images/AyCXhQ2U9xiePn7fvSG19x4s.png"
+                            : "https://framerusercontent.com/images/edEhmDVWGBMjovrSTptO9gS1ZE.png"
                         }`}
                       />
                     ))}
@@ -761,7 +799,7 @@ export default function Home() {
                     {item.map((child_item, child_index) => (
                       <img
                         key={child_index}
-                        className="h-[48px] w-auto"
+                        className="sm:h-[48px] h-[18px] w-auto"
                         src={`${
                           child_item == 1
                             ? "https://framerusercontent.com/images/MREXi78JgugwcKzmAcmRMibsMLw.png"
@@ -779,18 +817,18 @@ export default function Home() {
               button={{ title: "Become Our Partner", click: () => {} }}
             >
               {" "}
-              <div className="flex gap-4 w-[90%] mt flex-wrap items-center justify-center">
+              <div className="flex gap-4 sm:w-[90%] mt flex-wrap items-center justify-center">
                 {[
                   1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1,
                   2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1,
                 ].map((item, index) => (
-                  <div className="px-8 w-fit" key={index}>
+                  <div className="sm:px-8 w-fit  px-4" key={index}>
                     <img
-                      className="h-[48px] w-auto object-cover object-center"
+                      className="sm:h-[48px] h-[30px] w-auto object-cover object-center"
                       src={
                         item == 1
                           ? "https://framerusercontent.com/images/asVCrm0gQCx2fAYWMItUP6JUaU.png"
-                          : "https://framerusercontent.com/images/tFXz3HBTwq7RclZ70qUpt28OOE.png"
+                          : "https://framerusercontent.com/images/u1sUQGeRqksYLP72YFi2f7vdM.png"
                       }
                       alt=""
                     />
@@ -799,16 +837,16 @@ export default function Home() {
               </div>
             </W3Field>
 
-            <span className="text-white text-[36px] font-[500]">
+            <span className="text-white text-[36px] font-[500] block w-full text-center">
               Diễn giả nổi bật 2023
             </span>
-            <div className="flex gap-[32px] flex-wrap items-center justify-between w-[80%]">
+            <div className="flex gap-4 sm:gap-[32px] flex-wrap items-center justify-between w-[80%]">
               {speakers.map((item, index) => (
                 <div
                   key={index}
-                  className="sm:w-[230px] w-[44%] h-[280px] rounded-[10px] overflow-hidden relative"
+                  className="sm:w-[230px] w-[47%] h-[200px] sm:h-[280px] rounded-[10px] overflow-hidden relative"
                 >
-                  <div className="absolute top-0 left-0 bg-[#0000003e] p-2 w-full h-full flex items-end justify-start">
+                  <div className="absolute top-0 left-0 p-2 w-full h-full flex items-end justify-start bg-gradient-to-t from-[#000000b3] to-transparent">
                     <div className="">
                       <span
                         onClick={() => {
@@ -816,15 +854,15 @@ export default function Home() {
                             window.open(item.url, "_blank");
                           }
                         }}
-                        className={`text-[18px] block text-white font-[500] ${
+                        className={`text-[14px] sm:text-[18px] block text-white sm:font-[500] ${
                           item.url && "cursor-pointer"
                         }`}
                       >
                         {item.sName}
                       </span>
-                      <span className="text-[#AEB0B6] text-[13px]">
+                      <span className="text-[#AEB0B6] text-[11px] sm:text-[13px]">
                         {item.info}
-                      </span>{" "}
+                      </span>
                     </div>
                   </div>
                   <img

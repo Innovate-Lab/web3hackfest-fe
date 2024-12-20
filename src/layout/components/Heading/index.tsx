@@ -53,15 +53,20 @@ function Heading() {
   };
   return (
     <div className="fixed  w-full z-[999] bg-black flex justify-between items-center p-[24px] sm:px-10 sm:py-[30px] bg-secondary border-b-[2px] border-[#ffffff42] border-solid ">
-      <div className="logo-wrapper">
-        {/* <img
+      <div
+        onClick={() => {
+          router.push("/");
+        }}
+        className="logo-wrapper p-x cursor-pointer"
+      >
+        <img
           className="w-[160px] h-auto"
           src="assets/images/w3fs.avif"
           alt=""
-        /> */}
+        />
       </div>
 
-      <div className="menu-wrapper sm:flex hidden ">
+      <div className="menu-wrapper sm:flex gap-8 hidden ">
         {pages.map((page, index) => (
           <HeadignButton
             key={index}

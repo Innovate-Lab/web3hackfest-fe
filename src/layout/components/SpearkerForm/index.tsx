@@ -111,9 +111,7 @@ function SpeakerForm() {
         {content.title}
       </span>
       <span className="text-white">{content.description}</span>
-      <div className="field flex flex-col gap-4">
-        <span className="title">Xin chào! Hãy điền tên của bạn vào trường</span>
-
+      <div className="field flex flex-col gap-4 mt-4">
         <InputField
           value={data.name}
           onChange={(e) => {

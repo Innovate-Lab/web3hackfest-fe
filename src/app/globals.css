@@ -21,6 +21,16 @@
     @apply text-3xl font-bold my-3;
   }
 }
+
+/* init font */
+
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("/fonts/SVN-BatmanForeverAlternate.otf") format("openType");
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* desktop ui */
 @media (min-width: 1310px) {
   :root {

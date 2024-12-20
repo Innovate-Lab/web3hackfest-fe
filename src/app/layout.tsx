@@ -6,6 +6,7 @@ import { DataProvider } from "@/provider/DataContext";
 import DefaultLayout from "@/layout/DefaultLayout";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "@/components/ui/toaster";
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -15,6 +16,12 @@ const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
+});
+
+const batman = localFont({
+  src: "../../public/fonts/SVN-BatmanForeverAlternate.otf",
+  variable: "--font-batman",
+  weight: "800",
 });
 
 export default function RootLayout({
@@ -27,7 +34,7 @@ export default function RootLayout({
               <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
 
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${batman.variable} antialiased`}
       >
         <SessionProvider>
           <DataProvider>
