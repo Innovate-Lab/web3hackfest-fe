@@ -142,9 +142,9 @@ function Ideathon() {
             </div>
 
             <div className="main-content-wrapper justify-center relative z-30 flex flex-col items-center gap-5 w-[70%]">
-              <span className="block overflow-hidden h-[120px] text-[32px] sm:text-[100px] font-[800] text-white">
+              <span className="block overflow-hidden h-[120px] text-[32px] sm:text-[68px] font-[800] text-white">
                 <span
-                  className={`text-center transition-all  opacity-0 block  ease-in-out ${
+                  className={`text-center transition-all [font-family:var(--font-batman)]  opacity-0 block  ease-in-out ${
                     loaded
                       ? "translate-y-[0] duration-700 opacity-100"
                       : "translate-y-[100px] opacity-0"
@@ -159,7 +159,7 @@ function Ideathon() {
                 Cuộc thi toàn quốc về ý tưởng công nghệ AI & Web3
               </span>
 
-              <span className="text-white text-center text-[17px] font-[500]">
+              <span className="text-white text-center text-[14px] sm:text-[17px] font-[500]">
                 Web3 HackFest 2025 mở màn với cuộc thi về ý tưởng - Web3 & AI
                 Ideathon đầy hứng khởi! Bạn và đội của mình sẽ sẽ có cơ hội
                 trình bày những ý tưởng sáng tạo về việc ứng dụng AI và Web3 để
@@ -261,7 +261,7 @@ function Ideathon() {
                 <div className="flex flex-wrap justify-between w-full sm:px-0 px-[16px] ">
                   {rewardsInfo.map((item, index) => (
                     <li
-                      className="sm:w-[48%] text-[18px] font-[500] text-white"
+                      className="sm:w-[48%] text-[14px] sm:text-[18px] font-[500] text-white"
                       key={index}
                     >
                       {item}
@@ -426,10 +426,10 @@ function Ideathon() {
             <div className="w-full flex flex-col gap-[18px]">
               {potentials.map((item, index) => (
                 <div key={index} className="flex gap-[10px]">
-                  <span className="w-[28px] h-[28px] rounded-[4px] bg-primary text-black text-[18px] font-[500] flex items-center justify-center  ">
+                  <span className="w-[22px] sm:w-[28px] h-[22px] sm:h-[28px] rounded-[4px] bg-primary text-black text-[14px] sm:text-[18px] font-[500] flex items-center justify-center  ">
                     {index + 1}
                   </span>
-                  <span className="text-[18px] max-w-[80%] text-[#e4e4e6]">
+                  <span className="text-[14px] sm:text-[18px] max-w-[80%] text-[#e4e4e6]">
                     {item}
                   </span>
                 </div>
