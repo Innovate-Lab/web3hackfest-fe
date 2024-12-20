@@ -19,22 +19,22 @@ const pages = [
   //   title: "Hackathon",
   //   to: "/hackathon",
   // },
-  // {
-  //   title: "Schedule",
-  //   to: "/schedule",
-  // },
   {
     title: "Article",
     to: "/article",
   },
-  // {
-  //   title: "Partners",
-  //   to: "/partners",
-  // },
-  // {
-  //   title: "About us",
-  //   to: "/about",
-  // },
+  {
+    title: "Article",
+    to: "/article",
+  },
+  {
+    title: "Partners",
+    to: "/partners",
+  },
+  {
+    title: "About us",
+    to: "/about",
+  },
 ];
 
 function Heading() {

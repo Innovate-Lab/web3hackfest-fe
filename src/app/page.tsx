@@ -750,7 +750,7 @@ export default function Home() {
               button={{
                 title: "Become Our Sponsor",
                 click: () => {
-                  router.push("/become-partner");
+                  router.push("/become-sponsor");
                 },
               }}
             >
@@ -783,7 +783,12 @@ export default function Home() {
 
             <W3Field
               title="Đối tác truyền thông 2023"
-              button={{ title: "Become Our Partner", click: () => {} }}
+              button={{
+                title: "Become Our Partner",
+                click: () => {
+                  router.push("/become-partner");
+                },
+              }}
             >
               <div className="flex flex-col gap-4 w-[90%] mt">
                 {[
@@ -814,7 +819,12 @@ export default function Home() {
 
             <W3Field
               title="Đối tác truyền thông 2023"
-              button={{ title: "Become Our Partner", click: () => {} }}
+              button={{
+                title: "Become Our Partner",
+                click: () => {
+                  router.push("/become-partner");
+                },
+              }}
             >
               {" "}
               <div className="flex gap-4 sm:w-[90%] mt flex-wrap items-center justify-center">
