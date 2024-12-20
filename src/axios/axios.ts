@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Public Axios instance (không cần Bearer Token)
 export const axiosInstance = axios.create({
-  baseURL: `http://${process.env.NEXT_PUBLIC_BASE_BACKEND_URL}`,
+  baseURL: `https://${process.env.NEXT_PUBLIC_BASE_BACKEND_URL}`,
   headers: {
     "Content-Type": "application/json",
   },
@@ -10,7 +10,7 @@ export const axiosInstance = axios.create({
 
 // Private Axios instance (có Bearer Token)
 export const axiosInstancePrivate = axios.create({
-  baseURL: `http://${process.env.NEXT_PUBLIC_BASE_BACKEND_URL}`,
+  baseURL: `https://${process.env.NEXT_PUBLIC_BASE_BACKEND_URL}`,
   headers: {
     "Content-Type": "application/json",
   },
