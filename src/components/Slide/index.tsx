@@ -47,7 +47,7 @@ function Slide(props: Props) {
       >
         <LoadOnScreen popup={false}>
           <span
-            className={`text-title font-[600] text-white w-full text-center block pb-4`}
+            className={`text-title px-10 sm:px-0 font-[600] text-white w-full text-center block pb-4`}
           >
             {props.title}
           </span>

@@ -668,7 +668,7 @@ export default function Home() {
 
       <Slide bkg={true} key={3} title="Chuỗi hoạt động trong sự kiện">
         <LoadOnScreen popup={false}>
-          <div className="flex gap-8 w-full flex-wrap justify-center">
+          <div className="flex sm:gap-8 gap-4  w-full flex-wrap sm:justify-center justify-between px-4">
             {activities.map((item, index) => (
               <EventCard
                 key={index}
@@ -687,14 +687,18 @@ export default function Home() {
               {hosts.map((item, index) => (
                 <div
                   key={index}
-                  className="w-fit h-[100px] sm:scale-100 scale-[0.4]"
+                  className="w-fit sm:h-[100px] sm:scale-100 px-2"
                 >
+                  {/* 36 60 - 100 120 */}
                   <img
                     src={item.image}
                     alt=""
                     sizes=""
-                    style={{ height: `${item.size}px` }}
-                    className={`w-auto   object-cover object-center`}
+                    className={`w-auto ${
+                      item.size == "128"
+                        ? "h-[60px] sm:h-[128px]"
+                        : "h-[36px] sm:h-[100px]"
+                    }   object-cover object-center`}
                   />
                 </div>
               ))}
@@ -815,14 +819,14 @@ export default function Home() {
               </div>
             </W3Field>
 
-            <span className="text-white text-[36px] font-[500]">
+            <span className="text-white text-[36px] font-[500] block w-full text-center">
               Diễn giả nổi bật 2023
             </span>
-            <div className="flex gap-[32px] flex-wrap items-center justify-between w-[80%]">
+            <div className="flex gap-4 sm:gap-[32px] flex-wrap items-center justify-between w-[80%]">
               {speakers.map((item, index) => (
                 <div
                   key={index}
-                  className="sm:w-[230px] w-[44%] h-[280px] rounded-[10px] overflow-hidden relative"
+                  className="sm:w-[230px] w-[47%] h-[200px] sm:h-[280px] rounded-[10px] overflow-hidden relative"
                 >
                   <div className="absolute top-0 left-0 p-2 w-full h-full flex items-end justify-start bg-gradient-to-t from-[#000000b3] to-transparent">
                     <div className="">
@@ -832,13 +836,13 @@ export default function Home() {
                             window.open(item.url, "_blank");
                           }
                         }}
-                        className={`text-[18px] block text-white font-[500] ${
+                        className={`text-[14px] sm:text-[18px] block text-white sm:font-[500] ${
                           item.url && "cursor-pointer"
                         }`}
                       >
                         {item.sName}
                       </span>
-                      <span className="text-[#AEB0B6] text-[13px]">
+                      <span className="text-[#AEB0B6] text-[11px] sm:text-[13px]">
                         {item.info}
                       </span>
                     </div>
