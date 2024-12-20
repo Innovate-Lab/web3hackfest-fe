@@ -12,7 +12,7 @@ interface Props {
 function W3Field(props: Props) {
   return (
     <>
-      <span className="text-white text-[36px] font-[500] text-center">
+      <span className="text-white text-[28px] sm:text-[36px] font-[500] text-center px-4 sm:px-0">
         {props.title}
       </span>
 

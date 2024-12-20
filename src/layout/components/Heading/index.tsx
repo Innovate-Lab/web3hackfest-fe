@@ -61,7 +61,7 @@ function Heading() {
         /> */}
       </div>
 
-      <div className="menu-wrapper sm:flex hidden ">
+      <div className="menu-wrapper sm:flex gap-8 hidden ">
         {pages.map((page, index) => (
           <HeadignButton
             key={index}
