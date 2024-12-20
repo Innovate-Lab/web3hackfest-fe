@@ -15,14 +15,14 @@ function RootLayout({ children }: { children: React.ReactNode }) {
   }, [session, router]);
 
   return (
-    <div
-      className="min-h-screen bg-cover bg-center bg-no-repeat flex justify-center items-center"
-      style={{
-        backgroundImage: `url('assets/images/bkgs/primaryBkg.png')`,
-      }}
-    >
-      {children}
-    </div>
+      <div
+        className="bg-cover bg-center bg-no-repeat flex justify-center items-center"
+        style={{
+          backgroundImage: `url('auth/bg.avif')`,
+        }}
+      >
+        {children}
+      </div>
   );
 }
 
