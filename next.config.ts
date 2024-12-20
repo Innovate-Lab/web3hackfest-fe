@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
     // Vô hiệu hóa ESLint khi chạy lệnh `next build`
     ignoreDuringBuilds: true,
   },
+
   /* Các tùy chọn cấu hình khác */
 };
 
