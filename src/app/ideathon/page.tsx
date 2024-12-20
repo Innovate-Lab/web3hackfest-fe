@@ -59,6 +59,52 @@ const rewards = {
   ],
 };
 
+const contestsInfo = [
+  {
+    title: "Trí tuệ nhân tạo (AI)",
+    description:
+      "Công nghệ mô phỏng trí thông minh của con người, cho phép máy tính học hỏi, phân tích và đưa ra quyết định thông minh dựa trên dữ liệu.",
+    values: [
+      `Trí tuệ nhân tạo AI trong các công cụ hỗ trợ doanh nghiệp chung (Phân tích dữ liệu, chăm sóc khách hàng tự động, ...)`,
+      `Lĩnh vực Giáo dục (Học tập cá nhân hoá, trợ lý ảo AI, Chatbot, đánh giá năng lực tự động, ...)`,
+      `Lĩnh vực Nông nghiệp (Dự báo thời tiết mùa vụ, phát hiện bệnh, tối ưu hoá quy trình chăm sóc, ...)`,
+      `Lĩnh vực thương mại và Dịch vụ: (Dự đoán hành vi và xu hướng mua sắm, tối ưu hóa quản lý kho và chuỗi cung ứng, Chatbot và trợ lý ảo chăm sóc khách hàng, Hệ thống đề xuất sản phẩm thông minh, Phân tích phản hồi khách hàng từ các kênh trực tuyến)`,
+      `Giao thông và Logistics: Hệ thống vận tải thông minh, Tối ưu hóa lộ trình giao hàng, Giám sát an toàn giao thông, Quản lý đội xe tự động`,
+      `Tài chính và Ngân hàng: Phát hiện gian lận, Đánh giá rủi ro tín dụng, Giao dịch tự động, Tư vấn đầu tư cá nhân hóa, Dự báo thị trường tài chính`,
+      "...",
+    ],
+  },
+  {
+    title: "Công nghệ chuỗi khối (Blockchain/ Web3)",
+    description:
+      "Công nghệ lưu trữ phi tập trung và bảo mật, tạo nền tảng cho các ứng dụng Web3 và giao dịch minh bạch không cần trung gian.",
+    values: [
+      "Tài chính phi tập trung - DeFi (Giao dịch phi tập trung, Bảo hiểm Blockchain, Quản lý tài sản thực RWA,...)",
+      "NFT & Metaverse (Trải nghiệm thực tế ảo, tài sản số NFT,...)",
+      "Một số ứng dụng Blockchain cho Doanh nghiệp (Chuỗi cung ứng, logistics, Truy xuất nguồn gốc, Hợp đồng thông minh, giao dịch tài chính...)",
+      "Mạng xã hội phi tập trung SocialFi",
+      "Cơ sở hạ tầng vật lý phi tập trung (DePIN) & IoT",
+      "Quản trị, từ thiện và dịch vụ công phi tập trung",
+      "GameFi",
+      "...",
+    ],
+  },
+  {
+    title: "kết hợp",
+    description:
+      "Công nghệ lưu trữ phi tập trung và bảo mật, tạo nền tảng cho các ứng dụng Web3 và giao dịch minh bạch không cần trung gian.",
+    values: [
+      `Trí tuệ nhân tạo AI trong các công cụ hỗ trợ doanh nghiệp chung (Phân tích dữ liệu, chăm sóc khách hàng tự động, ...).`,
+      `Lĩnh vực Giáo dục (Học tập cá nhân hóa, trợ lý ảo AI, Chatbot, đánh giá năng lực tự động, ...).`,
+      `Lĩnh vực Nông nghiệp (Dự báo thời tiết mùa vụ, phát hiện bệnh, tối ưu hóa quy trình chăm sóc, ...).`,
+      `Lĩnh vực Thương mại và Dịch vụ (Dự đoán hành vi và xu hướng mua sắm, tối ưu hóa quản lý kho và chuỗi cung ứng, Chatbot và trợ lý ảo chăm sóc khách hàng, Hệ thống đề xuất sản phẩm thông minh, Phân tích phản hồi khách hàng từ các kênh trực tuyến).`,
+      `Giao thông và Logistics (Hệ thống vận tải thông minh, Tối ưu hóa lộ trình giao hàng, Giám sát an toàn giao thông, Quản lý đội xe tự động).`,
+      `Tài chính và Ngân hàng (Phát hiện gian lận, Đánh giá rủi ro tín dụng, Giao dịch tự động, Tư vấn đầu tư cá nhân hóa, Dự báo thị trường tài chính).`,
+      "...",
+    ],
+  },
+];
+
 const contest = [
   { title: "AI", icon: "assets/images/icons/start.png", enable: false },
   {
@@ -94,6 +140,7 @@ const evaluations = [
 
 function Ideathon() {
   const [loaded, setLoaded] = useState<boolean>(false);
+  const [contestIndex, setContextIndex] = useState<number>(1);
   const { status } = useSession();
   const router = useRouter();
   useEffect(() => {
@@ -388,9 +435,12 @@ function Ideathon() {
           <div className="w-full flex gap-10 justify-between sm:flex-row flex-col items-center">
             {contest.map((item, index) => (
               <div
+                onClick={() => {
+                  setContextIndex(index);
+                }}
                 key={index}
                 className={`flex ${
-                  !item.enable && "opacity-40"
+                  !(contestIndex == index) && "opacity-40"
                 } cursor-pointer gap-4 w-[30%] justify-center transition-all duration-200 ease-linear hover:transition-all hover:duration-200 hover:ease-linear hover:scale-110 hover:opacity-100`}
               >
                 <img src={item.icon} alt="" className="w-9 h-9" />
@@ -411,11 +461,10 @@ function Ideathon() {
         <div className="mx-4 w-full border-[1px] border-[#ffffff26] rounded-[16px] backdrop-blur-lg bg-[#4e4e4e46] h-full  flex  sm:flex-row flex-col p-[10px]">
           <div className="sm:w-[50%] p-8">
             <span className="text-[24px] font-[600] text-white block">
-              Công nghệ chuỗi khối (Blockchain/ Web3)
+              {contestsInfo[contestIndex].title}
             </span>
             <span className="text-[16px] text-[#aeb0b6] block">
-              Công nghệ lưu trữ phi tập trung và bảo mật, tạo nền tảng cho các
-              ứng dụng Web3 và giao dịch minh bạch không cần trung gian.
+              {contestsInfo[contestIndex].description}
             </span>
           </div>
           <div className="sm:w-[50%] p-8">
@@ -424,7 +473,7 @@ function Ideathon() {
             </span>
 
             <div className="w-full flex flex-col gap-[18px]">
-              {potentials.map((item, index) => (
+              {contestsInfo[contestIndex].values.map((item, index) => (
                 <div key={index} className="flex gap-[10px]">
                   <span className="w-[22px] sm:w-[28px] h-[22px] sm:h-[28px] rounded-[4px] bg-primary text-black text-[14px] sm:text-[18px] font-[500] flex items-center justify-center  ">
                     {index + 1}
