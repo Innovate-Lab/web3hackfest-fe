@@ -524,8 +524,8 @@ export default function Home() {
                 </LoadOnScreen>
 
                 <LoadOnScreen popup={false}>
-                  <div className="w-full  px-4 sm:px-10">
-                    <span className="text-[18px] text-[e4e4e6] block sm:w-[64%] w-full sm:text-left text-center font-[400] mb-10">
+                  <div className="w-full  px-4 sm:px-10 sm:backdrop-blur-0 backdrop-blur-[10px]">
+                    <span className="text-[14px] sm:text-[18px] text-[e4e4e6] block sm:w-[64%] w-full sm:text-left text-center font-[400] mb-10">
                       <span className="font-[500]">WEB3 & AI IDEATHON -</span>
                       <span className="font-[400]">
                         được tổ chức trong khuôn khổ giai đoạn đầu tiên
@@ -579,7 +579,7 @@ export default function Home() {
                     <div className="flex w-full sm:w-[80%] justify-between flex-wrap mt-4 flex-col sm:flex-row">
                       {rewardsInfo.map((item, index) => (
                         <li
-                          className="text-[18px] font-[400] sm:w-[44%] w-full"
+                          className="text-[14px] sm:text-[18px] font-[400] sm:w-[44%] w-full"
                           key={index}
                         >
                           {item}
