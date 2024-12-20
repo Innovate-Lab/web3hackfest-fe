@@ -18,7 +18,7 @@ function ResetPassword() {
   const [validLowercase, setValidLowercase] = useState(false);
   const [validNumber, setValidNumber] = useState(false);
   const [showconfirm, setShowconfirm] = useState(false);
-  const [searchParams] = useSearchParams();
+  const searchParams = useSearchParams();
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -44,8 +44,10 @@ function ResetPassword() {
     }
 
     axiosInstance
-    //@ts-ignore
-      .get(`/user/check-token-reset-password?token=${searchParams.get("token")}`)
+      //@ts-ignore
+      .get(
+        `/user/check-token-reset-password?token=${searchParams.get("token")}`
+      )
       .then((res) => {
         console.log(res.data);
       })
@@ -92,7 +94,9 @@ function ResetPassword() {
     <div className="w-full flex justify-center items-center min-h-[100vh]">
       <div className="bg-[#1b1b21] rounded-[10px] border-[1px] border-[#ffffff1a] p-8 sm:w-[1100px] w-[92%]">
         <div className="flex w-full justify-center mb-10">
-          <span className="text-white text-[32px] font-[600]">Reset Password</span>
+          <span className="text-white text-[32px] font-[600]">
+            Reset Password
+          </span>
         </div>
         <div>
           <Label className="text-white block mb-4">Password</Label>
@@ -135,19 +139,35 @@ function ResetPassword() {
         </div>
 
         <div className="flex flex-col gap-[10px] mt-4">
-          <div className={`flex gap-1 text-[12px] ${validLength ? "text-white" : "text-gray-400"}`}>
+          <div
+            className={`flex gap-1 text-[12px] ${
+              validLength ? "text-white" : "text-gray-400"
+            }`}
+          >
             <IoCloseSharp className="self-center text-[16px]" />
             <span>At least 8 characters</span>
           </div>
-          <div className={`flex gap-1 text-[12px] ${validUppercase ? "text-white" : "text-gray-400"}`}>
+          <div
+            className={`flex gap-1 text-[12px] ${
+              validUppercase ? "text-white" : "text-gray-400"
+            }`}
+          >
             <IoCloseSharp className="self-center text-[16px]" />
             <span>At least one uppercase letter</span>
           </div>
-          <div className={`flex gap-1 text-[12px] ${validLowercase ? "text-white" : "text-gray-400"}`}>
+          <div
+            className={`flex gap-1 text-[12px] ${
+              validLowercase ? "text-white" : "text-gray-400"
+            }`}
+          >
             <IoCloseSharp className="self-center text-[16px]" />
             <span>At least one lowercase letter</span>
           </div>
-          <div className={`flex gap-1 text-[12px] ${validNumber ? "text-white" : "text-gray-400"}`}>
+          <div
+            className={`flex gap-1 text-[12px] ${
+              validNumber ? "text-white" : "text-gray-400"
+            }`}
+          >
             <IoCloseSharp className="self-center text-[16px]" />
             <span>At least one number</span>
           </div>
