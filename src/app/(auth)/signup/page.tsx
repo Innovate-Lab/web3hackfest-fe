@@ -1,4 +1,4 @@
-import Signup from "@/components/Signup";
+import Signup from "@/components/signup";
 import { Suspense } from "react";
 
 const Page = () => {
